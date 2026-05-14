@@ -1,0 +1,10 @@
+{
+  "name": "MOHCC Zimbabwe Attendance System",
+  "description": "Employee attendance system with QR code clock-in/out, real-time admin dashboard, and department analytics for the Ministry of Health and Child Care Zimbabwe.",
+  "requestFramePermissions": [
+    "camera"
+  ],
+  "majorCapabilities": [
+    "high-thinking"
+  ]
+}

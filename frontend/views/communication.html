@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Communication | MOHCC Zimbabwe</title>
+    <link rel="icon" href="/logo.png" type="image/png">
+    <script src="https://unpkg.com/@tailwindcss/browser@4"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <link rel="stylesheet" href="/css/style.css">
+    <style>
+        :root {
+            --color-moh-green: #00843D;
+            --color-moh-gold: #FFD200;
+            --color-moh-red: #D40000;
+            --color-moh-bg: #f0faf5;
+            --color-moh-sidebar: #064e3b;
+            --color-moh-border: #E2E8F0;
+            --color-moh-text-main: #1A1A1A;
+            --color-moh-text-sub: #64748B;
+        }
+        .bento-card {
+            background-color: white;
+            border-radius: 1.5rem;
+            border: 1px solid var(--color-moh-border);
+            padding: 1.5rem;
+            box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+            transition: all 0.2s ease-in-out;
+        }
+        .bento-card:hover {
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+        }
+        .bg-moh-green { background-color: var(--color-moh-green); }
+        .bg-moh-gold { background-color: var(--color-moh-gold); }
+        .bg-moh-red { background-color: var(--color-moh-red); }
+        .bg-moh-bg { background-color: var(--color-moh-bg); }
+        .bg-moh-sidebar { background-color: var(--color-moh-sidebar); }
+        .border-moh-border { border-color: var(--color-moh-border); }
+        .text-moh-green { color: var(--color-moh-green); }
+        .text-moh-gold { color: var(--color-moh-gold); }
+        .text-moh-red { color: var(--color-moh-red); }
+        .text-moh-text-main { color: var(--color-moh-text-main); }
+        .text-moh-text-sub { color: var(--color-moh-text-sub); }
+    </style>
+</head>
+<body class="bg-moh-bg min-h-screen flex">
+    <!-- Sidebar -->
+    <aside class="w-64 bg-moh-sidebar text-white flex flex-col sticky top-0 h-screen hidden lg:flex">
+        <div class="p-6 border-b border-emerald-900">
+            <div class="flex items-center gap-3">
+                <img src="/logo.png" alt="MOHCC Logo" class="w-10 h-10 object-contain">
+                <div>
+                    <h1 class="font-bold text-white text-sm leading-none">MOHCC Zimbabwe</h1>
+                    <p class="text-[10px] text-moh-gold uppercase tracking-widest mt-1">Employee Portal</p>
+                </div>
+            </div>
+        </div>
+        
+        <nav class="flex-1 p-4 space-y-2 overflow-y-auto">
+            <!-- Main Navigation -->
+            <a href="/employee-dashboard" id="navOverview" class="w-full flex items-center gap-3 px-4 py-3 text-green-100 hover:bg-white/10 hover:text-white rounded-xl font-medium transition-all">
+                <i data-lucide="layout-dashboard" class="w-5 h-5"></i>
+                <span>My Dashboard</span>
+            </a>
+            
+            <!-- Personal Section -->
+            <div class="pt-2 pb-1">
+                <p class="text-xs text-emerald-400 uppercase tracking-widest px-4 font-semibold">Personal</p>
+            </div>
+            <a href="/my-profile" id="navProfile" class="w-full flex items-center gap-3 px-4 py-3 text-green-100 hover:bg-white/10 hover:text-white rounded-xl font-medium transition-all">
+                <i data-lucide="user" class="w-5 h-5"></i>
+                <span>My Profile</span>
+            </a>
+            <a href="/my-attendance" id="navAttendance" class="w-full flex items-center gap-3 px-4 py-3 text-green-100 hover:bg-white/10 hover:text-white rounded-xl font-medium transition-all">
+                <i data-lucide="clock" class="w-5 h-5"></i>
+                <span>My Attendance</span>
+            </a>
+            <a href="/communication" id="navCommunication" class="w-full flex items-center gap-3 px-4 py-3 bg-moh-green text-white rounded-xl font-medium transition-all">
+                <i data-lucide="message-square" class="w-5 h-5"></i>
+                <span>Communication</span>
+            </a>
+        </nav>
+
+        <div class="p-4 border-t border-emerald-900">
+            <div class="p-3 bg-white/10 rounded-xl mb-3">
+                <p class="text-xs text-moh-gold font-bold" id="employeeName">Loading...</p>
+                <p class="text-[10px] text-green-200" id="employeeId">Loading...</p>
+                <p class="text-[10px] text-green-200" id="employeeDept">Loading...</p>
+            </div>
+            <button id="logoutBtn" class="w-full flex items-center gap-3 px-4 py-3 text-green-200 hover:text-red-300 transition-all font-medium">
+                <i data-lucide="log-out" class="w-5 h-5"></i>
+                <span>Logout</span>
+            </button>
+        </div>
+    </aside>
+
+    <!-- Main Content -->
+        <main class="flex-1 lg:ml-0">
+        <!-- Mobile Header -->
+        <div class="bg-white border-b border-moh-border px-4 py-3 lg:hidden">
+            <div class="flex items-center justify-between">
+                <div class="flex items-center gap-3">
+                    <img src="/logo.png" alt="MOHCC Logo" class="w-8 h-8 object-contain">
+                    <h1 class="font-bold text-moh-text-main">Communication</h1>
+                </div>
+                <button class="p-2 text-gray-600">
+                    <i data-lucide="menu" class="w-5 h-5"></i>
+                </button>
+            </div>
+        </div>
+
+        <!-- Page Content -->
+        <div class="p-4 lg:p-8">
+            <div class="max-w-6xl mx-auto">
+                <div class="mb-8">
+                    <h1 class="text-2xl font-bold text-moh-text-main mb-2">Communication &amp; Requests</h1>
+                    <p class="text-moh-text-sub">Submit requests and view HR announcements</p>
+                </div>
+
+                <div class="bento-card">
+                    <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                        <!-- Leave Request Form -->
+                        <div class="p-6 bg-moh-bg rounded-2xl border border-moh-border">
+                            <h4 class="font-bold mb-4 flex items-center gap-2">
+                                <i data-lucide="calendar-x" class="w-5 h-5 text-moh-green"></i>
+                                Submit Leave Request
+                            </h4>
+                            <form id="leaveRequestForm" class="space-y-4">
+                                <div>
+                                    <label class="block text-sm font-bold mb-1 text-moh-text-sub">Leave Type</label>
+                                    <select id="leaveType" class="w-full px-4 py-2 border border-moh-border rounded-xl outline-none focus:ring-2 focus:ring-moh-green bg-white">
+                                        <option value="annual">Annual Leave</option>
+                                        <option value="sick">Sick Leave</option>
+                                        <option value="personal">Personal Leave</option>
+                                        <option value="emergency">Emergency Leave</option>
+                                    </select>
+                                </div>
+                                <div class="grid grid-cols-2 gap-4">
+                                    <div>
+                                        <label class="block text-sm font-bold mb-1 text-moh-text-sub">Start Date</label>
+                                        <input type="date" id="leaveStartDate" class="w-full px-4 py-2 border border-moh-border rounded-xl outline-none focus:ring-2 focus:ring-moh-green bg-white">
+                                    </div>
+                                    <div>
+                                        <label class="block text-sm font-bold mb-1 text-moh-text-sub">End Date</label>
+                                        <input type="date" id="leaveEndDate" class="w-full px-4 py-2 border border-moh-border rounded-xl outline-none focus:ring-2 focus:ring-moh-green bg-white">
+                                    </div>
+                                </div>
+                                <div>
+                                    <label class="block text-sm font-bold mb-1 text-moh-text-sub">Reason</label>
+                                    <textarea id="leaveReason" rows="3" class="w-full px-4 py-2 border border-moh-border rounded-xl outline-none focus:ring-2 focus:ring-moh-green bg-white"></textarea>
+                                </div>
+                                <button type="submit" class="w-full bg-moh-green text-white px-4 py-2 rounded-xl font-bold hover:bg-emerald-800 transition-all">
+                                    Submit Request
+                                </button>
+                            </form>
+                        </div>
+                        
+                    </div>
+                    
+                    <!-- Announcements -->
+                    <div class="mt-6">
+                        <h4 class="font-bold mb-4 flex items-center gap-2">
+                            <i data-lucide="megaphone" class="w-5 h-5 text-moh-gold"></i>
+                            HR Announcements
+                        </h4>
+                        <div class="space-y-4" id="announcementsList">
+                            <!-- Announcements will be populated here -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script>
+        // Initialize Lucide icons
+        lucide.createIcons();
+
+        // Navigation functionality
+        document.getElementById('navOverview')?.addEventListener('click', () => {
+            window.location.href = '/employee-dashboard';
+        });
+
+        document.getElementById('navProfile')?.addEventListener('click', () => {
+            window.location.href = '/my-profile';
+        });
+
+        document.getElementById('navMyReports')?.addEventListener('click', () => {
+            window.location.href = '/my-reports';
+        });
+
+        document.getElementById('navAttendance')?.addEventListener('click', () => {
+            window.location.href = '/my-attendance';
+        });
+
+        // Note: navCommunication is the current page, so no navigation needed
+
+        // Load announcements
+        async function loadAnnouncements() {
+            try {
+                const res = await fetch('/api/user/announcements');
+                const announcements = await res.json();
+                renderAnnouncements(announcements);
+            } catch (err) {
+                console.error('Error loading announcements:', err);
+            }
+        }
+
+        function renderAnnouncements(announcements) {
+            const container = document.getElementById('announcementsList');
+            container.innerHTML = '';
+
+            if (!announcements || announcements.length === 0) {
+                container.innerHTML = `
+                    <div class="text-center py-8 text-moh-text-sub">
+                        <i data-lucide="megaphone" class="w-8 h-8 mx-auto mb-2"></i>
+                        <p>No announcements available.</p>
+                    </div>
+                `;
+                lucide.createIcons();
+                return;
+            }
+
+            announcements.forEach(announcement => {
+                const priorityClass = announcement.priority === 'high' ? 'border-l-4 border-l-moh-red' :
+                                   announcement.priority === 'medium' ? 'border-l-4 border-l-moh-gold' :
+                                   'border-l-4 border-l-moh-green';
+
+                const card = document.createElement('div');
+                card.className = `p-4 bg-white rounded-xl border border-moh-border ${priorityClass}`;
+                card.innerHTML = `
+                    <div class="flex justify-between items-start mb-2">
+                        <h5 class="font-bold text-moh-text-main">${announcement.title}</h5>
+                        <span class="text-[10px] text-moh-text-sub font-bold uppercase">${new Date(announcement.created_at).toLocaleDateString('en-GB')}</span>
+                    </div>
+                    <p class="text-sm text-moh-text-sub">${announcement.message}</p>
+                `;
+                container.appendChild(card);
+            });
+        }
+
+        // Load announcements on page load
+        loadAnnouncements();
+
+        // Leave Request Form Submission
+        document.getElementById('leaveRequestForm').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            
+            const type = document.getElementById('leaveType').value;
+            const startDate = document.getElementById('leaveStartDate').value;
+            const endDate = document.getElementById('leaveEndDate').value;
+            const reason = document.getElementById('leaveReason').value;
+
+            if (!startDate || !endDate) {
+                alert('Please select both start and end dates');
+                return;
+            }
+
+            if (new Date(startDate) > new Date(endDate)) {
+                alert('End date must be after start date');
+                return;
+            }
+
+            try {
+                const res = await fetch('/api/user/leave-request', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ type, startDate, endDate, reason })
+                });
+                const data = await res.json();
+                
+                if (data.success) {
+                    alert('Leave request submitted successfully!');
+                    document.getElementById('leaveRequestForm').reset();
+                } else {
+                    alert('Failed to submit leave request: ' + (data.message || 'Unknown error'));
+                }
+            } catch (err) {
+                console.error('Leave request error:', err);
+                alert('Failed to submit leave request. Please try again.');
+            }
+        });
+
+        // Logout functionality handled by subpages.js
+    </script>
+    <script src="/js/subpages.js"></script>
+</body>
+</html>

@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Communication | MOHCC Zimbabwe</title>
+    <link rel="icon" href="/logo.png" type="image/png">
+    <script src="https://unpkg.com/@tailwindcss/browser@4"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <link rel="stylesheet" href="/css/style.css">
+    <style>
+        :root {
+            --color-moh-green: #00843D;
+            --color-moh-gold: #FFD200;
+            --color-moh-red: #D40000;
+            --color-moh-bg: #f0faf5;
+            --color-moh-sidebar: #064e3b;
+            --color-moh-border: #E2E8F0;
+            --color-moh-text-main: #1A1A1A;
+            --color-moh-text-sub: #64748B;
+        }
+        .bento-card {
+            background-color: white;
+            border-radius: 1.5rem;
+            border: 1px solid var(--color-moh-border);
+            padding: 1.5rem;
+            box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+            transition: all 0.2s ease-in-out;
+        }
+        .bento-card:hover {
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+        }
+        .bg-moh-green { background-color: var(--color-moh-green); }
+        .bg-moh-gold { background-color: var(--color-moh-gold); }
+        .bg-moh-red { background-color: var(--color-moh-red); }
+        .bg-moh-bg { background-color: var(--color-moh-bg); }
+        .bg-moh-sidebar { background-color: var(--color-moh-sidebar); }
+        .border-moh-border { border-color: var(--color-moh-border); }
+        .text-moh-green { color: var(--color-moh-green); }
+        .text-moh-gold { color: var(--color-moh-gold); }
+        .text-moh-red { color: var(--color-moh-red); }
+        .text-moh-text-main { color: var(--color-moh-text-main); }
+        .text-moh-text-sub { color: var(--color-moh-text-sub); }
+    </style>
+</head>
+<body class="bg-moh-bg min-h-screen flex">
+    <!-- Sidebar -->
+    <aside class="w-64 bg-moh-sidebar text-white flex flex-col sticky top-0 h-screen hidden lg:flex">
+        <div class="p-6 border-b border-emerald-900">
+            <div class="flex items-center gap-3">
+                <img src="/logo.png" alt="MOHCC Logo" class="w-10 h-10 object-contain">
+                <div>
+                    <h1 class="font-bold text-white text-sm leading-none">MOHCC Zimbabwe</h1>
+                    <p class="text-[10px] text-moh-gold uppercase tracking-widest mt-1">Employee Portal</p>
+                </div>
+            </div>
+        </div>
+        
+        <nav class="flex-1 p-4 space-y-2 overflow-y-auto">
+            <!-- Main Navigation -->
+            <a href="/employee-dashboard" id="navOverview" class="w-full flex items-center gap-3 px-4 py-3 bg-moh-green text-white rounded-xl font-medium transition-all">
+                <i data-lucide="layout-dashboard" class="w-5 h-5"></i>
+                <span>My Dashboard</span>
+            </a>
+            
+            <!-- Personal Section -->
+            <div class="pt-2 pb-1">
+                <p class="text-xs text-emerald-400 uppercase tracking-widest px-4 font-semibold">Personal</p>
+            </div>
+            <a href="/my-profile" id="navProfile" class="w-full flex items-center gap-3 px-4 py-3 text-green-100 hover:bg-white/10 hover:text-white rounded-xl font-medium transition-all">
+                <i data-lucide="user" class="w-5 h-5"></i>
+                <span>My Profile</span>
+            </a>
+            <a href="/my-attendance" id="navAttendance" class="w-full flex items-center gap-3 px-4 py-3 text-green-100 hover:bg-white/10 hover:text-white rounded-xl font-medium transition-all">
+                <i data-lucide="clock" class="w-5 h-5"></i>
+                <span>My Attendance</span>
+            </a>
+            <a href="/communication" id="navCommunication" class="w-full flex items-center gap-3 px-4 py-3 text-green-100 hover:bg-white/10 hover:text-white rounded-xl font-medium transition-all">
+                <i data-lucide="message-square" class="w-5 h-5"></i>
+                <span>Communication</span>
+            </a>
+        </nav>
+
+        <div class="p-4 border-t border-emerald-900">
+            <div class="p-3 bg-white/10 rounded-xl mb-3">
+                <p class="text-xs text-moh-gold font-bold" id="employeeName">Loading...</p>
+                <p class="text-[10px] text-green-200" id="employeeId">Loading...</p>
+                <p class="text-[10px] text-green-200" id="employeeDept">Loading...</p>
+            </div>
+            <button id="logoutBtn" class="w-full flex items-center gap-3 px-4 py-3 text-green-200 hover:text-red-300 transition-all font-medium">
+                <i data-lucide="log-out" class="w-5 h-5"></i>
+                <span>Logout</span>
+            </button>
+        </div>
+    </aside>
+
+    <!-- Main Content -->
+        <main class="flex-1 lg:ml-0">
+        <!-- Mobile Header -->
+        <div class="bg-white border-b border-moh-border px-4 py-3 lg:hidden">
+            <div class="flex items-center justify-between">
+                <div class="flex items-center gap-3">
+                    <img src="/logo.png" alt="MOHCC Logo" class="w-8 h-8 object-contain">
+                    <h1 class="font-bold text-moh-text-main">My Schedule</h1>
+                </div>
+                <button class="p-2 text-gray-600">
+                    <i data-lucide="menu" class="w-5 h-5"></i>
+                </button>
+            </div>
+        </div>
+
+        <!-- Page Content -->
+        <div class="p-4 lg:p-8">
+            <div class="max-w-6xl mx-auto">
+                <div class="mb-8">
+                    <h1 class="text-2xl font-bold text-moh-text-main mb-2">My Work Schedule</h1>
+                    <p class="text-moh-text-sub">View your upcoming shifts and working hours</p>
+                </div>
+
+                <div class="bento-card">
+                    <div class="mb-6">
+                        <h4 class="font-bold text-lg mb-4 flex items-center gap-2">
+                            <i data-lucide="calendar" class="w-5 h-5 text-moh-green"></i>
+                            Weekly Schedule
+                        </h4>
+                        
+                        <div class="overflow-x-auto">
+                            <table class="w-full text-left border-collapse">
+                                <thead>
+                                    <tr class="border-b border-moh-border text-xs font-bold text-moh-text-sub uppercase tracking-widest">
+                                        <th class="pb-4 px-4">Day</th>
+                                        <th class="pb-4 px-4">Date</th>
+                                        <th class="pb-4 px-4">Shift Type</th>
+                                        <th class="pb-4 px-4">Hours</th>
+                                        <th class="pb-4 px-4">Location</th>
+                                    </tr>
+                                </thead>
+                                <tbody class="text-sm">
+                                    <tr class="border-b border-moh-border hover:bg-gray-50">
+                                        <td class="py-4 px-4 font-bold">Monday</td>
+                                        <td class="py-4 px-4 text-moh-text-sub">Current Week</td>
+                                        <td class="py-4 px-4"><span class="px-3 py-1 bg-blue-100 text-blue-800 rounded-full text-xs font-medium">Morning Shift</span></td>
+                                        <td class="py-4 px-4">08:00 - 17:00</td>
+                                        <td class="py-4 px-4">Main Office</td>
+                                    </tr>
+                                    <tr class="border-b border-moh-border hover:bg-gray-50">
+                                        <td class="py-4 px-4 font-bold">Tuesday</td>
+                                        <td class="py-4 px-4 text-moh-text-sub">Current Week</td>
+                                        <td class="py-4 px-4"><span class="px-3 py-1 bg-blue-100 text-blue-800 rounded-full text-xs font-medium">Morning Shift</span></td>
+                                        <td class="py-4 px-4">08:00 - 17:00</td>
+                                        <td class="py-4 px-4">Main Office</td>
+                                    </tr>
+                                    <tr class="border-b border-moh-border hover:bg-gray-50">
+                                        <td class="py-4 px-4 font-bold">Wednesday</td>
+                                        <td class="py-4 px-4 text-moh-text-sub">Current Week</td>
+                                        <td class="py-4 px-4"><span class="px-3 py-1 bg-blue-100 text-blue-800 rounded-full text-xs font-medium">Morning Shift</span></td>
+                                        <td class="py-4 px-4">08:00 - 17:00</td>
+                                        <td class="py-4 px-4">Main Office</td>
+                                    </tr>
+                                    <tr class="border-b border-moh-border hover:bg-gray-50">
+                                        <td class="py-4 px-4 font-bold">Thursday</td>
+                                        <td class="py-4 px-4 text-moh-text-sub">Current Week</td>
+                                        <td class="py-4 px-4"><span class="px-3 py-1 bg-blue-100 text-blue-800 rounded-full text-xs font-medium">Morning Shift</span></td>
+                                        <td class="py-4 px-4">08:00 - 17:00</td>
+                                        <td class="py-4 px-4">Main Office</td>
+                                    </tr>
+                                    <tr class="border-b border-moh-border hover:bg-gray-50">
+                                        <td class="py-4 px-4 font-bold">Friday</td>
+                                        <td class="py-4 px-4 text-moh-text-sub">Current Week</td>
+                                        <td class="py-4 px-4"><span class="px-3 py-1 bg-blue-100 text-blue-800 rounded-full text-xs font-medium">Morning Shift</span></td>
+                                        <td class="py-4 px-4">08:00 - 17:00</td>
+                                        <td class="py-4 px-4">Main Office</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script src="/js/subpages.js"></script>
+</body>
+</html>

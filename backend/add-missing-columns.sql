@@ -1,0 +1,5 @@
+-- Add missing columns to users table
+ALTER TABLE users ADD COLUMN IF NOT EXISTS phone VARCHAR(20);
+ALTER TABLE users ADD COLUMN IF NOT EXISTS address VARCHAR(255);
+ALTER TABLE users ADD COLUMN IF NOT EXISTS employment_date DATE;
+ALTER TABLE users ADD COLUMN IF NOT EXISTS profile_photo VARCHAR(255);

@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Employees | MOHCC Zimbabwe</title>
+    <link rel="icon" href="/logo.png" type="image/png">
+    <script src="https://unpkg.com/@tailwindcss/browser@4"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <link rel="stylesheet" href="/css/style.css">
+    <style type="text/tailwindcss">
+        @theme {
+            --color-moh-green: #00843D;
+            --color-moh-gold: #FFD200;
+            --color-moh-red: #D40000;
+            --color-moh-bg: #F0F2F5;
+            --color-moh-sidebar: #111827;
+            --color-moh-border: #E2E8F0;
+            --color-moh-text-main: #1A1A1A;
+            --color-moh-text-sub: #64748B;
+        }
+        .employee-card {
+            @apply bg-white rounded-2xl border border-moh-border p-6 shadow-sm hover:shadow-md transition-all;
+        }
+        .status-badge {
+            @apply px-3 py-1 rounded-full text-xs font-medium;
+        }
+        .status-active {
+            @apply bg-green-100 text-green-800;
+        }
+        .status-inactive {
+            @apply bg-red-100 text-red-800;
+        }
+        .status-leave {
+            @apply bg-yellow-100 text-yellow-800;
+        }
+    </style>
+</head>
+<body class="bg-moh-bg min-h-screen flex">
+    <!-- Sidebar -->
+    <aside class="w-64 bg-moh-sidebar text-white flex flex-col sticky top-0 h-screen hidden lg:flex">
+        <div class="p-6 border-b border-gray-800">
+            <div class="flex items-center gap-3">
+                <img src="/logo.png" alt="MOHCC Logo" class="w-10 h-10 object-contain">
+                <div>
+                    <h1 class="font-bold text-white text-sm leading-none">MOHCC Zimbabwe</h1>
+                    <p class="text-[10px] text-moh-gold uppercase tracking-widest mt-1">Admin Portal</p>
+                </div>
+            </div>
+        </div>
+        
+        <nav class="flex-1 p-4 space-y-2">
+            <!-- Main Navigation -->
+            <a href="/dashboard" id="navOverview" class="w-full flex items-center gap-3 px-4 py-3 text-gray-400 hover:bg-white/5 hover:text-white rounded-xl font-medium transition-all">
+                <i data-lucide="layout-dashboard" class="w-5 h-5"></i>
+                <span>Dashboard</span>
+            </a>
+            
+            <!-- Employee Management -->
+            <div class="pt-2 pb-1">
+                <p class="text-xs text-gray-500 uppercase tracking-widest px-4 font-semibold">Employee Management</p>
+            </div>
+            <a href="/employees" id="navEmployees" class="w-full flex items-center gap-3 px-4 py-3 bg-moh-green text-white rounded-xl font-medium transition-all shadow-lg shadow-emerald-900/20">
+                <i data-lucide="users" class="w-5 h-5"></i>
+                <span>Employees</span>
+            </a>
+            <a href="/departments" id="navDepartments" class="w-full flex items-center gap-3 px-4 py-3 text-gray-400 hover:bg-white/5 hover:text-white rounded-xl font-medium transition-all">
+                <i data-lucide="building" class="w-5 h-5"></i>
+                <span>Departments</span>
+            </a>
+            
+            <!-- Attendance Management -->
+            <div class="pt-2 pb-1">
+                <p class="text-xs text-gray-500 uppercase tracking-widest px-4 font-semibold">Attendance</p>
+            </div>
+            <a href="/realtime-metrics" id="navRealTimeMetrics" class="w-full flex items-center gap-3 px-4 py-3 text-gray-400 hover:bg-white/5 hover:text-white rounded-xl font-medium transition-all">
+                <i data-lucide="activity" class="w-5 h-5"></i>
+                <span>Real-time Metrics</span>
+            </a>
+            <a href="/attendance-tracking" id="navAttendanceTracking" class="w-full flex items-center gap-3 px-4 py-3 text-gray-400 hover:bg-white/5 hover:text-white rounded-xl font-medium transition-all">
+                <i data-lucide="clock" class="w-5 h-5"></i>
+                <span>Attendance Tracking</span>
+            </a>
+            
+            <!-- Reports -->
+            <div class="pt-2 pb-1">
+                <p class="text-xs text-gray-500 uppercase tracking-widest px-4 font-semibold">Reports</p>
+            </div>
+            <a href="/reports" id="navReports" class="w-full flex items-center gap-3 px-4 py-3 text-gray-400 hover:bg-white/5 hover:text-white rounded-xl font-medium transition-all">
+                <i data-lucide="file-text" class="w-5 h-5"></i>
+                <span>Monthly Reports</span>
+            </a>
+        </nav>
+        
+        <div class="p-4 border-t border-gray-800">
+            <button id="logoutBtn" class="w-full flex items-center gap-3 px-4 py-3 text-red-400 hover:bg-red-500/10 hover:text-red-300 rounded-xl font-medium transition-all">
+                <i data-lucide="log-out" class="w-5 h-5"></i>
+                <span>Logout</span>
+            </button>
+        </div>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="flex-1 flex flex-col">
+        <!-- Header -->
+        <header class="bg-white border-b border-moh-border px-8 py-4">
+            <div class="flex items-center justify-between">
+                <div>
+                    <h1 class="text-2xl font-bold text-moh-text-main">Employee Management</h1>
+                    <p class="text-moh-text-sub mt-1">Manage and monitor employee information and attendance</p>
+                </div>
+                <div class="flex items-center gap-4">
+                    <button class="flex items-center gap-2 px-4 py-2 bg-moh-green text-white rounded-lg hover:bg-moh-green/90 transition-colors">
+                        <i data-lucide="plus" class="w-4 h-4"></i>
+                        Add Employee
+                    </button>
+                    <button class="flex items-center gap-2 px-4 py-2 border border-moh-border rounded-lg hover:bg-gray-50 transition-colors">
+                        <i data-lucide="download" class="w-4 h-4"></i>
+                        Export
+                    </button>
+                </div>
+            </div>
+        </header>
+
+        <!-- Content -->
+        <div class="flex-1 p-8">
+            <!-- Stats Cards -->
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-6 mb-8">
+                <div class="employee-card">
+                    <div class="flex items-center justify-between">
+                        <div>
+                            <p class="text-moh-text-sub text-sm">Total Employees</p>
+                            <p class="text-2xl font-bold text-moh-text-main mt-1" id="totalEmployeesCount">0</p>
+                        </div>
+                        <div class="w-12 h-12 bg-moh-green/10 rounded-lg flex items-center justify-center">
+                            <i data-lucide="users" class="w-6 h-6 text-moh-green"></i>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="employee-card">
+                    <div class="flex items-center justify-between">
+                        <div>
+                            <p class="text-moh-text-sub text-sm">Active Today</p>
+                            <p class="text-2xl font-bold text-moh-text-main mt-1" id="activeTodayCount">0</p>
+                        </div>
+                        <div class="w-12 h-12 bg-green-100 rounded-lg flex items-center justify-center">
+                            <i data-lucide="user-check" class="w-6 h-6 text-green-600"></i>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="employee-card">
+                    <div class="flex items-center justify-between">
+                        <div>
+                            <p class="text-moh-text-sub text-sm">On Leave</p>
+                            <p class="text-2xl font-bold text-moh-text-main mt-1" id="onLeaveCount">0</p>
+                        </div>
+                        <div class="w-12 h-12 bg-yellow-100 rounded-lg flex items-center justify-center">
+                            <i data-lucide="calendar-x" class="w-6 h-6 text-yellow-600"></i>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="employee-card">
+                    <div class="flex items-center justify-between">
+                        <div>
+                            <p class="text-moh-text-sub text-sm">Absent</p>
+                            <p class="text-2xl font-bold text-moh-text-main mt-1" id="absentCount">0</p>
+                        </div>
+                        <div class="w-12 h-12 bg-red-100 rounded-lg flex items-center justify-center">
+                            <i data-lucide="user-x" class="w-6 h-6 text-red-600"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Employee Table -->
+            <div class="employee-card">
+                <div class="flex items-center justify-between mb-6">
+                    <h2 class="text-lg font-semibold text-moh-text-main">Employee Directory</h2>
+                    <div class="flex items-center gap-4">
+                        <div class="relative">
+                            <input type="text" placeholder="Search employees..." class="pl-10 pr-4 py-2 border border-moh-border rounded-lg focus:outline-none focus:ring-2 focus:ring-moh-green/20">
+                            <i data-lucide="search" class="w-4 h-4 text-gray-400 absolute left-3 top-1/2 transform -translate-y-1/2"></i>
+                        </div>
+                        <select class="px-4 py-2 border border-moh-border rounded-lg focus:outline-none focus:ring-2 focus:ring-moh-green/20">
+                            <option>All Departments</option>
+                            <option>Administration</option>
+                            <option>Medical</option>
+                            <option>Nursing</option>
+                            <option>Support</option>
+                        </select>
+                    </div>
+                </div>
+                
+                <div class="overflow-x-auto">
+                    <table class="w-full">
+                        <thead>
+                            <tr class="border-b border-moh-border">
+                                <th class="text-left py-3 px-4 font-medium text-moh-text-sub">Employee</th>
+                                <th class="text-left py-3 px-4 font-medium text-moh-text-sub">ID</th>
+                                <th class="text-left py-3 px-4 font-medium text-moh-text-sub">Department</th>
+                                <th class="text-left py-3 px-4 font-medium text-moh-text-sub">Status</th>
+                                <th class="text-left py-3 px-4 font-medium text-moh-text-sub">Check-in</th>
+                                <th class="text-left py-3 px-4 font-medium text-moh-text-sub">Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody id="employeeTableBody">
+                            <!-- Employee rows will be populated by JavaScript -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script src="/js/employees.js"></script>
+</body>
+</html>

@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login | MOHCC Zimbabwe</title>
+    <link rel="icon" href="/logo.png" type="image/png">
+    <script src="https://unpkg.com/@tailwindcss/browser@4"></script>
+    <link rel="stylesheet" href="/css/style.css">
+    <style>
+        :root {
+            --color-moh-green: #00843D;
+            --color-moh-gold: #FFD200;
+            --color-moh-red: #D40000;
+            --color-moh-bg: #61ba61;
+            --color-moh-sidebar: #00843D;
+        }
+        
+        /* Ensure the background color is applied */
+        body {
+            background-color: #61ba61 !important;
+        }
+        
+        /* Define Tailwind custom colors */
+        .bg-moh-bg {
+            background-color: #61ba61 !important;
+        }
+        
+        .bg-moh-sidebar {
+            background-color: #00843D !important;
+        }
+        
+        .text-moh-gold {
+            color: #FFD200 !important;
+        }
+        
+        .text-moh-green {
+            color: #00843D !important;
+        }
+        
+        .ring-moh-green {
+            --tw-ring-color: #00843D !important;
+        }
+    </style>
+</head>
+<body class="bg-moh-bg min-h-screen flex items-center justify-center p-4">
+    <div class="max-w-md w-full bg-white rounded-2xl shadow-xl overflow-hidden border border-gray-200">
+        <div class="bg-moh-sidebar p-8 text-white text-center">
+            <div class="flex justify-center mb-4">
+                <img src="/logo.png" alt="MOHCC Logo" class="w-24 h-24 object-contain">
+            </div>
+            <h1 class="text-sm font-bold uppercase tracking-widest">Ministry of Health</h1>
+            <p class="text-white mt-1 text-sm font-medium uppercase tracking-tighter">And Child Care Zimbabwe</p>
+            <p class="text-white mt-2 text-sm font-semibold uppercase tracking-wide">Employee Attendance System</p>
+        </div>
+
+        <form id="loginForm" class="p-8 space-y-6">
+            <div id="errorMessage" class="hidden bg-red-50 text-moh-red p-3 rounded-lg text-sm border border-red-100 font-medium"></div>
+
+            <div>
+                <label class="block text-xs font-bold text-gray-500 uppercase tracking-widest mb-2">Username or Email</label>
+                <input type="text" id="identifier" required class="w-full px-4 py-3 rounded-xl border border-gray-200 focus:ring-2 focus:ring-moh-green outline-none transition-all text-sm" placeholder="">
+            </div>
+
+            <div>
+                <label class="block text-xs font-bold text-gray-500 uppercase tracking-widest mb-2">Password</label>
+                <input type="password" id="password" required class="w-full px-4 py-3 rounded-xl border border-gray-200 focus:ring-2 focus:ring-moh-green outline-none transition-all text-sm" placeholder="">
+            </div>
+
+            <button type="submit" class="w-full bg-green-500 hover:bg-green-600 text-white font-bold py-3 rounded-xl transition-colors shadow-lg uppercase tracking-widest text-sm">
+                Sign In
+            </button>
+
+            <div class="text-center">
+                <a href="/forgot-password.html" class="text-sm text-moh-green hover:text-green-700 font-medium transition-colors">Forgot Password?</a>
+            </div>
+        </form>
+    </div>
+    
+    <!-- Clear all cached data on login page load -->
+    <script>
+        // Clear all localStorage data
+        localStorage.clear();
+        
+        // Clear all sessionStorage data
+        sessionStorage.clear();
+        
+        // Clear any cookies
+        document.cookie.split(";").forEach(function(c) { 
+            document.cookie = c.replace(/^ +/, "").replace(/=.*/, "=;expires=" + new Date().toUTCString() + ";path=/"); 
+        });
+        
+        // Clear any IndexedDB data
+        if (window.indexedDB) {
+            indexedDB.databases().then(databases => {
+                databases.forEach(db => {
+                    indexedDB.deleteDatabase(db.name);
+                });
+            });
+        }
+        
+        console.log('All cached data cleared - fresh login session');
+    </script>
+    
+    <script src="/js/login.js"></script>
+</body>
+</html>

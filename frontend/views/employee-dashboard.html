@@ -1,0 +1,714 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Employee Dashboard | MOHCC Zimbabwe</title>
+    <link rel="icon" href="/logo.png" type="image/png">
+    <script src="https://unpkg.com/@tailwindcss/browser@4"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <link rel="stylesheet" href="/css/style.css">
+    <style>
+        :root {
+            --color-moh-green: #00843D;
+            --color-moh-gold: #FFD200;
+            --color-moh-red: #D40000;
+            --color-moh-bg: #f0faf5;
+            --color-moh-sidebar: #064e3b;
+            --color-moh-border: #E2E8F0;
+            --color-moh-text-main: #1A1A1A;
+            --color-moh-text-sub: #64748B;
+        }
+        .bento-grid {
+            display: grid;
+            grid-template-columns: repeat(12, 1fr);
+            grid-auto-rows: minmax(100px, auto);
+            gap: 1.5rem;
+        }
+        .bento-card {
+            background-color: white;
+            border-radius: 1.5rem;
+            border: 1px solid var(--color-moh-border);
+            padding: 1.5rem;
+            box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
+            transition: all 0.3s ease;
+            display: flex;
+            flex-direction: column;
+        }
+        .bento-card:hover {
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+        }
+        .bg-moh-green { background-color: var(--color-moh-green); }
+        .bg-moh-gold { background-color: var(--color-moh-gold); }
+        .bg-moh-red { background-color: var(--color-moh-red); }
+        .bg-moh-bg { background-color: var(--color-moh-bg); }
+        .bg-moh-sidebar { background-color: var(--color-moh-sidebar); }
+        .border-moh-border { border-color: var(--color-moh-border); }
+        .text-moh-green { color: var(--color-moh-green); }
+        .text-moh-gold { color: var(--color-moh-gold); }
+        .text-moh-red { color: var(--color-moh-red); }
+        .text-moh-text-main { color: var(--color-moh-text-main); }
+        .text-moh-text-sub { color: var(--color-moh-text-sub); }
+        .hover\:bg-moh-green:hover { background-color: var(--color-moh-green); }
+        .hover\:text-moh-green:hover { color: var(--color-moh-green); }
+        .hover\:text-moh-red:hover { color: var(--color-moh-red); }
+        .ring-moh-green { --tw-ring-color: var(--color-moh-green); }
+    </style>
+</head>
+<body class="bg-moh-bg h-screen flex overflow-hidden">
+    <!-- Sidebar -->
+    <aside class="w-64 bg-moh-sidebar text-white flex flex-col sticky top-0 h-screen hidden lg:flex">
+        <div class="p-6 border-b border-emerald-900">
+            <div class="flex items-center gap-3">
+                <img src="/logo.png" alt="MOHCC Logo" class="w-10 h-10 object-contain">
+                <div>
+                    <h1 class="font-bold text-white text-sm leading-none">MOHCC Zimbabwe</h1>
+                    <p class="text-[10px] text-moh-gold uppercase tracking-widest mt-1">Employee Portal</p>
+                </div>
+            </div>
+        </div>
+        
+        <nav class="flex-1 p-4 space-y-2 overflow-y-auto">
+            <!-- Main Navigation -->
+            <a href="/employee-dashboard" id="navOverview" class="w-full flex items-center gap-3 px-4 py-3 bg-moh-green text-white rounded-xl font-medium transition-all">
+                <i data-lucide="layout-dashboard" class="w-5 h-5"></i>
+                <span>My Dashboard</span>
+            </a>
+            
+            <!-- Personal Section -->
+            <div class="pt-2 pb-1">
+                <p class="text-xs text-emerald-400 uppercase tracking-widest px-4 font-semibold">Personal</p>
+            </div>
+            <a href="/my-profile" id="navProfile" class="w-full flex items-center gap-3 px-4 py-3 text-green-100 hover:bg-white/10 hover:text-white rounded-xl font-medium transition-all">
+                <i data-lucide="user" class="w-5 h-5"></i>
+                <span>My Profile</span>
+            </a>
+            <a href="/my-attendance" id="navAttendance" class="w-full flex items-center gap-3 px-4 py-3 text-green-100 hover:bg-white/10 hover:text-white rounded-xl font-medium transition-all">
+                <i data-lucide="clock" class="w-5 h-5"></i>
+                <span>My Attendance</span>
+            </a>
+            <a href="/communication" id="navCommunication" class="w-full flex items-center gap-3 px-4 py-3 text-green-100 hover:bg-white/10 hover:text-white rounded-xl font-medium transition-all">
+                <i data-lucide="message-square" class="w-5 h-5"></i>
+                <span>Communication</span>
+            </a>
+        </nav>
+
+        <div class="p-4 border-t border-emerald-900">
+            <div class="p-3 bg-white/10 rounded-xl mb-3">
+                <p class="text-xs text-moh-gold font-bold" id="employeeName">Loading...</p>
+                <p class="text-[10px] text-green-200" id="employeeId">Loading...</p>
+                <p class="text-[10px] text-green-200" id="employeeDept">Loading...</p>
+            </div>
+            <button id="logoutBtn" class="w-full flex items-center gap-3 px-4 py-3 text-green-200 hover:text-red-300 transition-all font-medium">
+                <i data-lucide="log-out" class="w-5 h-5"></i>
+                <span>Logout</span>
+            </button>
+        </div>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="flex-1 p-8 overflow-hidden">
+        <header class="flex justify-between items-center mb-8">
+            <div>
+                <h2 class="text-2xl font-bold text-moh-text-main">Welcome Back!</h2>
+                <p class="text-moh-text-sub text-sm">Here's your attendance overview for today</p>
+            </div>
+            <div class="flex items-center gap-4">
+                <div class="flex gap-2 mr-4 border-r border-moh-border pr-4">
+                    <button id="checkInBtn" class="bg-moh-green text-white px-4 py-2 rounded-xl text-sm font-bold hover:bg-emerald-800 transition-all flex items-center gap-2">
+                        <i data-lucide="log-in" class="w-4 h-4"></i>
+                        Clock In
+                    </button>
+                    <button id="checkOutBtn" class="bg-moh-red text-white px-4 py-2 rounded-xl text-sm font-bold hover:bg-red-700 transition-all flex items-center gap-2">
+                        <i data-lucide="log-out" class="w-4 h-4"></i>
+                        Clock Out
+                    </button>
+                </div>
+                <button id="theme-toggle" class="p-2 rounded-xl bg-white border border-moh-border hover:scale-110 transition-transform" title="Toggle theme">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                    </svg>
+                </button>
+                <div class="bg-white border border-moh-border rounded-xl px-4 py-2 flex items-center gap-2 text-sm text-moh-text-sub">
+                    <i data-lucide="calendar" class="w-4 h-4"></i>
+                    <span id="currentDate"></span>
+                </div>
+            </div>
+        </header>
+
+        <!-- Overview Section -->
+        <div id="overviewSection" class="bento-grid">
+            <!-- Core Employee Information -->
+            <div class="bento-card col-span-12 md:col-span-4">
+                <div class="flex items-start gap-4">
+                    <div class="relative">
+                        <img id="employeePhoto"
+                             src="https://i.pravatar.cc/80?u=mohcc-employee"
+                             alt="Profile"
+                             class="w-20 h-20 rounded-2xl object-cover border-4 border-moh-green"
+                             onerror="this.onerror=null;this.src='https://i.pravatar.cc/80?u=health-worker'">
+                        <div id="employeePhotoPlaceholder" class="hidden absolute top-0 left-0 w-20 h-20 rounded-2xl bg-gray-200 border-4 border-moh-green flex items-center justify-center">
+                            <i data-lucide="user" class="w-10 h-10 text-gray-400"></i>
+                        </div>
+                        <div class="absolute -bottom-1 -right-1 w-6 h-6 bg-moh-green rounded-full flex items-center justify-center">
+                            <i data-lucide="check" class="w-4 h-4 text-white"></i>
+                        </div>
+                    </div>
+                    <div class="flex-1">
+                        <h3 class="font-bold text-lg" id="employeeNameDisplay">Loading...</h3>
+                        <p class="text-moh-text-sub text-sm" id="employeeRoleDisplay">Loading...</p>
+                        <div class="flex items-center gap-2 mt-2 flex-wrap">
+                            <span class="px-2 py-1 bg-moh-gold/10 text-moh-gold text-xs font-bold rounded-full whitespace-normal" id="employeeDeptDisplay">Department</span>
+                        </div>
+                        <div class="mt-3 space-y-1">
+                            <p class="text-xs text-moh-text-sub flex items-center gap-2">
+                                <i data-lucide="mail" class="w-3 h-3"></i>
+                                <span id="employeeEmailDisplay">Loading...</span>
+                            </p>
+                            <p class="text-xs text-moh-text-sub flex items-center gap-2">
+                                <i data-lucide="briefcase" class="w-3 h-3"></i>
+                                <span id="employeeStaffTypeDisplay">Loading...</span>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Shift Details -->
+            <div class="bento-card col-span-12 md:col-span-4">
+                <div class="flex justify-between items-start mb-4">
+                    <div class="p-2 bg-blue-50 rounded-lg"><i data-lucide="calendar-clock" class="w-5 h-5 text-blue-600"></i></div>
+                    <span class="text-[10px] font-bold text-blue-600 bg-blue-50 px-2 py-1 rounded-full">Current Shift</span>
+                </div>
+                <h3 class="text-moh-text-sub text-xs font-bold uppercase tracking-widest mb-2">Shift Details</h3>
+                <div class="space-y-2">
+                    <div class="flex justify-between items-center">
+                        <span class="text-sm text-moh-text-sub">Shift Type</span>
+                        <span class="font-bold text-sm" id="shiftType">Morning</span>
+                    </div>
+                    <div class="flex justify-between items-center">
+                        <span class="text-sm text-moh-text-sub">Working Hours</span>
+                        <span class="font-bold text-sm" id="workingHours">08:00 - 17:00</span>
+                    </div>
+                    <div class="flex justify-between items-center">
+                        <span class="text-sm text-moh-text-sub">Location</span>
+                        <span class="font-bold text-sm" id="workLocation">Main Office</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Attendance Status -->
+            <div class="bento-card col-span-12 md:col-span-4">
+                <div class="flex justify-between items-start mb-4">
+                    <div class="p-2 bg-emerald-50 rounded-lg"><i data-lucide="user-check" class="w-5 h-5 text-moh-green"></i></div>
+                    <span class="w-3 h-3 bg-moh-green rounded-full animate-pulse"></span>
+                </div>
+                <h3 class="text-moh-text-sub text-xs font-bold uppercase tracking-widest mb-2">Today's Status</h3>
+                <div class="space-y-2">
+                    <div class="flex justify-between items-center">
+                        <span class="text-sm text-moh-text-sub">Clock In</span>
+                        <span class="font-bold text-moh-green text-sm" id="todayClockIn">--:--</span>
+                    </div>
+                    <div class="flex justify-between items-center">
+                        <span class="text-sm text-moh-text-sub">Clock Out</span>
+                        <span class="font-bold text-moh-red text-sm" id="todayClockOut">--:--</span>
+                    </div>
+                    <div class="flex justify-between items-center">
+                        <span class="text-sm text-moh-text-sub">Status</span>
+                        <span class="font-bold text-sm" id="attendanceStatus">Not Clocked In</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Personal Stats -->
+            <div class="bento-card col-span-12 md:col-span-3">
+                <div class="flex justify-between items-start mb-4">
+                    <div class="p-2 bg-emerald-50 rounded-lg"><i data-lucide="calendar-check" class="w-5 h-5 text-moh-green"></i></div>
+                    <span class="text-[10px] font-bold text-moh-green bg-emerald-50 px-2 py-1 rounded-full">This Month</span>
+                </div>
+                <h3 class="text-moh-text-sub text-xs font-bold uppercase tracking-widest">Days Present</h3>
+                <p class="text-3xl font-bold mt-1" id="statDaysPresent">0</p>
+            </div>
+
+            <div class="bento-card col-span-12 md:col-span-3">
+                <div class="flex justify-between items-start mb-4">
+                    <div class="p-2 bg-amber-50 rounded-lg"><i data-lucide="clock" class="w-5 h-5 text-amber-600"></i></div>
+                    <span class="text-[10px] font-bold text-amber-600 bg-amber-50 px-2 py-1 rounded-full">Total</span>
+                </div>
+                <h3 class="text-moh-text-sub text-xs font-bold uppercase tracking-widest">Hours Worked</h3>
+                <p class="text-3xl font-bold mt-1" id="statHoursWorked">0h</p>
+            </div>
+
+            <div class="bento-card col-span-12 md:col-span-3">
+                <div class="flex justify-between items-start mb-4">
+                    <div class="p-2 bg-red-50 rounded-lg"><i data-lucide="alert-circle" class="w-5 h-5 text-moh-red"></i></div>
+                    <span class="text-[10px] font-bold text-moh-red bg-red-50 px-2 py-1 rounded-full">This Month</span>
+                </div>
+                <h3 class="text-moh-text-sub text-xs font-bold uppercase tracking-widest">Late Arrivals</h3>
+                <p class="text-3xl font-bold mt-1" id="statLateArrivals">0</p>
+            </div>
+
+            <div class="bento-card col-span-12 md:col-span-3">
+                <div class="flex justify-between items-start mb-4">
+                    <div class="p-2 bg-purple-50 rounded-lg"><i data-lucide="trending-up" class="w-5 h-5 text-purple-600"></i></div>
+                    <span class="text-[10px] font-bold text-purple-600 bg-purple-50 px-2 py-1 rounded-full">Rate</span>
+                </div>
+                <h3 class="text-moh-text-sub text-xs font-bold uppercase tracking-widest">Attendance Rate</h3>
+                <p class="text-3xl font-bold mt-1" id="statAttendanceRate">0%</p>
+            </div>
+
+            <!-- Attendance & Clock Features -->
+            <div class="bento-card col-span-12 md:col-span-8" style="height: 400px;">
+                <div class="flex items-center justify-between mb-6">
+                    <h3 class="font-bold text-lg flex items-center gap-2">
+                        <i data-lucide="clock" class="w-5 h-5 text-moh-gold"></i>
+                        Attendance &amp; Clock Features
+                    </h3>
+                    <div class="flex items-center gap-2">
+                        <span class="w-3 h-3 bg-moh-green rounded-full animate-pulse"></span>
+                        <span class="text-sm font-bold text-moh-text-sub" id="realTimeClock">--:--:--</span>
+                    </div>
+                </div>
+                
+                
+                <!-- Real-time Status -->
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                    <div class="p-4 bg-moh-bg rounded-2xl border border-moh-border">
+                        <p class="text-[10px] text-moh-text-sub font-bold uppercase tracking-widest mb-2">Check-in Time</p>
+                        <p class="text-xl font-bold text-moh-green" id="todayCheckIn">--:--</p>
+                    </div>
+                    <div class="p-4 bg-moh-bg rounded-2xl border border-moh-border">
+                        <p class="text-[10px] text-moh-text-sub font-bold uppercase tracking-widest mb-2">Check-out Time</p>
+                        <p class="text-xl font-bold text-moh-red" id="todayCheckOut">--:--</p>
+                    </div>
+                    <div class="p-4 bg-moh-bg rounded-2xl border border-moh-border">
+                        <p class="text-[10px] text-moh-text-sub font-bold uppercase tracking-widest mb-2">Current Status</p>
+                        <p class="text-xl font-bold" id="todayStatus">Not Clocked In</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Analytics & History -->
+            <div class="bento-card col-span-12 md:col-span-4" style="height: 400px;">
+                <h3 class="font-bold text-lg mb-6 flex items-center gap-2">
+                    <i data-lucide="bar-chart-3" class="w-5 h-5 text-moh-green"></i>
+                    Analytics &amp; History
+                </h3>
+                
+                <!-- Leave Balance -->
+                <div class="space-y-4" style="overflow-y: auto; max-height: 320px;">
+                    <div class="p-3 bg-moh-bg rounded-xl border border-moh-border">
+                        <div class="flex justify-between items-center mb-2">
+                            <span class="text-sm font-bold text-moh-text-sub">Leave Balance</span>
+                            <i data-lucide="calendar-off" class="w-4 h-4 text-moh-gold"></i>
+                        </div>
+                        <div class="grid grid-cols-3 gap-2 text-center">
+                            <div>
+                                <p class="text-xs text-moh-text-sub">Annual</p>
+                                <p class="font-bold text-moh-green" id="annualLeave">21</p>
+                            </div>
+                            <div>
+                                <p class="text-xs text-moh-text-sub">Sick</p>
+                                <p class="font-bold text-blue-600" id="sickLeave">10</p>
+                            </div>
+                            <div>
+                                <p class="text-xs text-moh-text-sub">Used</p>
+                                <p class="font-bold text-moh-red" id="usedLeave">5</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Overtime Tracker -->
+                    <div class="p-3 bg-moh-bg rounded-xl border border-moh-border">
+                        <div class="flex justify-between items-center mb-2">
+                            <span class="text-sm font-bold text-moh-text-sub">Overtime This Month</span>
+                            <i data-lucide="clock" class="w-4 h-4 text-purple-600"></i>
+                        </div>
+                        <div class="flex items-center justify-between">
+                            <span class="text-2xl font-bold text-purple-600" id="overtimeHours">12.5h</span>
+                            <span class="px-2 py-1 bg-purple-100 text-purple-600 text-[10px] font-bold rounded-full">+2.5h from last week</span>
+                        </div>
+                    </div>
+                    
+                    <!-- Compliance Indicators -->
+                    <div class="p-3 bg-moh-bg rounded-xl border border-moh-border">
+                        <div class="flex justify-between items-center mb-2">
+                            <span class="text-sm font-bold text-moh-text-sub">Compliance Status</span>
+                            <i data-lucide="shield-check" class="w-4 h-4 text-moh-green"></i>
+                        </div>
+                        <div class="space-y-2">
+                            <div class="flex justify-between items-center">
+                                <span class="text-xs text-moh-text-sub">Late Arrivals</span>
+                                <span class="px-2 py-1 bg-amber-100 text-amber-600 text-[10px] font-bold rounded-full">2 this month</span>
+                            </div>
+                            <div class="flex justify-between items-center">
+                                <span class="text-xs text-moh-text-sub">Early Departures</span>
+                                <span class="px-2 py-1 bg-green-100 text-moh-green text-[10px] font-bold rounded-full">0 this month</span>
+                            </div>
+                            <div class="flex justify-between items-center">
+                                <span class="text-xs text-moh-text-sub">Absences</span>
+                                <span class="px-2 py-1 bg-red-100 text-moh-red text-[10px] font-bold rounded-full">1 this month</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Notifications -->
+            <div class="bento-card col-span-12">
+                <h3 class="font-bold text-lg mb-6 flex items-center gap-2">
+                    <i data-lucide="bell" class="w-5 h-5 text-moh-gold"></i>
+                    Notifications &amp; Alerts
+                </h3>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                    <div class="p-4 bg-amber-50 border border-amber-200 rounded-xl">
+                        <div class="flex items-start gap-3">
+                            <div class="p-2 bg-amber-100 rounded-lg">
+                                <i data-lucide="alert-triangle" class="w-4 h-4 text-amber-600"></i>
+                            </div>
+                            <div class="flex-1">
+                                <p class="font-bold text-sm text-amber-800">Late Arrival Alert</p>
+                                <p class="text-xs text-amber-600 mt-1">You were 15 minutes late on Monday, March 15</p>
+                                <p class="text-[10px] text-amber-500 mt-2">2 days ago</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="p-4 bg-blue-50 border border-blue-200 rounded-xl">
+                        <div class="flex items-start gap-3">
+                            <div class="p-2 bg-blue-100 rounded-lg">
+                                <i data-lucide="clock" class="w-4 h-4 text-blue-600"></i>
+                            </div>
+                            <div class="flex-1">
+                                <p class="font-bold text-sm text-blue-800">Overtime Notice</p>
+                                <p class="text-xs text-blue-600 mt-1">You've accumulated 8.5 hours of overtime this week</p>
+                                <p class="text-[10px] text-blue-500 mt-2">1 day ago</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="p-4 bg-emerald-50 border border-emerald-200 rounded-xl">
+                        <div class="flex items-start gap-3">
+                            <div class="p-2 bg-emerald-100 rounded-lg">
+                                <i data-lucide="check-circle" class="w-4 h-4 text-moh-green"></i>
+                            </div>
+                            <div class="flex-1">
+                                <p class="font-bold text-sm text-emerald-800">Perfect Week</p>
+                                <p class="text-xs text-emerald-600 mt-1">You had perfect attendance last week!</p>
+                                <p class="text-[10px] text-emerald-500 mt-2">3 days ago</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Quick Actions -->
+            <div class="bento-card col-span-12 md:col-span-4">
+                <h3 class="font-bold text-lg mb-6 flex items-center gap-2">
+                    <i data-lucide="zap" class="w-5 h-5 text-moh-green"></i>
+                    Quick Actions
+                </h3>
+                <div class="space-y-3">
+                    <a href="/communication" id="requestLeaveBtn" class="w-full p-3 bg-moh-bg border border-moh-border rounded-xl hover:bg-moh-green hover:text-white transition-all flex items-center gap-3 font-medium">
+                        <i data-lucide="calendar-x" class="w-5 h-5"></i>
+                        <span>Request Leave</span>
+                    </a>
+                    <a href="/communication" id="shiftSwapBtn" class="w-full p-3 bg-moh-bg border border-moh-border rounded-xl hover:bg-moh-green hover:text-white transition-all flex items-center gap-3 font-medium">
+                        <i data-lucide="shuffle" class="w-5 h-5"></i>
+                        <span>Request Shift Swap</span>
+                    </a>
+                    <a href="/schedule" id="viewScheduleBtn" class="w-full p-3 bg-moh-bg border border-moh-border rounded-xl hover:bg-moh-green hover:text-white transition-all flex items-center gap-3 font-medium">
+                        <i data-lucide="calendar" class="w-5 h-5"></i>
+                        <span>View Schedule</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Profile Section -->
+        <div id="profileSection" class="hidden space-y-6">
+            <div class="bento-card">
+                <div class="flex justify-between items-center mb-6">
+                    <h3 class="font-bold text-xl flex items-center gap-2">
+                        <i data-lucide="user" class="w-6 h-6 text-moh-green"></i>
+                        My Profile
+                    </h3>
+                    <button id="editProfileBtn" class="bg-moh-green text-white px-4 py-2 rounded-xl text-sm font-bold hover:bg-emerald-800 transition-all flex items-center gap-2">
+                        <i data-lucide="edit-2" class="w-4 h-4"></i>
+                        Edit Profile
+                    </button>
+                </div>
+                
+                <!-- Profile Photo Display -->
+                <div class="flex items-center gap-6 mb-6 p-4 bg-moh-bg rounded-2xl border border-moh-border">
+                    <div class="relative">
+                        <img id="profilePhoto"
+                             src="https://i.pravatar.cc/96?u=mohcc-employee"
+                             alt="Profile Photo"
+                             class="w-24 h-24 rounded-2xl object-cover border-4 border-moh-green"
+                             onerror="this.onerror=null;this.src='https://i.pravatar.cc/96?u=health-worker'">
+                        <div id="profilePhotoPlaceholder" class="hidden absolute top-0 left-0 w-24 h-24 rounded-2xl bg-gray-200 border-4 border-moh-green flex items-center justify-center">
+                            <i data-lucide="user" class="w-12 h-12 text-gray-400"></i>
+                        </div>
+                    </div>
+                    <div>
+                        <h4 class="font-bold text-lg" id="profileNameHeader">--</h4>
+                        <p class="text-moh-text-sub text-sm" id="profileRoleHeader">Employee</p>
+                        <span class="mt-2 inline-block px-3 py-1 bg-moh-green/10 text-moh-green text-xs font-bold rounded-full" id="profileIdHeader">EMP-000</span>
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div class="space-y-4">
+                        <div class="p-4 bg-moh-bg rounded-2xl border border-moh-border">
+                            <p class="text-[10px] text-moh-text-sub font-bold uppercase tracking-widest mb-1">EC Number</p>
+                            <p class="font-bold" id="profileEmployeeId">--</p>
+                        </div>
+                        <div class="p-4 bg-moh-bg rounded-2xl border border-moh-border">
+                            <p class="text-[10px] text-moh-text-sub font-bold uppercase tracking-widest mb-1">Full Name</p>
+                            <p class="font-bold" id="profileName">--</p>
+                        </div>
+                        <div class="p-4 bg-moh-bg rounded-2xl border border-moh-border">
+                            <p class="text-[10px] text-moh-text-sub font-bold uppercase tracking-widest mb-1">Email</p>
+                            <p class="font-bold" id="profileEmail">--</p>
+                        </div>
+                        <div class="p-4 bg-moh-bg rounded-2xl border border-moh-border">
+                            <p class="text-[10px] text-moh-text-sub font-bold uppercase tracking-widest mb-1">Phone</p>
+                            <p class="font-bold" id="profilePhone">--</p>
+                        </div>
+                    </div>
+                    <div class="space-y-4">
+                        <div class="p-4 bg-moh-bg rounded-2xl border border-moh-border">
+                            <p class="text-[10px] text-moh-text-sub font-bold uppercase tracking-widest mb-1">Department</p>
+                            <p class="font-bold" id="profileDepartment">--</p>
+                        </div>
+                        <div class="p-4 bg-moh-bg rounded-2xl border border-moh-border">
+                            <p class="text-[10px] text-moh-text-sub font-bold uppercase tracking-widest mb-1">Post / Designation</p>
+                            <p class="font-bold" id="profilePost">--</p>
+                        </div>
+                        <div class="p-4 bg-moh-bg rounded-2xl border border-moh-border">
+                            <p class="text-[10px] text-moh-text-sub font-bold uppercase tracking-widest mb-1">Staff Type</p>
+                            <p class="font-bold" id="profileStaffType">--</p>
+                        </div>
+                        <div class="p-4 bg-moh-bg rounded-2xl border border-moh-border">
+                            <p class="text-[10px] text-moh-text-sub font-bold uppercase tracking-widest mb-1">Employment Date</p>
+                            <p class="font-bold" id="profileEmploymentDate">--</p>
+                        </div>
+                        <div class="p-4 bg-moh-bg rounded-2xl border border-moh-border">
+                            <p class="text-[10px] text-moh-text-sub font-bold uppercase tracking-widest mb-1">Address</p>
+                            <p class="font-bold" id="profileAddress">--</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Security Question Setup -->
+            <div class="bento-card">
+                <div class="flex justify-between items-center mb-6">
+                    <h3 class="font-bold text-xl flex items-center gap-2">
+                        <i data-lucide="shield" class="w-6 h-6 text-moh-green"></i>
+                        Security Question
+                    </h3>
+                    <span class="text-xs text-moh-text-sub">For password recovery</span>
+                </div>
+
+                <div id="securityQuestionDisplay" class="hidden">
+                    <div class="p-4 bg-blue-50 border border-blue-200 rounded-xl mb-4">
+                        <p class="text-[10px] text-blue-600 font-bold uppercase tracking-widest mb-1">Your Security Question</p>
+                        <p class="font-bold text-blue-800" id="currentSecurityQuestion">--</p>
+                    </div>
+                    <button id="changeSecurityQuestionBtn" class="bg-moh-green text-white px-4 py-2 rounded-xl text-sm font-bold hover:bg-emerald-800 transition-all flex items-center gap-2">
+                        <i data-lucide="edit-2" class="w-4 h-4"></i>
+                        Change Security Question
+                    </button>
+                </div>
+
+                <div id="securityQuestionForm" class="space-y-4">
+                    <div>
+                        <label class="block text-sm font-bold mb-1 text-moh-text-sub">Security Question</label>
+                        <select id="securityQuestionSelect" class="w-full px-4 py-2 border border-moh-border rounded-xl outline-none focus:ring-2 focus:ring-moh-green bg-white">
+                            <option value="">Select a security question</option>
+                            <option value="What is the middle name of your oldest cousin?">What is the middle name of your oldest cousin?</option>
+                            <option value="What was the name of your first pet?">What was the name of your first pet?</option>
+                            <option value="What city were you born in?">What city were you born in?</option>
+                            <option value="What is your mother's maiden name?">What is your mother's maiden name?</option>
+                            <option value="What was the make of your first car?">What was the make of your first car?</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label class="block text-sm font-bold mb-1 text-moh-text-sub">Your Answer</label>
+                        <input type="text" id="securityAnswerInput" class="w-full px-4 py-2 border border-moh-border rounded-xl outline-none focus:ring-2 focus:ring-moh-green" placeholder="Enter your answer">
+                    </div>
+                    <button id="saveSecurityQuestionBtn" class="bg-moh-green text-white px-4 py-2 rounded-xl text-sm font-bold hover:bg-emerald-800 transition-all flex items-center gap-2">
+                        <i data-lucide="save" class="w-4 h-4"></i>
+                        Save Security Question
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Attendance Section -->
+        <div id="attendanceSection" class="hidden space-y-6">
+            <div class="bento-card">
+                <div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-4 mb-6">
+                    <h3 class="font-bold text-xl flex items-center gap-2">
+                        <i data-lucide="clock" class="w-6 h-6 text-moh-green"></i>
+                        My Attendance History
+                    </h3>
+                    <div class="flex flex-wrap gap-2 w-full md:w-auto">
+                        <input type="date" id="attendanceDateFrom" class="px-3 py-2 bg-moh-bg border border-moh-border rounded-xl text-sm outline-none focus:ring-2 focus:ring-moh-green">
+                        <input type="date" id="attendanceDateTo" class="px-3 py-2 bg-moh-bg border border-moh-border rounded-xl text-sm outline-none focus:ring-2 focus:ring-moh-green">
+                        <button id="exportAttendance" class="bg-moh-sidebar text-white px-4 py-2 rounded-xl text-sm font-bold hover:bg-black transition-all flex items-center gap-2">
+                            <i data-lucide="download" class="w-4 h-4"></i>
+                            Export
+                        </button>
+                    </div>
+                </div>
+                
+                <div class="overflow-x-auto">
+                    <table class="w-full text-left">
+                        <thead>
+                            <tr class="text-moh-text-sub text-[10px] font-bold uppercase tracking-widest border-b border-moh-border">
+                                <th class="pb-4 px-4 cursor-pointer hover:text-moh-green transition-colors" onclick="sortAttendance('timestamp')">
+                                    Date <i data-lucide="chevrons-up-down" class="w-3 h-3 inline"></i>
+                                </th>
+                                <th class="pb-4 px-4">Check-in Time</th>
+                                <th class="pb-4 px-4">Check-out Time</th>
+                                <th class="pb-4 px-4">Hours Worked</th>
+                                <th class="pb-4 px-4">Location</th>
+                                <th class="pb-4 px-4">Status</th>
+                            </tr>
+                        </thead>
+                        <tbody id="attendanceTableBody" class="text-sm">
+                            <!-- Attendance rows will be injected here -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <!-- Communication & Requests Section -->
+        <div id="communicationSection" class="hidden space-y-6">
+            <div class="bento-card">
+                <div class="flex justify-between items-center mb-6">
+                    <h3 class="font-bold text-xl flex items-center gap-2">
+                        <i data-lucide="message-square" class="w-6 h-6 text-moh-green"></i>
+                        Communication &amp; Requests
+                    </h3>
+                </div>
+                
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                    <!-- Leave Request Form -->
+                    <div class="p-6 bg-moh-bg rounded-2xl border border-moh-border">
+                        <h4 class="font-bold mb-4 flex items-center gap-2">
+                            <i data-lucide="calendar-x" class="w-5 h-5 text-moh-green"></i>
+                            Submit Leave Request
+                        </h4>
+                        <form id="leaveRequestForm" class="space-y-4">
+                            <div>
+                                <label class="block text-sm font-bold mb-1 text-moh-text-sub">Leave Type</label>
+                                <select id="leaveType" class="w-full px-4 py-2 border border-moh-border rounded-xl outline-none focus:ring-2 focus:ring-moh-green bg-white">
+                                    <option value="annual">Annual Leave</option>
+                                    <option value="sick">Sick Leave</option>
+                                    <option value="personal">Personal Leave</option>
+                                    <option value="emergency">Emergency Leave</option>
+                                </select>
+                            </div>
+                            <div class="grid grid-cols-2 gap-4">
+                                <div>
+                                    <label class="block text-sm font-bold mb-1 text-moh-text-sub">Start Date</label>
+                                    <input type="date" id="leaveStartDate" class="w-full px-4 py-2 border border-moh-border rounded-xl outline-none focus:ring-2 focus:ring-moh-green bg-white">
+                                </div>
+                                <div>
+                                    <label class="block text-sm font-bold mb-1 text-moh-text-sub">End Date</label>
+                                    <input type="date" id="leaveEndDate" class="w-full px-4 py-2 border border-moh-border rounded-xl outline-none focus:ring-2 focus:ring-moh-green bg-white">
+                                </div>
+                            </div>
+                            <div>
+                                <label class="block text-sm font-bold mb-1 text-moh-text-sub">Reason</label>
+                                <textarea id="leaveReason" rows="3" class="w-full px-4 py-2 border border-moh-border rounded-xl outline-none focus:ring-2 focus:ring-moh-green bg-white"></textarea>
+                            </div>
+                            <button type="submit" class="w-full bg-moh-green text-white px-4 py-2 rounded-xl font-bold hover:bg-emerald-800 transition-all">
+                                Submit Request
+                            </button>
+                        </form>
+                    </div>
+                    
+                    <!-- Shift Swap Request -->
+                    <div class="p-6 bg-moh-bg rounded-2xl border border-moh-border">
+                        <h4 class="font-bold mb-4 flex items-center gap-2">
+                            <i data-lucide="shuffle" class="w-5 h-5 text-moh-green"></i>
+                            Request Shift Swap
+                        </h4>
+                        <form id="shiftSwapForm" class="space-y-4">
+                            <div>
+                                <label class="block text-sm font-bold mb-1 text-moh-text-sub">Current Shift Date</label>
+                                <input type="date" id="currentShiftDate" class="w-full px-4 py-2 border border-moh-border rounded-xl outline-none focus:ring-2 focus:ring-moh-green bg-white">
+                            </div>
+                            <div>
+                                <label class="block text-sm font-bold mb-1 text-moh-text-sub">Preferred Swap Date</label>
+                                <input type="date" id="preferredSwapDate" class="w-full px-4 py-2 border border-moh-border rounded-xl outline-none focus:ring-2 focus:ring-moh-green bg-white">
+                            </div>
+                            <div>
+                                <label class="block text-sm font-bold mb-1 text-moh-text-sub">Reason for Swap</label>
+                                <textarea id="swapReason" rows="3" class="w-full px-4 py-2 border border-moh-border rounded-xl outline-none focus:ring-2 focus:ring-moh-green bg-white"></textarea>
+                            </div>
+                            <button type="submit" class="w-full bg-moh-green text-white px-4 py-2 rounded-xl font-bold hover:bg-emerald-800 transition-all">
+                                Submit Swap Request
+                            </button>
+                        </form>
+                    </div>
+                </div>
+                
+                <!-- Announcements -->
+                <div class="mt-6">
+                    <h4 class="font-bold mb-4 flex items-center gap-2">
+                        <i data-lucide="megaphone" class="w-5 h-5 text-moh-gold"></i>
+                        HR Announcements
+                    </h4>
+                    <div class="space-y-4" id="announcementsList">
+                        <!-- Announcements will be populated here -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    
+    <!-- Edit Profile Modal -->
+    <div id="editProfileModal" class="fixed inset-0 bg-black/50 backdrop-blur-sm z-50 hidden items-center justify-center p-4" style="display:none">
+        <div class="bg-white rounded-3xl w-full max-w-lg max-h-[90vh] overflow-hidden flex flex-col shadow-2xl">
+            <div class="p-6 border-b border-moh-border flex justify-between items-center bg-moh-sidebar text-white">
+                <h3 class="font-bold text-xl flex items-center gap-2">
+                    <i data-lucide="edit-2" class="w-5 h-5 text-moh-green"></i>
+                    Edit Profile
+                </h3>
+                <button id="closeEditProfileModal" class="p-2 hover:bg-white/10 rounded-xl transition-all">
+                    <i data-lucide="x" class="w-6 h-6"></i>
+                </button>
+            </div>
+            <form id="editProfileForm" class="flex-1 overflow-y-auto p-6 space-y-4">
+                <div>
+                    <label class="block text-sm font-bold mb-1 text-moh-text-sub">Email</label>
+                    <input type="email" id="editEmail" required class="w-full px-4 py-2 border border-moh-border rounded-xl outline-none focus:ring-2 focus:ring-moh-green">
+                </div>
+                <div>
+                    <label class="block text-sm font-bold mb-1 text-moh-text-sub">Phone Number</label>
+                    <input type="tel" id="editPhone" class="w-full px-4 py-2 border border-moh-border rounded-xl outline-none focus:ring-2 focus:ring-moh-green">
+                </div>
+                <div>
+                    <label class="block text-sm font-bold mb-1 text-moh-text-sub">Address</label>
+                    <textarea id="editAddress" rows="3" class="w-full px-4 py-2 border border-moh-border rounded-xl outline-none focus:ring-2 focus:ring-moh-green"></textarea>
+                </div>
+            </form>
+            <div class="p-6 border-t border-moh-border bg-moh-bg flex justify-end gap-3">
+                <button type="button" id="cancelEditProfile" class="px-6 py-2 rounded-xl border border-moh-border font-bold text-sm hover:bg-white transition-all">Cancel</button>
+                <button type="submit" form="editProfileForm" class="px-6 py-2 rounded-xl bg-moh-green text-white font-bold text-sm hover:bg-emerald-800 transition-all">Save Changes</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="/js/theme.js"></script>
+    <script src="/js/employee-dashboard.js"></script>
+</body>
+</html>

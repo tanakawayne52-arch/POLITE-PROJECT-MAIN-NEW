@@ -1,0 +1,1963 @@
+
+<html xmlns:o='urn:schemas-microsoft-com:office:office' xmlns:w='urn:schemas-microsoft-com:office:word'>
+<head>
+<meta charset="utf-8">
+<title>MOHCC Zimbabwe Attendance Management System Documentation</title>
+<style>
+body {
+    font-family: Arial, sans-serif;
+    font-size: 11pt;
+    line-height: 1.4;
+    color: #333;
+    max-width: 800px;
+    margin: 20pt auto;
+    padding: 20pt;
+}
+h1 {
+    color: #00843D;
+    font-size: 24pt;
+    font-weight: bold;
+    margin-top: 20pt;
+    margin-bottom: 10pt;
+    page-break-before: always;
+}
+h1:first-of-type {
+    page-break-before: auto;
+}
+h2 {
+    color: #006633;
+    font-size: 18pt;
+    font-weight: bold;
+    margin-top: 15pt;
+    margin-bottom: 8pt;
+}
+h3 {
+    color: #004422;
+    font-size: 14pt;
+    font-weight: bold;
+    margin-top: 10pt;
+    margin-bottom: 6pt;
+}
+h4 {
+    color: #003311;
+    font-size: 12pt;
+    font-weight: bold;
+    margin-top: 8pt;
+    margin-bottom: 5pt;
+}
+table {
+    border-collapse: collapse;
+    width: 100%;
+    margin: 10pt 0;
+}
+td, th {
+    border: 1pt solid #000;
+    padding: 5pt;
+}
+th {
+    background-color: #f0f0f0;
+    font-weight: bold;
+}
+code {
+    background-color: #f5f5f5;
+    padding: 2pt 4pt;
+    font-family: Courier New, monospace;
+    font-size: 9pt;
+}
+pre {
+    background-color: #f5f5f5;
+    padding: 10pt;
+    border: 1pt solid #ccc;
+    font-family: Courier New, monospace;
+    font-size: 9pt;
+    margin: 10pt 0;
+    white-space: pre-wrap;
+    word-wrap: break-word;
+}
+strong {
+    font-weight: bold;
+}
+em {
+    font-style: italic;
+}
+a {
+    color: #0066cc;
+    text-decoration: underline;
+}
+hr {
+    border: 1pt solid #ccc;
+    margin: 15pt 0;
+}
+ul, ol {
+    margin: 5pt 0;
+}
+li {
+    margin: 5pt 0 5pt 20pt;
+}
+</style>
+</head>
+<body>
+<h1 style="color:#00843D;font-size:24pt;font-weight:bold;margin-top:20pt;margin-bottom:10pt;">MOHCC Zimbabwe Attendance Management System</h1>
+<h2 style="color:#006633;font-size:18pt;font-weight:bold;margin-top:15pt;margin-bottom:8pt;">Complete Application Documentation</h2>
+
+<hr style="border:1pt solid #ccc;margin:15pt 0;">
+
+<h2 style="color:#006633;font-size:18pt;font-weight:bold;margin-top:15pt;margin-bottom:8pt;">Table of Contents</h2>
+
+<li style="margin:5pt 0 5pt 20pt;"><a href="#overview" style="color:#0066cc;">Overview</a></li>
+<li style="margin:5pt 0 5pt 20pt;"><a href="#system-architecture" style="color:#0066cc;">System Architecture</a></li>
+<li style="margin:5pt 0 5pt 20pt;"><a href="#technology-stack" style="color:#0066cc;">Technology Stack</a></li>
+<li style="margin:5pt 0 5pt 20pt;"><a href="#features" style="color:#0066cc;">Features</a></li>
+<li style="margin:5pt 0 5pt 20pt;"><a href="#database-schema" style="color:#0066cc;">Database Schema</a></li>
+<li style="margin:5pt 0 5pt 20pt;"><a href="#api-documentation" style="color:#0066cc;">API Documentation</a></li>
+<li style="margin:5pt 0 5pt 20pt;"><a href="#user-roles-and-permissions" style="color:#0066cc;">User Roles and Permissions</a></li>
+<li style="margin:5pt 0 5pt 20pt;"><a href="#installation-and-setup" style="color:#0066cc;">Installation and Setup</a></li>
+<li style="margin:5pt 0 5pt 20pt;"><a href="#configuration" style="color:#0066cc;">Configuration</a></li>
+<li style="margin:5pt 0 5pt 20pt;"><a href="#security-features" style="color:#0066cc;">Security Features</a></li>
+<li style="margin:5pt 0 5pt 20pt;"><a href="#frontend-structure" style="color:#0066cc;">Frontend Structure</a></li>
+<li style="margin:5pt 0 5pt 20pt;"><a href="#backend-structure" style="color:#0066cc;">Backend Structure</a></li>
+<li style="margin:5pt 0 5pt 20pt;"><a href="#real-time-features" style="color:#0066cc;">Real-time Features</a></li>
+<li style="margin:5pt 0 5pt 20pt;"><a href="#file-upload-system" style="color:#0066cc;">File Upload System</a></li>
+<li style="margin:5pt 0 5pt 20pt;"><a href="#troubleshooting" style="color:#0066cc;">Troubleshooting</a></li>
+
+<hr style="border:1pt solid #ccc;margin:15pt 0;">
+
+<h2 style="color:#006633;font-size:18pt;font-weight:bold;margin-top:15pt;margin-bottom:8pt;">Overview</h2>
+
+<p style="margin:8pt 0;line-height:1.4;">The MOHCC Zimbabwe Attendance Management System is a comprehensive full-stack web application designed for the Ministry of Health and Child Care Zimbabwe to manage employee attendance efficiently. The system provides real-time monitoring, QR code-based check-in/check-out, department analytics, and role-based access control for administrators and employees.</p>
+
+<h3 style="color:#004422;font-size:14pt;font-weight:bold;margin-top:10pt;margin-bottom:6pt;">Key Objectives</h3>
+
+<ul style="margin:5pt 0;"><li style="margin:5pt 0 5pt 20pt;">Streamline attendance tracking through digital means</li>
+<li style="margin:5pt 0 5pt 20pt;">Provide real-time visibility into employee presence</li>
+<li style="margin:5pt 0 5pt 20pt;">Enable comprehensive reporting and analytics</li>
+<li style="margin:5pt 0 5pt 20pt;">Support multiple attendance verification methods</li>
+<li style="margin:5pt 0 5pt 20pt;">Maintain detailed audit trails for compliance</li>
+<p style="margin:8pt 0;line-height:1.4;"></ul></p>
+<hr style="border:1pt solid #ccc;margin:15pt 0;">
+
+<h2 style="color:#006633;font-size:18pt;font-weight:bold;margin-top:15pt;margin-bottom:8pt;">System Architecture</h2>
+
+<h3 style="color:#004422;font-size:14pt;font-weight:bold;margin-top:10pt;margin-bottom:6pt;">Architecture Pattern</h3>
+
+<p style="margin:8pt 0;line-height:1.4;">The application follows a <strong>Model-View-Controller (MVC)</strong> pattern with the following components:</p>
+
+<ul style="margin:5pt 0;"><li style="margin:5pt 0 5pt 20pt;"><strong>Frontend</strong>: Client-side rendering using HTML, JavaScript, and Tailwind CSS</li>
+<li style="margin:5pt 0 5pt 20pt;"><strong>Backend</strong>: RESTful API server using Express.js</li>
+<li style="margin:5pt 0 5pt 20pt;"><strong>Database</strong>: Relational database using MySQL</li>
+<li style="margin:5pt 0 5pt 20pt;"><strong>Real-time Communication</strong>: WebSocket implementation using Socket.io</li>
+<p style="margin:8pt 0;line-height:1.4;"></ul></p>
+<h3 style="color:#004422;font-size:14pt;font-weight:bold;margin-top:10pt;margin-bottom:6pt;">Data Flow</h3>
+
+<li style="margin:5pt 0 5pt 20pt;"><strong>User Authentication</strong>: Session-based authentication with JWT</li>
+<li style="margin:5pt 0 5pt 20pt;"><strong>Attendance Recording</strong>: Multiple methods (manual, QR code, facial recognition)</li>
+<li style="margin:5pt 0 5pt 20pt;"><strong>Real-time Updates</strong>: Socket.io broadcasts attendance changes</li>
+<li style="margin:5pt 0 5pt 20pt;"><strong>Data Persistence</strong>: MySQL database with connection pooling</li>
+<li style="margin:5pt 0 5pt 20pt;"><strong>File Storage</strong>: Local file system for profile photos</li>
+
+<hr style="border:1pt solid #ccc;margin:15pt 0;">
+
+<h2 style="color:#006633;font-size:18pt;font-weight:bold;margin-top:15pt;margin-bottom:8pt;">Technology Stack</h2>
+
+<h3 style="color:#004422;font-size:14pt;font-weight:bold;margin-top:10pt;margin-bottom:6pt;">Frontend Technologies</h3>
+
+<table style="border-collapse:collapse;width:100%;margin:10pt 0;"><tr><td style="border:1pt solid #000;padding:5pt;">Technology</td><td style="border:1pt solid #000;padding:5pt;">Version</td><td style="border:1pt solid #000;padding:5pt;">Purpose</td></tr>
+<p style="margin:8pt 0;line-height:1.4;"></table></p>
+<table style="border-collapse:collapse;width:100%;margin:10pt 0;"><tr><td style="border:1pt solid #000;padding:5pt;">React</td><td style="border:1pt solid #000;padding:5pt;">19.0.0</td><td style="border:1pt solid #000;padding:5pt;">UI Framework</td></tr>
+<tr><td style="border:1pt solid #000;padding:5pt;">Tailwind CSS</td><td style="border:1pt solid #000;padding:5pt;">4.1.14</td><td style="border:1pt solid #000;padding:5pt;">Styling</td></tr>
+<tr><td style="border:1pt solid #000;padding:5pt;">Lucide React</td><td style="border:1pt solid #000;padding:5pt;">0.546.0</td><td style="border:1pt solid #000;padding:5pt;">Icons</td></tr>
+<tr><td style="border:1pt solid #000;padding:5pt;">Recharts</td><td style="border:1pt solid #000;padding:5pt;">3.8.1</td><td style="border:1pt solid #000;padding:5pt;">Data Visualization</td></tr>
+<tr><td style="border:1pt solid #000;padding:5pt;">Framer Motion</td><td style="border:1pt solid #000;padding:5pt;">12.23.24</td><td style="border:1pt solid #000;padding:5pt;">Animations</td></tr>
+<tr><td style="border:1pt solid #000;padding:5pt;">Socket.io Client</td><td style="border:1pt solid #000;padding:5pt;">4.8.3</td><td style="border:1pt solid #000;padding:5pt;">Real-time Communication</td></tr>
+<tr><td style="border:1pt solid #000;padding:5pt;">React Router DOM</td><td style="border:1pt solid #000;padding:5pt;">7.14.1</td><td style="border:1pt solid #000;padding:5pt;">Client-side Routing</td></tr>
+<p style="margin:8pt 0;line-height:1.4;"></table></p>
+<h3 style="color:#004422;font-size:14pt;font-weight:bold;margin-top:10pt;margin-bottom:6pt;">Backend Technologies</h3>
+
+<table style="border-collapse:collapse;width:100%;margin:10pt 0;"><tr><td style="border:1pt solid #000;padding:5pt;">Technology</td><td style="border:1pt solid #000;padding:5pt;">Version</td><td style="border:1pt solid #000;padding:5pt;">Purpose</td></tr>
+<p style="margin:8pt 0;line-height:1.4;"></table></p>
+
+<table style="border-collapse:collapse;width:100%;margin:10pt 0;"><tr><td style="border:1pt solid #000;padding:5pt;">Express</td><td style="border:1pt solid #000;padding:5pt;">4.21.2</td><td style="border:1pt solid #000;padding:5pt;">Web Framework</td></tr>
+<tr><td style="border:1pt solid #000;padding:5pt;">TypeScript</td><td style="border:1pt solid #000;padding:5pt;">5.8.2</td><td style="border:1pt solid #000;padding:5pt;">Type Safety</td></tr>
+<tr><td style="border:1pt solid #000;padding:5pt;">Socket.io</td><td style="border:1pt solid #000;padding:5pt;">4.8.3</td><td style="border:1pt solid #000;padding:5pt;">WebSocket Server</td></tr>
+<tr><td style="border:1pt solid #000;padding:5pt;">MySQL2</td><td style="border:1pt solid #000;padding:5pt;">3.22.0</td><td style="border:1pt solid #000;padding:5pt;">Database Driver</td></tr>
+<tr><td style="border:1pt solid #000;padding:5pt;">Bcryptjs</td><td style="border:1pt solid #000;padding:5pt;">2.4.3</td><td style="border:1pt solid #000;padding:5pt;">Password Hashing</td></tr>
+<tr><td style="border:1pt solid #000;padding:5pt;">JWT</td><td style="border:1pt solid #000;padding:5pt;">9.0.3</td><td style="border:1pt solid #000;padding:5pt;">Token Authentication</td></tr>
+<tr><td style="border:1pt solid #000;padding:5pt;">Multer</td><td style="border:1pt solid #000;padding:5pt;">2.1.1</td><td style="border:1pt solid #000;padding:5pt;">File Upload Handling</td></tr>
+<tr><td style="border:1pt solid #000;padding:5pt;">Helmet</td><td style="border:1pt solid #000;padding:5pt;">8.1.0</td><td style="border:1pt solid #000;padding:5pt;">Security Headers</td></tr>
+<tr><td style="border:1pt solid #000;padding:5pt;">Morgan</td><td style="border:1pt solid #000;padding:5pt;">1.10.1</td><td style="border:1pt solid #000;padding:5pt;">HTTP Logging</td></tr>
+<tr><td style="border:1pt solid #000;padding:5pt;">Dotenv</td><td style="border:1pt solid #000;padding:5pt;">17.2.3</td><td style="border:1pt solid #000;padding:5pt;">Environment Variables</td></tr>
+<tr><td style="border:1pt solid #000;padding:5pt;">Vite</td><td style="border:1pt solid #000;padding:5pt;">6.2.0</td><td style="border:1pt solid #000;padding:5pt;">Build Tool</td></tr>
+<p style="margin:8pt 0;line-height:1.4;"></table></p>
+<h3 style="color:#004422;font-size:14pt;font-weight:bold;margin-top:10pt;margin-bottom:6pt;">Database</h3>
+
+<ul style="margin:5pt 0;"><li style="margin:5pt 0 5pt 20pt;"><strong>MySQL</strong>: Relational database management system</li>
+<li style="margin:5pt 0 5pt 20pt;"><strong>Connection Pooling</strong>: Optimized database connections</li>
+<li style="margin:5pt 0 5pt 20pt;"><strong>Schema</strong>: Normalized database structure with foreign key constraints</li>
+<p style="margin:8pt 0;line-height:1.4;"></ul></p>
+<hr style="border:1pt solid #ccc;margin:15pt 0;">
+
+<h2 style="color:#006633;font-size:18pt;font-weight:bold;margin-top:15pt;margin-bottom:8pt;">Features</h2>
+
+<h3 style="color:#004422;font-size:14pt;font-weight:bold;margin-top:10pt;margin-bottom:6pt;">Core Features</h3>
+
+<h4 style="color:#003311;font-size:12pt;font-weight:bold;margin-top:8pt;margin-bottom:5pt;">1. QR Code Attendance</h4>
+<ul style="margin:5pt 0;"><li style="margin:5pt 0 5pt 20pt;">Employees can generate unique QR codes</li>
+<li style="margin:5pt 0 5pt 20pt;">Station QR codes for centralized check-in/check-out</li>
+<li style="margin:5pt 0 5pt 20pt;">Mobile-friendly scanning interface</li>
+<p style="margin:8pt 0;line-height:1.4;"></ul></p>
+<h4 style="color:#003311;font-size:12pt;font-weight:bold;margin-top:8pt;margin-bottom:5pt;">2. Real-time Admin Dashboard</h4>
+<ul style="margin:5pt 0;"><li style="margin:5pt 0 5pt 20pt;">Live attendance monitoring</li>
+<li style="margin:5pt 0 5pt 20pt;">Real-time statistics updates via WebSockets</li>
+<li style="margin:5pt 0 5pt 20pt;">Activity feed with recent check-ins/check-outs</li>
+<li style="margin:5pt 0 5pt 20pt;">Department-wise attendance distribution</li>
+<p style="margin:8pt 0;line-height:1.4;"></ul></p>
+<h4 style="color:#003311;font-size:12pt;font-weight:bold;margin-top:8pt;margin-bottom:5pt;">3. Department Analytics</h4>
+<ul style="margin:5pt 0;"><li style="margin:5pt 0 5pt 20pt;">Visual reports using Recharts</li>
+<li style="margin:5pt 0 5pt 20pt;">Employee performance metrics</li>
+<li style="margin:5pt 0 5pt 20pt;">Attendance distribution across departments</li>
+<li style="margin:5pt 0 5pt 20pt;">Trend analysis and comparisons</li>
+<p style="margin:8pt 0;line-height:1.4;"></ul></p>
+<h4 style="color:#003311;font-size:12pt;font-weight:bold;margin-top:8pt;margin-bottom:5pt;">4. Role-Based Access Control</h4>
+<ul style="margin:5pt 0;"><li style="margin:5pt 0 5pt 20pt;"><strong>Admin Role</strong>: Full system access, employee management, report generation</li>
+<li style="margin:5pt 0 5pt 20pt;"><strong>Employee Role</strong>: Personal dashboard, profile management, attendance view</li>
+<p style="margin:8pt 0;line-height:1.4;"></ul></p>
+<h4 style="color:#003311;font-size:12pt;font-weight:bold;margin-top:8pt;margin-bottom:5pt;">5. Audit Logs</h4>
+<ul style="margin:5pt 0;"><li style="margin:5pt 0 5pt 20pt;">Comprehensive logging of all system activities</li>
+<li style="margin:5pt 0 5pt 20pt;">User action tracking</li>
+<li style="margin:5pt 0 5pt 20pt;">Security event monitoring</li>
+<li style="margin:5pt 0 5pt 20pt;">Compliance reporting</li>
+<p style="margin:8pt 0;line-height:1.4;"></ul></p>
+<h3 style="color:#004422;font-size:14pt;font-weight:bold;margin-top:10pt;margin-bottom:6pt;">Additional Features</h3>
+
+<h4 style="color:#003311;font-size:12pt;font-weight:bold;margin-top:8pt;margin-bottom:5pt;">Attendance Management</h4>
+<ul style="margin:5pt 0;"><li style="margin:5pt 0 5pt 20pt;">Manual check-in/check-out with location tracking</li>
+<li style="margin:5pt 0 5pt 20pt;">GPS coordinates capture</li>
+<li style="margin:5pt 0 5pt 20pt;">Late arrival detection (threshold: 8:30 AM)</li>
+<li style="margin:5pt 0 5pt 20pt;">Hours worked calculation with validation</li>
+<li style="margin:5pt 0 5pt 20pt;">Monthly attendance reports</li>
+<li style="margin:5pt 0 5pt 20pt;">CSV export functionality</li>
+<p style="margin:8pt 0;line-height:1.4;"></ul></p>
+<h4 style="color:#003311;font-size:12pt;font-weight:bold;margin-top:8pt;margin-bottom:5pt;">User Management</h4>
+<ul style="margin:5pt 0;"><li style="margin:5pt 0 5pt 20pt;">Employee registration with EC number validation</li>
+<li style="margin:5pt 0 5pt 20pt;">Profile photo upload</li>
+<li style="margin:5pt 0 5pt 20pt;">Department and position assignment</li>
+<li style="margin:5pt 0 5pt 20pt;">Staff type classification (attachee, permanent, contract)</li>
+<li style="margin:5pt 0 5pt 20pt;">Employment date tracking</li>
+<p style="margin:8pt 0;line-height:1.4;"></ul></p>
+<h4 style="color:#003311;font-size:12pt;font-weight:bold;margin-top:8pt;margin-bottom:5pt;">Communication</h4>
+<ul style="margin:5pt 0;"><li style="margin:5pt 0 5pt 20pt;">Department-wide announcements</li>
+<li style="margin:5pt 0 5pt 20pt;">Priority-based notifications (low, medium, high)</li>
+<li style="margin:5pt 0 5pt 20pt;">Real-time notification delivery</li>
+<p style="margin:8pt 0;line-height:1.4;"></ul></p>
+<h4 style="color:#003311;font-size:12pt;font-weight:bold;margin-top:8pt;margin-bottom:5pt;">Leave Management</h4>
+<ul style="margin:5pt 0;"><li style="margin:5pt 0 5pt 20pt;">Leave request submission (annual, sick, personal, other)</li>
+<li style="margin:5pt 0 5pt 20pt;">Approval workflow for administrators</li>
+<li style="margin:5pt 0 5pt 20pt;">Leave status tracking</li>
+<li style="margin:5pt 0 5pt 20pt;">Automatic announcement generation</li>
+<p style="margin:8pt 0;line-height:1.4;"></ul></p>
+<h4 style="color:#003311;font-size:12pt;font-weight:bold;margin-top:8pt;margin-bottom:5pt;">Shift Management</h4>
+<ul style="margin:5pt 0;"><li style="margin:5pt 0 5pt 20pt;">Shift swap requests</li>
+<li style="margin:5pt 0 5pt 20pt;">Supervisor approval system</li>
+<li style="margin:5pt 0 5pt 20pt;">Schedule management</li>
+<p style="margin:8pt 0;line-height:1.4;"></ul></p>
+<h4 style="color:#003311;font-size:12pt;font-weight:bold;margin-top:8pt;margin-bottom:5pt;">Security Features</h4>
+<ul style="margin:5pt 0;"><li style="margin:5pt 0 5pt 20pt;">Password reset with OTP verification</li>
+<li style="margin:5pt 0 5pt 20pt;">Security question/answer backup</li>
+<li style="margin:5pt 0 5pt 20pt;">Session-based authentication</li>
+<li style="margin:5pt 0 5pt 20pt;">Password hashing with bcrypt</li>
+<li style="margin:5pt 0 5pt 20pt;">Input validation and sanitization</li>
+<p style="margin:8pt 0;line-height:1.4;"></ul></p>
+<hr style="border:1pt solid #ccc;margin:15pt 0;">
+
+<h2 style="color:#006633;font-size:18pt;font-weight:bold;margin-top:15pt;margin-bottom:8pt;">Database Schema</h2>
+
+<h3 style="color:#004422;font-size:14pt;font-weight:bold;margin-top:10pt;margin-bottom:6pt;">Database: attendance_db</h3>
+
+<h3 style="color:#004422;font-size:14pt;font-weight:bold;margin-top:10pt;margin-bottom:6pt;">Tables</h3>
+
+<h4 style="color:#003311;font-size:12pt;font-weight:bold;margin-top:8pt;margin-bottom:5pt;">1. users</h4>
+<p style="margin:8pt 0;line-height:1.4;">Stores user account information and profile data.</p>
+
+<table style="border-collapse:collapse;width:100%;margin:10pt 0;"><tr><td style="border:1pt solid #000;padding:5pt;">Column</td><td style="border:1pt solid #000;padding:5pt;">Type</td><td style="border:1pt solid #000;padding:5pt;">Constraints</td><td style="border:1pt solid #000;padding:5pt;">Description</td></tr>
+<p style="margin:8pt 0;line-height:1.4;"></table></p>
+<table style="border-collapse:collapse;width:100%;margin:10pt 0;"><tr><td style="border:1pt solid #000;padding:5pt;">user_id</td><td style="border:1pt solid #000;padding:5pt;">INT</td><td style="border:1pt solid #000;padding:5pt;">PRIMARY KEY, AUTO_INCREMENT</td><td style="border:1pt solid #000;padding:5pt;">Unique user identifier</td></tr>
+<tr><td style="border:1pt solid #000;padding:5pt;">usersname</td><td style="border:1pt solid #000;padding:5pt;">VARCHAR(100)</td><td style="border:1pt solid #000;padding:5pt;">NOT NULL</td><td style="border:1pt solid #000;padding:5pt;">Full name of user</td></tr>
+<tr><td style="border:1pt solid #000;padding:5pt;">email</td><td style="border:1pt solid #000;padding:5pt;">VARCHAR(100)</td><td style="border:1pt solid #000;padding:5pt;">UNIQUE, NOT NULL</td><td style="border:1pt solid #000;padding:5pt;">Email address</td></tr>
+<tr><td style="border:1pt solid #000;padding:5pt;">password</td><td style="border:1pt solid #000;padding:5pt;">VARCHAR(255)</td><td style="border:1pt solid #000;padding:5pt;">NOT NULL</td><td style="border:1pt solid #000;padding:5pt;">Hashed password</td></tr>
+<p style="margin:8pt 0;line-height:1.4;"></table></p>
+
+<table style="border-collapse:collapse;width:100%;margin:10pt 0;"><tr><td style="border:1pt solid #000;padding:5pt;">role</td><td style="border:1pt solid #000;padding:5pt;">ENUM</td><td style="border:1pt solid #000;padding:5pt;">DEFAULT 'employee'</td><td style="border:1pt solid #000;padding:5pt;">User role (admin, employee)</td></tr>
+<tr><td style="border:1pt solid #000;padding:5pt;">staff_type</td><td style="border:1pt solid #000;padding:5pt;">ENUM</td><td style="border:1pt solid #000;padding:5pt;">DEFAULT 'permanent'</td><td style="border:1pt solid #000;padding:5pt;">Employment type (attachee, permanent, contract)</td></tr>
+<p style="margin:8pt 0;line-height:1.4;"></table></p>
+
+<table style="border-collapse:collapse;width:100%;margin:10pt 0;"><tr><td style="border:1pt solid #000;padding:5pt;">employee_id</td><td style="border:1pt solid #000;padding:5pt;">VARCHAR(9)</td><td style="border:1pt solid #000;padding:5pt;">UNIQUE</td><td style="border:1pt solid #000;padding:5pt;">EC number format: 6 digits + 1 letter + 2 digits</td></tr>
+<p style="margin:8pt 0;line-height:1.4;"></table></p>
+
+<table style="border-collapse:collapse;width:100%;margin:10pt 0;"><tr><td style="border:1pt solid #000;padding:5pt;">security_question</td><td style="border:1pt solid #000;padding:5pt;">VARCHAR(255)</td><td style="border:1pt solid #000;padding:5pt;">DEFAULT NULL</td><td style="border:1pt solid #000;padding:5pt;">Security question for password reset</td></tr>
+<tr><td style="border:1pt solid #000;padding:5pt;">security_answer</td><td style="border:1pt solid #000;padding:5pt;">VARCHAR(255)</td><td style="border:1pt solid #000;padding:5pt;">DEFAULT NULL</td><td style="border:1pt solid #000;padding:5pt;">Answer to security question</td></tr>
+<p style="margin:8pt 0;line-height:1.4;"></table></p>
+
+
+<strong>Constraints:</strong>
+<ul style="margin:5pt 0;"><li style="margin:5pt 0 5pt 20pt;">EC number format validation: <code style="background:#f5f5f5;padding:2pt 4pt;font-family:Courier New;font-size:9pt;">^[0-9]{6}[A-Z][0-9]{2}$</code></li>
+<p style="margin:8pt 0;line-height:1.4;"></ul></p>
+<h4 style="color:#003311;font-size:12pt;font-weight:bold;margin-top:8pt;margin-bottom:5pt;">2. attendance</h4>
+<p style="margin:8pt 0;line-height:1.4;">Records all attendance check-in and check-out events.</p>
+
+<table style="border-collapse:collapse;width:100%;margin:10pt 0;"><tr><td style="border:1pt solid #000;padding:5pt;">Column</td><td style="border:1pt solid #000;padding:5pt;">Type</td><td style="border:1pt solid #000;padding:5pt;">Constraints</td><td style="border:1pt solid #000;padding:5pt;">Description</td></tr>
+<p style="margin:8pt 0;line-height:1.4;"></table></p>
+<table style="border-collapse:collapse;width:100%;margin:10pt 0;"><tr><td style="border:1pt solid #000;padding:5pt;">id</td><td style="border:1pt solid #000;padding:5pt;">INT</td><td style="border:1pt solid #000;padding:5pt;">PRIMARY KEY, AUTO_INCREMENT</td><td style="border:1pt solid #000;padding:5pt;">Unique record identifier</td></tr>
+<tr><td style="border:1pt solid #000;padding:5pt;">user_id</td><td style="border:1pt solid #000;padding:5pt;">INT</td><td style="border:1pt solid #000;padding:5pt;">FOREIGN KEY, NOT NULL</td><td style="border:1pt solid #000;padding:5pt;">Reference to users table</td></tr>
+<tr><td style="border:1pt solid #000;padding:5pt;">type</td><td style="border:1pt solid #000;padding:5pt;">ENUM</td><td style="border:1pt solid #000;padding:5pt;">NOT NULL</td><td style="border:1pt solid #000;padding:5pt;">Attendance type (check-in, check-out)</td></tr>
+<tr><td style="border:1pt solid #000;padding:5pt;">timestamp</td><td style="border:1pt solid #000;padding:5pt;">TIMESTAMP</td><td style="border:1pt solid #000;padding:5pt;">DEFAULT CURRENT_TIMESTAMP</td><td style="border:1pt solid #000;padding:5pt;">Time of attendance event</td></tr>
+<tr><td style="border:1pt solid #000;padding:5pt;">method</td><td style="border:1pt solid #000;padding:5pt;">VARCHAR(50)</td><td style="border:1pt solid #000;padding:5pt;">DEFAULT 'manual'</td><td style="border:1pt solid #000;padding:5pt;">Attendance method (manual, QR, facial_recognition)</td></tr>
+<tr><td style="border:1pt solid #000;padding:5pt;">verification_status</td><td style="border:1pt solid #000;padding:5pt;">VARCHAR(50)</td><td style="border:1pt solid #000;padding:5pt;">DEFAULT 'verified'</td><td style="border:1pt solid #000;padding:5pt;">Verification status</td></tr>
+<p style="margin:8pt 0;line-height:1.4;"></table></p>
+
+
+
+<strong>Foreign Key:</strong> user_id → users(user_id) ON DELETE CASCADE
+
+<h4 style="color:#003311;font-size:12pt;font-weight:bold;margin-top:8pt;margin-bottom:5pt;">3. directorates</h4>
+<p style="margin:8pt 0;line-height:1.4;">Organizational directorates/departments.</p>
+
+<table style="border-collapse:collapse;width:100%;margin:10pt 0;"><tr><td style="border:1pt solid #000;padding:5pt;">Column</td><td style="border:1pt solid #000;padding:5pt;">Type</td><td style="border:1pt solid #000;padding:5pt;">Constraints</td><td style="border:1pt solid #000;padding:5pt;">Description</td></tr>
+<p style="margin:8pt 0;line-height:1.4;"></table></p>
+<table style="border-collapse:collapse;width:100%;margin:10pt 0;"><tr><td style="border:1pt solid #000;padding:5pt;">id</td><td style="border:1pt solid #000;padding:5pt;">INT</td><td style="border:1pt solid #000;padding:5pt;">PRIMARY KEY, AUTO_INCREMENT</td><td style="border:1pt solid #000;padding:5pt;">Unique directorate identifier</td></tr>
+<tr><td style="border:1pt solid #000;padding:5pt;">name</td><td style="border:1pt solid #000;padding:5pt;">VARCHAR(100)</td><td style="border:1pt solid #000;padding:5pt;">NOT NULL</td><td style="border:1pt solid #000;padding:5pt;">Directorate name</td></tr>
+<tr><td style="border:1pt solid #000;padding:5pt;">icon</td><td style="border:1pt solid #000;padding:5pt;">VARCHAR(50)</td><td style="border:1pt solid #000;padding:5pt;">DEFAULT 'building'</td><td style="border:1pt solid #000;padding:5pt;">Icon identifier</td></tr>
+<tr><td style="border:1pt solid #000;padding:5pt;">color</td><td style="border:1pt solid #000;padding:5pt;">VARCHAR(50)</td><td style="border:1pt solid #000;padding:5pt;">DEFAULT 'emerald'</td><td style="border:1pt solid #000;padding:5pt;">Color theme</td></tr>
+<p style="margin:8pt 0;line-height:1.4;"></table></p>
+<h4 style="color:#003311;font-size:12pt;font-weight:bold;margin-top:8pt;margin-bottom:5pt;">4. units</h4>
+<p style="margin:8pt 0;line-height:1.4;">Sub-units within directorates.</p>
+
+<table style="border-collapse:collapse;width:100%;margin:10pt 0;"><tr><td style="border:1pt solid #000;padding:5pt;">Column</td><td style="border:1pt solid #000;padding:5pt;">Type</td><td style="border:1pt solid #000;padding:5pt;">Constraints</td><td style="border:1pt solid #000;padding:5pt;">Description</td></tr>
+<p style="margin:8pt 0;line-height:1.4;"></table></p>
+<table style="border-collapse:collapse;width:100%;margin:10pt 0;"><tr><td style="border:1pt solid #000;padding:5pt;">id</td><td style="border:1pt solid #000;padding:5pt;">INT</td><td style="border:1pt solid #000;padding:5pt;">PRIMARY KEY, AUTO_INCREMENT</td><td style="border:1pt solid #000;padding:5pt;">Unique unit identifier</td></tr>
+<tr><td style="border:1pt solid #000;padding:5pt;">name</td><td style="border:1pt solid #000;padding:5pt;">VARCHAR(100)</td><td style="border:1pt solid #000;padding:5pt;">NOT NULL</td><td style="border:1pt solid #000;padding:5pt;">Unit name</td></tr>
+<tr><td style="border:1pt solid #000;padding:5pt;">directorate_id</td><td style="border:1pt solid #000;padding:5pt;">INT</td><td style="border:1pt solid #000;padding:5pt;">FOREIGN KEY</td><td style="border:1pt solid #000;padding:5pt;">Reference to directorates</td></tr>
+<tr><td style="border:1pt solid #000;padding:5pt;">staff_count</td><td style="border:1pt solid #000;padding:5pt;">INT</td><td style="border:1pt solid #000;padding:5pt;">DEFAULT 0</td><td style="border:1pt solid #000;padding:5pt;">Number of staff members</td></tr>
+<p style="margin:8pt 0;line-height:1.4;"></table></p>
+<strong>Foreign Key:</strong> directorate_id → directorates(id) ON DELETE CASCADE
+
+<h4 style="color:#003311;font-size:12pt;font-weight:bold;margin-top:8pt;margin-bottom:5pt;">5. positions</h4>
+<p style="margin:8pt 0;line-height:1.4;">Job positions and titles.</p>
+
+<table style="border-collapse:collapse;width:100%;margin:10pt 0;"><tr><td style="border:1pt solid #000;padding:5pt;">Column</td><td style="border:1pt solid #000;padding:5pt;">Type</td><td style="border:1pt solid #000;padding:5pt;">Constraints</td><td style="border:1pt solid #000;padding:5pt;">Description</td></tr>
+<p style="margin:8pt 0;line-height:1.4;"></table></p>
+<table style="border-collapse:collapse;width:100%;margin:10pt 0;"><tr><td style="border:1pt solid #000;padding:5pt;">id</td><td style="border:1pt solid #000;padding:5pt;">INT</td><td style="border:1pt solid #000;padding:5pt;">PRIMARY KEY, AUTO_INCREMENT</td><td style="border:1pt solid #000;padding:5pt;">Unique position identifier</td></tr>
+<tr><td style="border:1pt solid #000;padding:5pt;">title</td><td style="border:1pt solid #000;padding:5pt;">VARCHAR(100)</td><td style="border:1pt solid #000;padding:5pt;">NOT NULL</td><td style="border:1pt solid #000;padding:5pt;">Position title</td></tr>
+<tr><td style="border:1pt solid #000;padding:5pt;">category</td><td style="border:1pt solid #000;padding:5pt;">ENUM</td><td style="border:1pt solid #000;padding:5pt;">DEFAULT 'technical'</td><td style="border:1pt solid #000;padding:5pt;">Position category (leadership, support, technical)</td></tr>
+<p style="margin:8pt 0;line-height:1.4;"></table></p>
+<strong>Seeded Positions:</strong>
+<ul style="margin:5pt 0;"><li style="margin:5pt 0 5pt 20pt;">Leadership: Director, Deputy Director</li>
+<li style="margin:5pt 0 5pt 20pt;">Support: PA, Administrative Officer, Records Officer, Driver, Cleaner, Security Guard, Receptionist, Secretary</li>
+<li style="margin:5pt 0 5pt 20pt;">Technical: ICT Officer, Accountant, Procurement Officer, Human Resources Officer, Nursing Officer, Medical Officer, Pharmacist, Laboratory Technician, Finance Officer, Monitoring and Evaluation Officer, Public Health Officer, Health Promotion Officer, Environmental Health Officer, Epidemiologist, Statistician</li>
+<p style="margin:8pt 0;line-height:1.4;"></ul></p>
+<h4 style="color:#003311;font-size:12pt;font-weight:bold;margin-top:8pt;margin-bottom:5pt;">6. announcements</h4>
+<p style="margin:8pt 0;line-height:1.4;">System-wide and department-specific announcements.</p>
+
+<table style="border-collapse:collapse;width:100%;margin:10pt 0;"><tr><td style="border:1pt solid #000;padding:5pt;">Column</td><td style="border:1pt solid #000;padding:5pt;">Type</td><td style="border:1pt solid #000;padding:5pt;">Constraints</td><td style="border:1pt solid #000;padding:5pt;">Description</td></tr>
+<p style="margin:8pt 0;line-height:1.4;"></table></p>
+<table style="border-collapse:collapse;width:100%;margin:10pt 0;"><tr><td style="border:1pt solid #000;padding:5pt;">id</td><td style="border:1pt solid #000;padding:5pt;">INT</td><td style="border:1pt solid #000;padding:5pt;">PRIMARY KEY, AUTO_INCREMENT</td><td style="border:1pt solid #000;padding:5pt;">Unique announcement identifier</td></tr>
+<tr><td style="border:1pt solid #000;padding:5pt;">title</td><td style="border:1pt solid #000;padding:5pt;">VARCHAR(200)</td><td style="border:1pt solid #000;padding:5pt;">NOT NULL</td><td style="border:1pt solid #000;padding:5pt;">Announcement title</td></tr>
+<tr><td style="border:1pt solid #000;padding:5pt;">message</td><td style="border:1pt solid #000;padding:5pt;">TEXT</td><td style="border:1pt solid #000;padding:5pt;">NOT NULL</td><td style="border:1pt solid #000;padding:5pt;">Announcement content</td></tr>
+<tr><td style="border:1pt solid #000;padding:5pt;">department</td><td style="border:1pt solid #000;padding:5pt;">VARCHAR(100)</td><td style="border:1pt solid #000;padding:5pt;">DEFAULT 'all'</td><td style="border:1pt solid #000;padding:5pt;">Target department (or 'all')</td></tr>
+<tr><td style="border:1pt solid #000;padding:5pt;">priority</td><td style="border:1pt solid #000;padding:5pt;">ENUM</td><td style="border:1pt solid #000;padding:5pt;">DEFAULT 'medium'</td><td style="border:1pt solid #000;padding:5pt;">Priority level (low, medium, high)</td></tr>
+<tr><td style="border:1pt solid #000;padding:5pt;">created_at</td><td style="border:1pt solid #000;padding:5pt;">TIMESTAMP</td><td style="border:1pt solid #000;padding:5pt;">DEFAULT CURRENT_TIMESTAMP</td><td style="border:1pt solid #000;padding:5pt;">Creation timestamp</td></tr>
+<p style="margin:8pt 0;line-height:1.4;"></table></p>
+<h4 style="color:#003311;font-size:12pt;font-weight:bold;margin-top:8pt;margin-bottom:5pt;">7. notifications</h4>
+<p style="margin:8pt 0;line-height:1.4;">User-specific notifications.</p>
+
+<table style="border-collapse:collapse;width:100%;margin:10pt 0;"><tr><td style="border:1pt solid #000;padding:5pt;">Column</td><td style="border:1pt solid #000;padding:5pt;">Type</td><td style="border:1pt solid #000;padding:5pt;">Constraints</td><td style="border:1pt solid #000;padding:5pt;">Description</td></tr>
+<p style="margin:8pt 0;line-height:1.4;"></table></p>
+<table style="border-collapse:collapse;width:100%;margin:10pt 0;"><tr><td style="border:1pt solid #000;padding:5pt;">id</td><td style="border:1pt solid #000;padding:5pt;">INT</td><td style="border:1pt solid #000;padding:5pt;">PRIMARY KEY, AUTO_INCREMENT</td><td style="border:1pt solid #000;padding:5pt;">Unique notification identifier</td></tr>
+<tr><td style="border:1pt solid #000;padding:5pt;">user_id</td><td style="border:1pt solid #000;padding:5pt;">INT</td><td style="border:1pt solid #000;padding:5pt;">FOREIGN KEY, NOT NULL</td><td style="border:1pt solid #000;padding:5pt;">Reference to users</td></tr>
+<tr><td style="border:1pt solid #000;padding:5pt;">title</td><td style="border:1pt solid #000;padding:5pt;">VARCHAR(200)</td><td style="border:1pt solid #000;padding:5pt;">NOT NULL</td><td style="border:1pt solid #000;padding:5pt;">Notification title</td></tr>
+<tr><td style="border:1pt solid #000;padding:5pt;">message</td><td style="border:1pt solid #000;padding:5pt;">TEXT</td><td style="border:1pt solid #000;padding:5pt;">NOT NULL</td><td style="border:1pt solid #000;padding:5pt;">Notification content</td></tr>
+<tr><td style="border:1pt solid #000;padding:5pt;">type</td><td style="border:1pt solid #000;padding:5pt;">VARCHAR(50)</td><td style="border:1pt solid #000;padding:5pt;">DEFAULT 'info'</td><td style="border:1pt solid #000;padding:5pt;">Notification type</td></tr>
+<tr><td style="border:1pt solid #000;padding:5pt;">is_read</td><td style="border:1pt solid #000;padding:5pt;">BOOLEAN</td><td style="border:1pt solid #000;padding:5pt;">DEFAULT FALSE</td><td style="border:1pt solid #000;padding:5pt;">Read status</td></tr>
+<tr><td style="border:1pt solid #000;padding:5pt;">created_at</td><td style="border:1pt solid #000;padding:5pt;">TIMESTAMP</td><td style="border:1pt solid #000;padding:5pt;">DEFAULT CURRENT_TIMESTAMP</td><td style="border:1pt solid #000;padding:5pt;">Creation timestamp</td></tr>
+<p style="margin:8pt 0;line-height:1.4;"></table></p>
+<strong>Foreign Key:</strong> user_id → users(user_id) ON DELETE CASCADE
+
+<h4 style="color:#003311;font-size:12pt;font-weight:bold;margin-top:8pt;margin-bottom:5pt;">8. audit_logs</h4>
+<p style="margin:8pt 0;line-height:1.4;">System activity logging.</p>
+
+<table style="border-collapse:collapse;width:100%;margin:10pt 0;"><tr><td style="border:1pt solid #000;padding:5pt;">Column</td><td style="border:1pt solid #000;padding:5pt;">Type</td><td style="border:1pt solid #000;padding:5pt;">Constraints</td><td style="border:1pt solid #000;padding:5pt;">Description</td></tr>
+<p style="margin:8pt 0;line-height:1.4;"></table></p>
+<table style="border-collapse:collapse;width:100%;margin:10pt 0;"><tr><td style="border:1pt solid #000;padding:5pt;">id</td><td style="border:1pt solid #000;padding:5pt;">INT</td><td style="border:1pt solid #000;padding:5pt;">PRIMARY KEY, AUTO_INCREMENT</td><td style="border:1pt solid #000;padding:5pt;">Unique log identifier</td></tr>
+<tr><td style="border:1pt solid #000;padding:5pt;">user_id</td><td style="border:1pt solid #000;padding:5pt;">INT</td><td style="border:1pt solid #000;padding:5pt;">FOREIGN KEY, NOT NULL</td><td style="border:1pt solid #000;padding:5pt;">Reference to users</td></tr>
+<tr><td style="border:1pt solid #000;padding:5pt;">action</td><td style="border:1pt solid #000;padding:5pt;">VARCHAR(100)</td><td style="border:1pt solid #000;padding:5pt;">NOT NULL</td><td style="border:1pt solid #000;padding:5pt;">Action performed</td></tr>
+<p style="margin:8pt 0;line-height:1.4;"></table></p>
+<table style="border-collapse:collapse;width:100%;margin:10pt 0;"><tr><td style="border:1pt solid #000;padding:5pt;">timestamp</td><td style="border:1pt solid #000;padding:5pt;">TIMESTAMP</td><td style="border:1pt solid #000;padding:5pt;">DEFAULT CURRENT_TIMESTAMP</td><td style="border:1pt solid #000;padding:5pt;">Event timestamp</td></tr>
+<p style="margin:8pt 0;line-height:1.4;"></table></p>
+<strong>Foreign Key:</strong> user_id → users(user_id) ON DELETE CASCADE
+
+<h4 style="color:#003311;font-size:12pt;font-weight:bold;margin-top:8pt;margin-bottom:5pt;">9. manual_clock_requests</h4>
+<p style="margin:8pt 0;line-height:1.4;">Requests for manual attendance correction.</p>
+
+<table style="border-collapse:collapse;width:100%;margin:10pt 0;"><tr><td style="border:1pt solid #000;padding:5pt;">Column</td><td style="border:1pt solid #000;padding:5pt;">Type</td><td style="border:1pt solid #000;padding:5pt;">Constraints</td><td style="border:1pt solid #000;padding:5pt;">Description</td></tr>
+<p style="margin:8pt 0;line-height:1.4;"></table></p>
+<table style="border-collapse:collapse;width:100%;margin:10pt 0;"><tr><td style="border:1pt solid #000;padding:5pt;">id</td><td style="border:1pt solid #000;padding:5pt;">VARCHAR(36)</td><td style="border:1pt solid #000;padding:5pt;">PRIMARY KEY</td><td style="border:1pt solid #000;padding:5pt;">Unique request identifier (UUID)</td></tr>
+<tr><td style="border:1pt solid #000;padding:5pt;">user_id</td><td style="border:1pt solid #000;padding:5pt;">INT</td><td style="border:1pt solid #000;padding:5pt;">FOREIGN KEY, NOT NULL</td><td style="border:1pt solid #000;padding:5pt;">Reference to users</td></tr>
+<tr><td style="border:1pt solid #000;padding:5pt;">requested_time</td><td style="border:1pt solid #000;padding:5pt;">VARCHAR(50)</td><td style="border:1pt solid #000;padding:5pt;">NOT NULL</td><td style="border:1pt solid #000;padding:5pt;">Requested time</td></tr>
+<p style="margin:8pt 0;line-height:1.4;"></table></p>
+
+<table style="border-collapse:collapse;width:100%;margin:10pt 0;"><tr><td style="border:1pt solid #000;padding:5pt;">status</td><td style="border:1pt solid #000;padding:5pt;">ENUM</td><td style="border:1pt solid #000;padding:5pt;">DEFAULT 'pending'</td><td style="border:1pt solid #000;padding:5pt;">Request status (pending, approved, rejected)</td></tr>
+<tr><td style="border:1pt solid #000;padding:5pt;">created_at</td><td style="border:1pt solid #000;padding:5pt;">TIMESTAMP</td><td style="border:1pt solid #000;padding:5pt;">DEFAULT CURRENT_TIMESTAMP</td><td style="border:1pt solid #000;padding:5pt;">Creation timestamp</td></tr>
+<p style="margin:8pt 0;line-height:1.4;"></table></p>
+<strong>Foreign Key:</strong> user_id → users(user_id) ON DELETE CASCADE
+
+<h4 style="color:#003311;font-size:12pt;font-weight:bold;margin-top:8pt;margin-bottom:5pt;">10. leave_requests</h4>
+<p style="margin:8pt 0;line-height:1.4;">Employee leave applications.</p>
+
+<table style="border-collapse:collapse;width:100%;margin:10pt 0;"><tr><td style="border:1pt solid #000;padding:5pt;">Column</td><td style="border:1pt solid #000;padding:5pt;">Type</td><td style="border:1pt solid #000;padding:5pt;">Constraints</td><td style="border:1pt solid #000;padding:5pt;">Description</td></tr>
+<p style="margin:8pt 0;line-height:1.4;"></table></p>
+<table style="border-collapse:collapse;width:100%;margin:10pt 0;"><tr><td style="border:1pt solid #000;padding:5pt;">id</td><td style="border:1pt solid #000;padding:5pt;">VARCHAR(36)</td><td style="border:1pt solid #000;padding:5pt;">PRIMARY KEY</td><td style="border:1pt solid #000;padding:5pt;">Unique request identifier (UUID)</td></tr>
+<tr><td style="border:1pt solid #000;padding:5pt;">user_id</td><td style="border:1pt solid #000;padding:5pt;">INT</td><td style="border:1pt solid #000;padding:5pt;">FOREIGN KEY, NOT NULL</td><td style="border:1pt solid #000;padding:5pt;">Reference to users</td></tr>
+<tr><td style="border:1pt solid #000;padding:5pt;">type</td><td style="border:1pt solid #000;padding:5pt;">ENUM</td><td style="border:1pt solid #000;padding:5pt;">NOT NULL</td><td style="border:1pt solid #000;padding:5pt;">Leave type (annual, sick, personal, other)</td></tr>
+<tr><td style="border:1pt solid #000;padding:5pt;">start_date</td><td style="border:1pt solid #000;padding:5pt;">DATE</td><td style="border:1pt solid #000;padding:5pt;">NOT NULL</td><td style="border:1pt solid #000;padding:5pt;">Leave start date</td></tr>
+<tr><td style="border:1pt solid #000;padding:5pt;">end_date</td><td style="border:1pt solid #000;padding:5pt;">DATE</td><td style="border:1pt solid #000;padding:5pt;">NOT NULL</td><td style="border:1pt solid #000;padding:5pt;">Leave end date</td></tr>
+<p style="margin:8pt 0;line-height:1.4;"></table></p>
+<table style="border-collapse:collapse;width:100%;margin:10pt 0;"><tr><td style="border:1pt solid #000;padding:5pt;">status</td><td style="border:1pt solid #000;padding:5pt;">ENUM</td><td style="border:1pt solid #000;padding:5pt;">DEFAULT 'pending'</td><td style="border:1pt solid #000;padding:5pt;">Request status (pending, approved, rejected)</td></tr>
+<tr><td style="border:1pt solid #000;padding:5pt;">created_at</td><td style="border:1pt solid #000;padding:5pt;">TIMESTAMP</td><td style="border:1pt solid #000;padding:5pt;">DEFAULT CURRENT_TIMESTAMP</td><td style="border:1pt solid #000;padding:5pt;">Creation timestamp</td></tr>
+<p style="margin:8pt 0;line-height:1.4;"></table></p>
+<strong>Foreign Key:</strong> user_id → users(user_id) ON DELETE CASCADE
+
+<h4 style="color:#003311;font-size:12pt;font-weight:bold;margin-top:8pt;margin-bottom:5pt;">11. shift_swap_requests</h4>
+<p style="margin:8pt 0;line-height:1.4;">Shift change requests.</p>
+
+<table style="border-collapse:collapse;width:100%;margin:10pt 0;"><tr><td style="border:1pt solid #000;padding:5pt;">Column</td><td style="border:1pt solid #000;padding:5pt;">Type</td><td style="border:1pt solid #000;padding:5pt;">Constraints</td><td style="border:1pt solid #000;padding:5pt;">Description</td></tr>
+<p style="margin:8pt 0;line-height:1.4;"></table></p>
+<table style="border-collapse:collapse;width:100%;margin:10pt 0;"><tr><td style="border:1pt solid #000;padding:5pt;">id</td><td style="border:1pt solid #000;padding:5pt;">VARCHAR(36)</td><td style="border:1pt solid #000;padding:5pt;">PRIMARY KEY</td><td style="border:1pt solid #000;padding:5pt;">Unique request identifier (UUID)</td></tr>
+<tr><td style="border:1pt solid #000;padding:5pt;">user_id</td><td style="border:1pt solid #000;padding:5pt;">INT</td><td style="border:1pt solid #000;padding:5pt;">FOREIGN KEY, NOT NULL</td><td style="border:1pt solid #000;padding:5pt;">Reference to users</td></tr>
+<tr><td style="border:1pt solid #000;padding:5pt;">current_shift_date</td><td style="border:1pt solid #000;padding:5pt;">DATE</td><td style="border:1pt solid #000;padding:5pt;">NOT NULL</td><td style="border:1pt solid #000;padding:5pt;">Current shift date</td></tr>
+<tr><td style="border:1pt solid #000;padding:5pt;">preferred_swap_date</td><td style="border:1pt solid #000;padding:5pt;">DATE</td><td style="border:1pt solid #000;padding:5pt;">NOT NULL</td><td style="border:1pt solid #000;padding:5pt;">Preferred swap date</td></tr>
+<p style="margin:8pt 0;line-height:1.4;"></table></p>
+<table style="border-collapse:collapse;width:100%;margin:10pt 0;"><tr><td style="border:1pt solid #000;padding:5pt;">status</td><td style="border:1pt solid #000;padding:5pt;">ENUM</td><td style="border:1pt solid #000;padding:5pt;">DEFAULT 'pending'</td><td style="border:1pt solid #000;padding:5pt;">Request status (pending, approved, rejected)</td></tr>
+<tr><td style="border:1pt solid #000;padding:5pt;">created_at</td><td style="border:1pt solid #000;padding:5pt;">TIMESTAMP</td><td style="border:1pt solid #000;padding:5pt;">DEFAULT CURRENT_TIMESTAMP</td><td style="border:1pt solid #000;padding:5pt;">Creation timestamp</td></tr>
+<p style="margin:8pt 0;line-height:1.4;"></table></p>
+<strong>Foreign Key:</strong> user_id → users(user_id) ON DELETE CASCADE
+
+<hr style="border:1pt solid #ccc;margin:15pt 0;">
+
+<h2 style="color:#006633;font-size:18pt;font-weight:bold;margin-top:15pt;margin-bottom:8pt;">API Documentation</h2>
+
+<h3 style="color:#004422;font-size:14pt;font-weight:bold;margin-top:10pt;margin-bottom:6pt;">Base URL</h3>
+<code style="background:#f5f5f5;padding:2pt 4pt;font-family:Courier New;font-size:9pt;">http://localhost:61460</code>
+
+<h3 style="color:#004422;font-size:14pt;font-weight:bold;margin-top:10pt;margin-bottom:6pt;">Authentication</h3>
+<p style="margin:8pt 0;line-height:1.4;">Session-based authentication using express-session. All API endpoints (except login) require authentication.</p>
+
+<h3 style="color:#004422;font-size:14pt;font-weight:bold;margin-top:10pt;margin-bottom:6pt;">Response Format</h3>
+<pre style="background:#f5f5f5;padding:10pt;border:1pt solid #ccc;font-family:Courier New;font-size:9pt;margin:10pt 0;"><code>{
+<p style="margin:8pt 0;line-height:1.4;">  "success": true/false,</p>
+<p style="margin:8pt 0;line-height:1.4;">  "message": "Description",</p>
+<p style="margin:8pt 0;line-height:1.4;">  "data": { ... }</p>
+<p style="margin:8pt 0;line-height:1.4;">}</p>
+<p style="margin:8pt 0;line-height:1.4;"></code></pre></p>
+
+<h3 style="color:#004422;font-size:14pt;font-weight:bold;margin-top:10pt;margin-bottom:6pt;">API Endpoints</h3>
+
+<h4 style="color:#003311;font-size:12pt;font-weight:bold;margin-top:8pt;margin-bottom:5pt;">Authentication</h4>
+
+<p style="margin:8pt 0;line-height:1.4;">##### POST /api/login</p>
+<p style="margin:8pt 0;line-height:1.4;">Authenticate user and create session.</p>
+
+<strong>Request Body:</strong>
+<pre style="background:#f5f5f5;padding:10pt;border:1pt solid #ccc;font-family:Courier New;font-size:9pt;margin:10pt 0;"><code>{
+<p style="margin:8pt 0;line-height:1.4;">  "identifier": "email or username",</p>
+<p style="margin:8pt 0;line-height:1.4;">  "password": "user password"</p>
+<p style="margin:8pt 0;line-height:1.4;">}</p>
+<p style="margin:8pt 0;line-height:1.4;"></code></pre></p>
+
+<strong>Response:</strong>
+<pre style="background:#f5f5f5;padding:10pt;border:1pt solid #ccc;font-family:Courier New;font-size:9pt;margin:10pt 0;"><code>{
+<p style="margin:8pt 0;line-height:1.4;">  "success": true,</p>
+<p style="margin:8pt 0;line-height:1.4;">  "user": {</p>
+<p style="margin:8pt 0;line-height:1.4;">    "id": 1,</p>
+<p style="margin:8pt 0;line-height:1.4;">    "name": "John Doe",</p>
+<p style="margin:8pt 0;line-height:1.4;">    "role": "admin",</p>
+<p style="margin:8pt 0;line-height:1.4;">    "department": "IT Department"</p>
+<p style="margin:8pt 0;line-height:1.4;">  }</p>
+<p style="margin:8pt 0;line-height:1.4;">}</p>
+<p style="margin:8pt 0;line-height:1.4;"></code></pre></p>
+
+<p style="margin:8pt 0;line-height:1.4;">##### POST /api/logout</p>
+<p style="margin:8pt 0;line-height:1.4;">Destroy user session.</p>
+
+<strong>Response:</strong>
+<pre style="background:#f5f5f5;padding:10pt;border:1pt solid #ccc;font-family:Courier New;font-size:9pt;margin:10pt 0;"><code>{
+<p style="margin:8pt 0;line-height:1.4;">  "success": true</p>
+<p style="margin:8pt 0;line-height:1.4;">}</p>
+<p style="margin:8pt 0;line-height:1.4;"></code></pre></p>
+
+<p style="margin:8pt 0;line-height:1.4;">##### POST /api/forgot-password/request-otp</p>
+<p style="margin:8pt 0;line-height:1.4;">Request OTP for password reset.</p>
+
+<strong>Request Body:</strong>
+<pre style="background:#f5f5f5;padding:10pt;border:1pt solid #ccc;font-family:Courier New;font-size:9pt;margin:10pt 0;"><code>{
+<p style="margin:8pt 0;line-height:1.4;">  "identifier": "email or phone or username"</p>
+<p style="margin:8pt 0;line-height:1.4;">}</p>
+<p style="margin:8pt 0;line-height:1.4;"></code></pre></p>
+
+<strong>Response:</strong>
+<pre style="background:#f5f5f5;padding:10pt;border:1pt solid #ccc;font-family:Courier New;font-size:9pt;margin:10pt 0;"><code>{
+<p style="margin:8pt 0;line-height:1.4;">  "success": true,</p>
+<p style="margin:8pt 0;line-height:1.4;">  "message": "OTP sent to email",</p>
+<p style="margin:8pt 0;line-height:1.4;">  "otp": "123456",</p>
+<p style="margin:8pt 0;line-height:1.4;">  "user": {</p>
+<p style="margin:8pt 0;line-height:1.4;">    "name": "John Doe",</p>
+<p style="margin:8pt 0;line-height:1.4;">    "email": "john@example.com",</p>
+<p style="margin:8pt 0;line-height:1.4;">    "phone": "+1234567890",</p>
+<p style="margin:8pt 0;line-height:1.4;">    "security_question": "What is your pet's name?"</p>
+<p style="margin:8pt 0;line-height:1.4;">  }</p>
+<p style="margin:8pt 0;line-height:1.4;">}</p>
+<p style="margin:8pt 0;line-height:1.4;"></code></pre></p>
+
+<p style="margin:8pt 0;line-height:1.4;">##### POST /api/forgot-password</p>
+<p style="margin:8pt 0;line-height:1.4;">Reset password with OTP verification.</p>
+
+<strong>Request Body:</strong>
+<pre style="background:#f5f5f5;padding:10pt;border:1pt solid #ccc;font-family:Courier New;font-size:9pt;margin:10pt 0;"><code>{
+<p style="margin:8pt 0;line-height:1.4;">  "identifier": "email or phone or username",</p>
+<p style="margin:8pt 0;line-height:1.4;">  "otp": "123456",</p>
+<p style="margin:8pt 0;line-height:1.4;">  "securityAnswer": "answer to security question",</p>
+<p style="margin:8pt 0;line-height:1.4;">  "newPassword": "new password"</p>
+<p style="margin:8pt 0;line-height:1.4;">}</p>
+<p style="margin:8pt 0;line-height:1.4;"></code></pre></p>
+
+<strong>Response:</strong>
+<pre style="background:#f5f5f5;padding:10pt;border:1pt solid #ccc;font-family:Courier New;font-size:9pt;margin:10pt 0;"><code>{
+<p style="margin:8pt 0;line-height:1.4;">  "success": true,</p>
+<p style="margin:8pt 0;line-height:1.4;">  "message": "Password reset successful"</p>
+<p style="margin:8pt 0;line-height:1.4;">}</p>
+<p style="margin:8pt 0;line-height:1.4;"></code></pre></p>
+
+<h4 style="color:#003311;font-size:12pt;font-weight:bold;margin-top:8pt;margin-bottom:5pt;">User Management</h4>
+
+<p style="margin:8pt 0;line-height:1.4;">##### GET /api/employees</p>
+<p style="margin:8pt 0;line-height:1.4;">Get all employees (Admin only).</p>
+
+<strong>Response:</strong>
+<pre style="background:#f5f5f5;padding:10pt;border:1pt solid #ccc;font-family:Courier New;font-size:9pt;margin:10pt 0;"><code>[
+<p style="margin:8pt 0;line-height:1.4;">  {</p>
+<p style="margin:8pt 0;line-height:1.4;">    "id": 1,</p>
+<p style="margin:8pt 0;line-height:1.4;">    "name": "John Doe",</p>
+<p style="margin:8pt 0;line-height:1.4;">    "email": "john@example.com",</p>
+<p style="margin:8pt 0;line-height:1.4;">    "department": "IT Department",</p>
+<p style="margin:8pt 0;line-height:1.4;">    "post": "ICT Officer",</p>
+<p style="margin:8pt 0;line-height:1.4;">    "status": "permanent"</p>
+<p style="margin:8pt 0;line-height:1.4;">  }</p>
+<p style="margin:8pt 0;line-height:1.4;">]</p>
+<p style="margin:8pt 0;line-height:1.4;"></code></pre></p>
+
+<p style="margin:8pt 0;line-height:1.4;">##### POST /api/employees</p>
+<p style="margin:8pt 0;line-height:1.4;">Add new employee (Admin only).</p>
+
+<strong>Request Body:</strong>
+<pre style="background:#f5f5f5;padding:10pt;border:1pt solid #ccc;font-family:Courier New;font-size:9pt;margin:10pt 0;"><code>{
+<p style="margin:8pt 0;line-height:1.4;">  "name": "John Doe",</p>
+<p style="margin:8pt 0;line-height:1.4;">  "email": "john@example.com",</p>
+<p style="margin:8pt 0;line-height:1.4;">  "password": "password123",</p>
+<p style="margin:8pt 0;line-height:1.4;">  "department": "IT Department",</p>
+<p style="margin:8pt 0;line-height:1.4;">  "post": "ICT Officer",</p>
+<p style="margin:8pt 0;line-height:1.4;">  "role": "employee",</p>
+<p style="margin:8pt 0;line-height:1.4;">  "staff_type": "permanent",</p>
+<p style="margin:8pt 0;line-height:1.4;">  "employee_id": "277739H78"</p>
+<p style="margin:8pt 0;line-height:1.4;">}</p>
+<p style="margin:8pt 0;line-height:1.4;"></code></pre></p>
+
+<strong>Response:</strong>
+<pre style="background:#f5f5f5;padding:10pt;border:1pt solid #ccc;font-family:Courier New;font-size:9pt;margin:10pt 0;"><code>{
+<p style="margin:8pt 0;line-height:1.4;">  "success": true,</p>
+<p style="margin:8pt 0;line-height:1.4;">  "message": "Employee added successfully"</p>
+<p style="margin:8pt 0;line-height:1.4;">}</p>
+<p style="margin:8pt 0;line-height:1.4;"></code></pre></p>
+
+<p style="margin:8pt 0;line-height:1.4;">##### PUT /api/employees/:id</p>
+<p style="margin:8pt 0;line-height:1.4;">Update employee information (Admin only).</p>
+
+<strong>Request Body:</strong>
+<pre style="background:#f5f5f5;padding:10pt;border:1pt solid #ccc;font-family:Courier New;font-size:9pt;margin:10pt 0;"><code>{
+<p style="margin:8pt 0;line-height:1.4;">  "name": "John Doe",</p>
+<p style="margin:8pt 0;line-height:1.4;">  "email": "john.doe@example.com",</p>
+<p style="margin:8pt 0;line-height:1.4;">  "department": "IT Department",</p>
+<p style="margin:8pt 0;line-height:1.4;">  "post": "Senior ICT Officer",</p>
+<p style="margin:8pt 0;line-height:1.4;">  "role": "employee",</p>
+<p style="margin:8pt 0;line-height:1.4;">  "staff_type": "permanent",</p>
+<p style="margin:8pt 0;line-height:1.4;">  "employee_id": "277739H78"</p>
+<p style="margin:8pt 0;line-height:1.4;">}</p>
+<p style="margin:8pt 0;line-height:1.4;"></code></pre></p>
+
+<strong>Response:</strong>
+<pre style="background:#f5f5f5;padding:10pt;border:1pt solid #ccc;font-family:Courier New;font-size:9pt;margin:10pt 0;"><code>{
+<p style="margin:8pt 0;line-height:1.4;">  "success": true,</p>
+<p style="margin:8pt 0;line-height:1.4;">  "message": "Employee updated successfully"</p>
+<p style="margin:8pt 0;line-height:1.4;">}</p>
+<p style="margin:8pt 0;line-height:1.4;"></code></pre></p>
+
+<p style="margin:8pt 0;line-height:1.4;">##### GET /api/user</p>
+<p style="margin:8pt 0;line-height:1.4;">Get current user information.</p>
+
+<strong>Response:</strong>
+<pre style="background:#f5f5f5;padding:10pt;border:1pt solid #ccc;font-family:Courier New;font-size:9pt;margin:10pt 0;"><code>{
+<p style="margin:8pt 0;line-height:1.4;">  "id": 1,</p>
+<p style="margin:8pt 0;line-height:1.4;">  "name": "John Doe",</p>
+<p style="margin:8pt 0;line-height:1.4;">  "role": "admin",</p>
+<p style="margin:8pt 0;line-height:1.4;">  "department": "IT Department",</p>
+<p style="margin:8pt 0;line-height:1.4;">  "employeeId": "N/A"</p>
+<p style="margin:8pt 0;line-height:1.4;">}</p>
+<p style="margin:8pt 0;line-height:1.4;"></code></pre></p>
+
+<p style="margin:8pt 0;line-height:1.4;">##### GET /api/user/profile</p>
+<p style="margin:8pt 0;line-height:1.4;">Get detailed user profile.</p>
+
+<strong>Response:</strong>
+<pre style="background:#f5f5f5;padding:10pt;border:1pt solid #ccc;font-family:Courier New;font-size:9pt;margin:10pt 0;"><code>{
+<p style="margin:8pt 0;line-height:1.4;">  "id": 1,</p>
+<p style="margin:8pt 0;line-height:1.4;">  "name": "John Doe",</p>
+<p style="margin:8pt 0;line-height:1.4;">  "email": "john@example.com",</p>
+<p style="margin:8pt 0;line-height:1.4;">  "department": "IT Department",</p>
+<p style="margin:8pt 0;line-height:1.4;">  "post": "ICT Officer",</p>
+<p style="margin:8pt 0;line-height:1.4;">  "role": "employee",</p>
+<p style="margin:8pt 0;line-height:1.4;">  "staff_type": "permanent",</p>
+<p style="margin:8pt 0;line-height:1.4;">  "employee_id": "277739H78",</p>
+<p style="margin:8pt 0;line-height:1.4;">  "phone": "+1234567890",</p>
+<p style="margin:8pt 0;line-height:1.4;">  "address": "123 Main St",</p>
+<p style="margin:8pt 0;line-height:1.4;">  "employment_date": "2020-01-15",</p>
+<p style="margin:8pt 0;line-height:1.4;">  "security_question": "What is your pet's name?",</p>
+<p style="margin:8pt 0;line-height:1.4;">  "security_answer": "fluffy"</p>
+<p style="margin:8pt 0;line-height:1.4;">}</p>
+<p style="margin:8pt 0;line-height:1.4;"></code></pre></p>
+
+<p style="margin:8pt 0;line-height:1.4;">##### PUT /api/user/profile</p>
+<p style="margin:8pt 0;line-height:1.4;">Update user profile.</p>
+
+<strong>Request Body:</strong>
+<pre style="background:#f5f5f5;padding:10pt;border:1pt solid #ccc;font-family:Courier New;font-size:9pt;margin:10pt 0;"><code>{
+<p style="margin:8pt 0;line-height:1.4;">  "email": "john.doe@example.com",</p>
+<p style="margin:8pt 0;line-height:1.4;">  "phone": "+1234567890",</p>
+<p style="margin:8pt 0;line-height:1.4;">  "address": "456 Oak Ave",</p>
+<p style="margin:8pt 0;line-height:1.4;">  "department": "IT Department",</p>
+<p style="margin:8pt 0;line-height:1.4;">  "job_description": "Senior ICT Officer",</p>
+<p style="margin:8pt 0;line-height:1.4;">  "name": "John Doe",</p>
+<p style="margin:8pt 0;line-height:1.4;">  "employee_id": "277739H78",</p>
+<p style="margin:8pt 0;line-height:1.4;">  "security_question": "What is your mother's maiden name?",</p>
+<p style="margin:8pt 0;line-height:1.4;">  "security_answer": "smith"</p>
+<p style="margin:8pt 0;line-height:1.4;">}</p>
+<p style="margin:8pt 0;line-height:1.4;"></code></pre></p>
+
+<strong>Response:</strong>
+<pre style="background:#f5f5f5;padding:10pt;border:1pt solid #ccc;font-family:Courier New;font-size:9pt;margin:10pt 0;"><code>{
+<p style="margin:8pt 0;line-height:1.4;">  "success": true,</p>
+<p style="margin:8pt 0;line-height:1.4;">  "message": "Profile updated successfully"</p>
+<p style="margin:8pt 0;line-height:1.4;">}</p>
+<p style="margin:8pt 0;line-height:1.4;"></code></pre></p>
+
+<p style="margin:8pt 0;line-height:1.4;">##### POST /api/user/photo</p>
+<p style="margin:8pt 0;line-height:1.4;">Upload profile photo.</p>
+
+<strong>Request:</strong> multipart/form-data with file field 'photo'
+
+<strong>Constraints:</strong>
+<ul style="margin:5pt 0;"><li style="margin:5pt 0 5pt 20pt;">File size: Maximum 5MB</li>
+<li style="margin:5pt 0 5pt 20pt;">Allowed types: JPEG, PNG, GIF, WebP</li>
+<p style="margin:8pt 0;line-height:1.4;"></ul></p>
+<strong>Response:</strong>
+<pre style="background:#f5f5f5;padding:10pt;border:1pt solid #ccc;font-family:Courier New;font-size:9pt;margin:10pt 0;"><code>{
+<p style="margin:8pt 0;line-height:1.4;">  "success": true,</p>
+<p style="margin:8pt 0;line-height:1.4;">  "photoUrl": "/uploads/profile-1234567890-123456789.jpg"</p>
+<p style="margin:8pt 0;line-height:1.4;">}</p>
+<p style="margin:8pt 0;line-height:1.4;"></code></pre></p>
+
+<p style="margin:8pt 0;line-height:1.4;">##### GET /api/user/photo</p>
+<p style="margin:8pt 0;line-height:1.4;">Get user profile photo.</p>
+
+<strong>Response:</strong> Image file or SVG placeholder
+
+<h4 style="color:#003311;font-size:12pt;font-weight:bold;margin-top:8pt;margin-bottom:5pt;">Attendance Management</h4>
+
+<p style="margin:8pt 0;line-height:1.4;">##### GET /api/attendance</p>
+<p style="margin:8pt 0;line-height:1.4;">Get all attendance records.</p>
+
+<strong>Response:</strong>
+<pre style="background:#f5f5f5;padding:10pt;border:1pt solid #ccc;font-family:Courier New;font-size:9pt;margin:10pt 0;"><code>[
+<p style="margin:8pt 0;line-height:1.4;">  {</p>
+<p style="margin:8pt 0;line-height:1.4;">    "id": 1,</p>
+<p style="margin:8pt 0;line-height:1.4;">    "user_id": 1,</p>
+<p style="margin:8pt 0;line-height:1.4;">    "userName": "John Doe",</p>
+<p style="margin:8pt 0;line-height:1.4;">    "type": "check-in",</p>
+<p style="margin:8pt 0;line-height:1.4;">    "timestamp": "2024-01-15T08:25:00.000Z",</p>
+<p style="margin:8pt 0;line-height:1.4;">    "department": "IT Department",</p>
+<p style="margin:8pt 0;line-height:1.4;">    "latitude": -17.8292,</p>
+<p style="margin:8pt 0;line-height:1.4;">    "longitude": 31.0522,</p>
+<p style="margin:8pt 0;line-height:1.4;">    "location_address": "Harare, Zimbabwe"</p>
+<p style="margin:8pt 0;line-height:1.4;">  }</p>
+<p style="margin:8pt 0;line-height:1.4;">]</p>
+<p style="margin:8pt 0;line-height:1.4;"></code></pre></p>
+
+<p style="margin:8pt 0;line-height:1.4;">##### GET /api/attendance/:userId</p>
+<p style="margin:8pt 0;line-height:1.4;">Get attendance records for specific user (Admin only).</p>
+
+<strong>Response:</strong>
+<pre style="background:#f5f5f5;padding:10pt;border:1pt solid #ccc;font-family:Courier New;font-size:9pt;margin:10pt 0;"><code>[
+<p style="margin:8pt 0;line-height:1.4;">  {</p>
+<p style="margin:8pt 0;line-height:1.4;">    "id": 1,</p>
+<p style="margin:8pt 0;line-height:1.4;">    "type": "check-in",</p>
+<p style="margin:8pt 0;line-height:1.4;">    "timestamp": "2024-01-15T08:25:00.000Z",</p>
+<p style="margin:8pt 0;line-height:1.4;">    "location_address": "Harare, Zimbabwe"</p>
+<p style="margin:8pt 0;line-height:1.4;">  }</p>
+<p style="margin:8pt 0;line-height:1.4;">]</p>
+<p style="margin:8pt 0;line-height:1.4;"></code></pre></p>
+
+<p style="margin:8pt 0;line-height:1.4;">##### POST /api/attendance/checkin</p>
+<p style="margin:8pt 0;line-height:1.4;">Record check-in with location.</p>
+
+<strong>Request Body:</strong>
+<pre style="background:#f5f5f5;padding:10pt;border:1pt solid #ccc;font-family:Courier New;font-size:9pt;margin:10pt 0;"><code>{
+<p style="margin:8pt 0;line-height:1.4;">  "latitude": -17.8292,</p>
+<p style="margin:8pt 0;line-height:1.4;">  "longitude": 31.0522,</p>
+<p style="margin:8pt 0;line-height:1.4;">  "location_address": "Harare, Zimbabwe"</p>
+<p style="margin:8pt 0;line-height:1.4;">}</p>
+<p style="margin:8pt 0;line-height:1.4;"></code></pre></p>
+
+<strong>Response:</strong>
+<pre style="background:#f5f5f5;padding:10pt;border:1pt solid #ccc;font-family:Courier New;font-size:9pt;margin:10pt 0;"><code>{
+<p style="margin:8pt 0;line-height:1.4;">  "success": true</p>
+<p style="margin:8pt 0;line-height:1.4;">}</p>
+<p style="margin:8pt 0;line-height:1.4;"></code></pre></p>
+
+<p style="margin:8pt 0;line-height:1.4;">##### POST /api/attendance/checkout</p>
+<p style="margin:8pt 0;line-height:1.4;">Record check-out.</p>
+
+<strong>Response:</strong>
+<pre style="background:#f5f5f5;padding:10pt;border:1pt solid #ccc;font-family:Courier New;font-size:9pt;margin:10pt 0;"><code>{
+<p style="margin:8pt 0;line-height:1.4;">  "success": true</p>
+<p style="margin:8pt 0;line-height:1.4;">}</p>
+<p style="margin:8pt 0;line-height:1.4;"></code></pre></p>
+
+<p style="margin:8pt 0;line-height:1.4;">##### POST /api/attendance/facial-recognition</p>
+<p style="margin:8pt 0;line-height:1.4;">Record attendance using facial recognition.</p>
+
+<strong>Request Body:</strong>
+<pre style="background:#f5f5f5;padding:10pt;border:1pt solid #ccc;font-family:Courier New;font-size:9pt;margin:10pt 0;"><code>{
+<p style="margin:8pt 0;line-height:1.4;">  "image": "base64_encoded_image"</p>
+<p style="margin:8pt 0;line-height:1.4;">}</p>
+<p style="margin:8pt 0;line-height:1.4;"></code></pre></p>
+
+<strong>Response:</strong>
+<pre style="background:#f5f5f5;padding:10pt;border:1pt solid #ccc;font-family:Courier New;font-size:9pt;margin:10pt 0;"><code>{
+<p style="margin:8pt 0;line-height:1.4;">  "success": true,</p>
+<p style="margin:8pt 0;line-height:1.4;">  "message": "Facial recognition successful"</p>
+<p style="margin:8pt 0;line-height:1.4;">}</p>
+<p style="margin:8pt 0;line-height:1.4;"></code></pre></p>
+
+<p style="margin:8pt 0;line-height:1.4;">##### POST /api/attendance/manual-clock</p>
+<p style="margin:8pt 0;line-height:1.4;">Submit manual clock request.</p>
+
+<strong>Request Body:</strong>
+<pre style="background:#f5f5f5;padding:10pt;border:1pt solid #ccc;font-family:Courier New;font-size:9pt;margin:10pt 0;"><code>{
+<p style="margin:8pt 0;line-height:1.4;">  "time": "2024-01-15T08:30:00.000Z",</p>
+<p style="margin:8pt 0;line-height:1.4;">  "reason": "Forgot to clock in",</p>
+<p style="margin:8pt 0;line-height:1.4;">  "comments": "Was in a meeting"</p>
+<p style="margin:8pt 0;line-height:1.4;">}</p>
+<p style="margin:8pt 0;line-height:1.4;"></code></pre></p>
+
+<strong>Response:</strong>
+<pre style="background:#f5f5f5;padding:10pt;border:1pt solid #ccc;font-family:Courier New;font-size:9pt;margin:10pt 0;"><code>{
+<p style="margin:8pt 0;line-height:1.4;">  "success": true,</p>
+<p style="margin:8pt 0;line-height:1.4;">  "message": "Manual clock in request submitted for approval"</p>
+<p style="margin:8pt 0;line-height:1.4;">}</p>
+<p style="margin:8pt 0;line-height:1.4;"></code></pre></p>
+
+<p style="margin:8pt 0;line-height:1.4;">##### PUT /api/attendance/:id</p>
+<p style="margin:8pt 0;line-height:1.4;">Update attendance record (Admin only).</p>
+
+<strong>Request Body:</strong>
+<pre style="background:#f5f5f5;padding:10pt;border:1pt solid #ccc;font-family:Courier New;font-size:9pt;margin:10pt 0;"><code>{
+<p style="margin:8pt 0;line-height:1.4;">  "type": "check-in",</p>
+<p style="margin:8pt 0;line-height:1.4;">  "location_address": "Updated location"</p>
+<p style="margin:8pt 0;line-height:1.4;">}</p>
+<p style="margin:8pt 0;line-height:1.4;"></code></pre></p>
+
+<strong>Response:</strong>
+<pre style="background:#f5f5f5;padding:10pt;border:1pt solid #ccc;font-family:Courier New;font-size:9pt;margin:10pt 0;"><code>{
+<p style="margin:8pt 0;line-height:1.4;">  "success": true,</p>
+<p style="margin:8pt 0;line-height:1.4;">  "message": "Record updated successfully"</p>
+<p style="margin:8pt 0;line-height:1.4;">}</p>
+<p style="margin:8pt 0;line-height:1.4;"></code></pre></p>
+
+<p style="margin:8pt 0;line-height:1.4;">##### DELETE /api/attendance/:id</p>
+<p style="margin:8pt 0;line-height:1.4;">Delete attendance record (Admin only).</p>
+
+<strong>Response:</strong>
+<pre style="background:#f5f5f5;padding:10pt;border:1pt solid #ccc;font-family:Courier New;font-size:9pt;margin:10pt 0;"><code>{
+<p style="margin:8pt 0;line-height:1.4;">  "success": true,</p>
+<p style="margin:8pt 0;line-height:1.4;">  "message": "Record deleted successfully"</p>
+<p style="margin:8pt 0;line-height:1.4;">}</p>
+<p style="margin:8pt 0;line-height:1.4;"></code></pre></p>
+
+<p style="margin:8pt 0;line-height:1.4;">##### GET /api/user/attendance</p>
+<p style="margin:8pt 0;line-height:1.4;">Get current user's attendance history.</p>
+
+<strong>Response:</strong>
+<pre style="background:#f5f5f5;padding:10pt;border:1pt solid #ccc;font-family:Courier New;font-size:9pt;margin:10pt 0;"><code>[
+<p style="margin:8pt 0;line-height:1.4;">  {</p>
+<p style="margin:8pt 0;line-height:1.4;">    "timestamp": "2024-01-15",</p>
+<p style="margin:8pt 0;line-height:1.4;">    "checkInTime": "08:25",</p>
+<p style="margin:8pt 0;line-height:1.4;">    "checkOutTime": "17:00",</p>
+<p style="margin:8pt 0;line-height:1.4;">    "hoursWorked": 8.6,</p>
+<p style="margin:8pt 0;line-height:1.4;">    "location_address": "Harare, Zimbabwe",</p>
+<p style="margin:8pt 0;line-height:1.4;">    "status": "present"</p>
+<p style="margin:8pt 0;line-height:1.4;">  }</p>
+<p style="margin:8pt 0;line-height:1.4;">]</p>
+<p style="margin:8pt 0;line-height:1.4;"></code></pre></p>
+
+<p style="margin:8pt 0;line-height:1.4;">##### GET /api/user/attendance/download</p>
+<p style="margin:8pt 0;line-height:1.4;">Download attendance history as CSV.</p>
+
+<strong>Query Parameters:</strong>
+<ul style="margin:5pt 0;"><li style="margin:5pt 0 5pt 20pt;">month (optional): Month number (1-12)</li>
+<li style="margin:5pt 0 5pt 20pt;">year (optional): Year (e.g., 2024)</li>
+<p style="margin:8pt 0;line-height:1.4;"></ul></p>
+<strong>Response:</strong> CSV file download
+
+<p style="margin:8pt 0;line-height:1.4;">##### GET /api/user/today-status</p>
+<p style="margin:8pt 0;line-height:1.4;">Get today's attendance status.</p>
+
+<strong>Response:</strong>
+<pre style="background:#f5f5f5;padding:10pt;border:1pt solid #ccc;font-family:Courier New;font-size:9pt;margin:10pt 0;"><code>{
+<p style="margin:8pt 0;line-height:1.4;">  "checkInTime": "08:25",</p>
+<p style="margin:8pt 0;line-height:1.4;">  "checkOutTime": null,</p>
+<p style="margin:8pt 0;line-height:1.4;">  "status": "Clocked In"</p>
+<p style="margin:8pt 0;line-height:1.4;">}</p>
+<p style="margin:8pt 0;line-height:1.4;"></code></pre></p>
+
+<h4 style="color:#003311;font-size:12pt;font-weight:bold;margin-top:8pt;margin-bottom:5pt;">Statistics and Reports</h4>
+
+<p style="margin:8pt 0;line-height:1.4;">##### GET /api/stats</p>
+<p style="margin:8pt 0;line-height:1.4;">Get system statistics (Admin only).</p>
+
+<strong>Response:</strong>
+<pre style="background:#f5f5f5;padding:10pt;border:1pt solid #ccc;font-family:Courier New;font-size:9pt;margin:10pt 0;"><code>{
+<p style="margin:8pt 0;line-height:1.4;">  "totalEmployees": 150,</p>
+<p style="margin:8pt 0;line-height:1.4;">  "presentToday": 120,</p>
+<p style="margin:8pt 0;line-height:1.4;">  "lateArrivals": 15,</p>
+<p style="margin:8pt 0;line-height:1.4;">  "avgShift": "8.2h"</p>
+<p style="margin:8pt 0;line-height:1.4;">}</p>
+<p style="margin:8pt 0;line-height:1.4;"></code></pre></p>
+
+<p style="margin:8pt 0;line-height:1.4;">##### GET /api/user/stats</p>
+<p style="margin:8pt 0;line-height:1.4;">Get user attendance statistics.</p>
+
+<strong>Response:</strong>
+<pre style="background:#f5f5f5;padding:10pt;border:1pt solid #ccc;font-family:Courier New;font-size:9pt;margin:10pt 0;"><code>{
+<p style="margin:8pt 0;line-height:1.4;">  "daysPresent": 18,</p>
+<p style="margin:8pt 0;line-height:1.4;">  "hoursWorked": 145.5,</p>
+<p style="margin:8pt 0;line-height:1.4;">  "lateArrivals": 3,</p>
+<p style="margin:8pt 0;line-height:1.4;">  "attendanceRate": 82</p>
+<p style="margin:8pt 0;line-height:1.4;">}</p>
+<p style="margin:8pt 0;line-height:1.4;"></code></pre></p>
+
+<p style="margin:8pt 0;line-height:1.4;">##### GET /api/realtime-metrics</p>
+<p style="margin:8pt 0;line-height:1.4;">Get real-time attendance metrics.</p>
+
+<strong>Response:</strong>
+<pre style="background:#f5f5f5;padding:10pt;border:1pt solid #ccc;font-family:Courier New;font-size:9pt;margin:10pt 0;"><code>{
+<p style="margin:8pt 0;line-height:1.4;">  "activeNow": 95,</p>
+<p style="margin:8pt 0;line-height:1.4;">  "checkinsToday": 120,</p>
+<p style="margin:8pt 0;line-height:1.4;">  "checkoutsToday": 25,</p>
+<p style="margin:8pt 0;line-height:1.4;">  "lateArrivals": 15,</p>
+<p style="margin:8pt 0;line-height:1.4;">  "absentToday": 30,</p>
+<p style="margin:8pt 0;line-height:1.4;">  "efficiencyRate": 87,</p>
+<p style="margin:8pt 0;line-height:1.4;">  "hourlyActivity": [</p>
+<p style="margin:8pt 0;line-height:1.4;">    { "hour": "8:00", "count": 45 },</p>
+<p style="margin:8pt 0;line-height:1.4;">    { "hour": "9:00", "count": 60 }</p>
+<p style="margin:8pt 0;line-height:1.4;">  ],</p>
+<p style="margin:8pt 0;line-height:1.4;">  "departmentActivity": [</p>
+<p style="margin:8pt 0;line-height:1.4;">    { "name": "IT Department", "count": 25 }</p>
+<p style="margin:8pt 0;line-height:1.4;">  ],</p>
+<p style="margin:8pt 0;line-height:1.4;">  "recentAttendance": [...]</p>
+<p style="margin:8pt 0;line-height:1.4;">}</p>
+<p style="margin:8pt 0;line-height:1.4;"></code></pre></p>
+
+<p style="margin:8pt 0;line-height:1.4;">##### GET /api/monthly-report</p>
+<p style="margin:8pt 0;line-height:1.4;">Get monthly attendance report (Admin).</p>
+
+<strong>Query Parameters:</strong>
+<ul style="margin:5pt 0;"><li style="margin:5pt 0 5pt 20pt;">month: Month number (1-12)</li>
+<li style="margin:5pt 0 5pt 20pt;">year: Year (e.g., 2024)</li>
+<p style="margin:8pt 0;line-height:1.4;"></ul></p>
+<strong>Response:</strong>
+<pre style="background:#f5f5f5;padding:10pt;border:1pt solid #ccc;font-family:Courier New;font-size:9pt;margin:10pt 0;"><code>{
+<p style="margin:8pt 0;line-height:1.4;">  "summary": {</p>
+<p style="margin:8pt 0;line-height:1.4;">    "totalWorkingDays": 22,</p>
+<p style="margin:8pt 0;line-height:1.4;">    "avgAttendance": 85,</p>
+<p style="margin:8pt 0;line-height:1.4;">    "lateArrivals": 45</p>
+<p style="margin:8pt 0;line-height:1.4;">  },</p>
+<p style="margin:8pt 0;line-height:1.4;">  "performance": {</p>
+<p style="margin:8pt 0;line-height:1.4;">    "bestPerformer": "John Doe",</p>
+<p style="margin:8pt 0;line-height:1.4;">    "needsImprovement": "Jane Smith",</p>
+<p style="margin:8pt 0;line-height:1.4;">    "perfectAttendance": 12</p>
+<p style="margin:8pt 0;line-height:1.4;">  },</p>
+<p style="margin:8pt 0;line-height:1.4;">  "trends": {</p>
+<p style="margin:8pt 0;line-height:1.4;">    "vsLastMonth": "N/A",</p>
+<p style="margin:8pt 0;line-height:1.4;">    "peakDay": "N/A",</p>
+<p style="margin:8pt 0;line-height:1.4;">    "lowestDay": "N/A"</p>
+<p style="margin:8pt 0;line-height:1.4;">  },</p>
+<p style="margin:8pt 0;line-height:1.4;">  "employees": [...]</p>
+<p style="margin:8pt 0;line-height:1.4;">}</p>
+<p style="margin:8pt 0;line-height:1.4;"></code></pre></p>
+
+<p style="margin:8pt 0;line-height:1.4;">##### GET /api/user/monthly-report</p>
+<p style="margin:8pt 0;line-height:1.4;">Get user monthly report.</p>
+
+<strong>Query Parameters:</strong>
+<ul style="margin:5pt 0;"><li style="margin:5pt 0 5pt 20pt;">month: Month number (1-12)</li>
+<li style="margin:5pt 0 5pt 20pt;">year: Year (e.g., 2024)</li>
+<li style="margin:5pt 0 5pt 20pt;">format: 'pdf' (optional)</li>
+<p style="margin:8pt 0;line-height:1.4;"></ul></p>
+<strong>Response:</strong>
+<pre style="background:#f5f5f5;padding:10pt;border:1pt solid #ccc;font-family:Courier New;font-size:9pt;margin:10pt 0;"><code>{
+<p style="margin:8pt 0;line-height:1.4;">  "daysPresent": 18,</p>
+<p style="margin:8pt 0;line-height:1.4;">  "daysAbsent": 4,</p>
+<p style="margin:8pt 0;line-height:1.4;">  "lateArrivals": 3,</p>
+<p style="margin:8pt 0;line-height:1.4;">  "totalHours": 145.5,</p>
+<p style="margin:8pt 0;line-height:1.4;">  "avgHours": 8.1,</p>
+<p style="margin:8pt 0;line-height:1.4;">  "overtime": 12.5,</p>
+<p style="margin:8pt 0;line-height:1.4;">  "attendanceRate": 82,</p>
+<p style="margin:8pt 0;line-height:1.4;">  "punctualityRate": 83,</p>
+<p style="margin:8pt 0;line-height:1.4;">  "status": "Good"</p>
+<p style="margin:8pt 0;line-height:1.4;">}</p>
+<p style="margin:8pt 0;line-height:1.4;"></code></pre></p>
+
+<h4 style="color:#003311;font-size:12pt;font-weight:bold;margin-top:8pt;margin-bottom:5pt;">Department Management</h4>
+
+<p style="margin:8pt 0;line-height:1.4;">##### GET /api/departments</p>
+<p style="margin:8pt 0;line-height:1.4;">Get all departments with units.</p>
+
+<strong>Response:</strong>
+<pre style="background:#f5f5f5;padding:10pt;border:1pt solid #ccc;font-family:Courier New;font-size:9pt;margin:10pt 0;"><code>[
+<p style="margin:8pt 0;line-height:1.4;">  {</p>
+<p style="margin:8pt 0;line-height:1.4;">    "id": 1,</p>
+<p style="margin:8pt 0;line-height:1.4;">    "name": "Health Services",</p>
+<p style="margin:8pt 0;line-height:1.4;">    "icon": "building",</p>
+<p style="margin:8pt 0;line-height:1.4;">    "color": "emerald",</p>
+<p style="margin:8pt 0;line-height:1.4;">    "subDepartments": [</p>
+<p style="margin:8pt 0;line-height:1.4;">      {</p>
+<p style="margin:8pt 0;line-height:1.4;">        "name": "Clinical Services",</p>
+<p style="margin:8pt 0;line-height:1.4;">        "staffCount": 45</p>
+<p style="margin:8pt 0;line-height:1.4;">      }</p>
+<p style="margin:8pt 0;line-height:1.4;">    ]</p>
+<p style="margin:8pt 0;line-height:1.4;">  }</p>
+<p style="margin:8pt 0;line-height:1.4;">]</p>
+<p style="margin:8pt 0;line-height:1.4;"></code></pre></p>
+
+<p style="margin:8pt 0;line-height:1.4;">##### POST /api/departments</p>
+<p style="margin:8pt 0;line-height:1.4;">Add new department (Admin only).</p>
+
+<strong>Request Body:</strong>
+<pre style="background:#f5f5f5;padding:10pt;border:1pt solid #ccc;font-family:Courier New;font-size:9pt;margin:10pt 0;"><code>{
+<p style="margin:8pt 0;line-height:1.4;">  "id": 5,</p>
+<p style="margin:8pt 0;line-height:1.4;">  "name": "New Department",</p>
+<p style="margin:8pt 0;line-height:1.4;">  "icon": "building",</p>
+<p style="margin:8pt 0;line-height:1.4;">  "color": "blue"</p>
+<p style="margin:8pt 0;line-height:1.4;">}</p>
+<p style="margin:8pt 0;line-height:1.4;"></code></pre></p>
+
+<strong>Response:</strong>
+<pre style="background:#f5f5f5;padding:10pt;border:1pt solid #ccc;font-family:Courier New;font-size:9pt;margin:10pt 0;"><code>{
+<p style="margin:8pt 0;line-height:1.4;">  "success": true,</p>
+<p style="margin:8pt 0;line-height:1.4;">  "message": "Department added successfully"</p>
+<p style="margin:8pt 0;line-height:1.4;">}</p>
+<p style="margin:8pt 0;line-height:1.4;"></code></pre></p>
+
+<p style="margin:8pt 0;line-height:1.4;">##### PUT /api/departments/:id</p>
+<p style="margin:8pt 0;line-height:1.4;">Update department (Admin only).</p>
+
+<strong>Request Body:</strong>
+<pre style="background:#f5f5f5;padding:10pt;border:1pt solid #ccc;font-family:Courier New;font-size:9pt;margin:10pt 0;"><code>{
+<p style="margin:8pt 0;line-height:1.4;">  "name": "Updated Department Name",</p>
+<p style="margin:8pt 0;line-height:1.4;">  "icon": "office",</p>
+<p style="margin:8pt 0;line-height:1.4;">  "color": "green"</p>
+<p style="margin:8pt 0;line-height:1.4;">}</p>
+<p style="margin:8pt 0;line-height:1.4;"></code></pre></p>
+
+<strong>Response:</strong>
+<pre style="background:#f5f5f5;padding:10pt;border:1pt solid #ccc;font-family:Courier New;font-size:9pt;margin:10pt 0;"><code>{
+<p style="margin:8pt 0;line-height:1.4;">  "success": true,</p>
+<p style="margin:8pt 0;line-height:1.4;">  "message": "Department updated successfully"</p>
+<p style="margin:8pt 0;line-height:1.4;">}</p>
+<p style="margin:8pt 0;line-height:1.4;"></code></pre></p>
+
+<p style="margin:8pt 0;line-height:1.4;">##### DELETE /api/departments/:id</p>
+<p style="margin:8pt 0;line-height:1.4;">Delete department (Admin only).</p>
+
+<strong>Response:</strong>
+<pre style="background:#f5f5f5;padding:10pt;border:1pt solid #ccc;font-family:Courier New;font-size:9pt;margin:10pt 0;"><code>{
+<p style="margin:8pt 0;line-height:1.4;">  "success": true,</p>
+<p style="margin:8pt 0;line-height:1.4;">  "message": "Department deleted successfully"</p>
+<p style="margin:8pt 0;line-height:1.4;">}</p>
+<p style="margin:8pt 0;line-height:1.4;"></code></pre></p>
+
+<p style="margin:8pt 0;line-height:1.4;">##### GET /api/positions</p>
+<p style="margin:8pt 0;line-height:1.4;">Get all positions.</p>
+
+<strong>Response:</strong>
+<pre style="background:#f5f5f5;padding:10pt;border:1pt solid #ccc;font-family:Courier New;font-size:9pt;margin:10pt 0;"><code>[
+<p style="margin:8pt 0;line-height:1.4;">  {</p>
+<p style="margin:8pt 0;line-height:1.4;">    "id": 1,</p>
+<p style="margin:8pt 0;line-height:1.4;">    "title": "Director",</p>
+<p style="margin:8pt 0;line-height:1.4;">    "category": "leadership"</p>
+<p style="margin:8pt 0;line-height:1.4;">  }</p>
+<p style="margin:8pt 0;line-height:1.4;">]</p>
+<p style="margin:8pt 0;line-height:1.4;"></code></pre></p>
+
+<h4 style="color:#003311;font-size:12pt;font-weight:bold;margin-top:8pt;margin-bottom:5pt;">Leave Management</h4>
+
+<p style="margin:8pt 0;line-height:1.4;">##### POST /api/user/leave-request</p>
+<p style="margin:8pt 0;line-height:1.4;">Submit leave request.</p>
+
+<strong>Request Body:</strong>
+<pre style="background:#f5f5f5;padding:10pt;border:1pt solid #ccc;font-family:Courier New;font-size:9pt;margin:10pt 0;"><code>{
+<p style="margin:8pt 0;line-height:1.4;">  "type": "annual",</p>
+<p style="margin:8pt 0;line-height:1.4;">  "startDate": "2024-02-01",</p>
+<p style="margin:8pt 0;line-height:1.4;">  "endDate": "2024-02-05",</p>
+<p style="margin:8pt 0;line-height:1.4;">  "reason": "Family vacation"</p>
+<p style="margin:8pt 0;line-height:1.4;">}</p>
+<p style="margin:8pt 0;line-height:1.4;"></code></pre></p>
+
+<strong>Response:</strong>
+<pre style="background:#f5f5f5;padding:10pt;border:1pt solid #ccc;font-family:Courier New;font-size:9pt;margin:10pt 0;"><code>{
+<p style="margin:8pt 0;line-height:1.4;">  "success": true,</p>
+<p style="margin:8pt 0;line-height:1.4;">  "message": "Leave request submitted successfully"</p>
+<p style="margin:8pt 0;line-height:1.4;">}</p>
+<p style="margin:8pt 0;line-height:1.4;"></code></pre></p>
+
+<p style="margin:8pt 0;line-height:1.4;">##### GET /api/admin/leave-requests</p>
+<p style="margin:8pt 0;line-height:1.4;">Get all leave requests (Admin only).</p>
+
+<strong>Response:</strong>
+<pre style="background:#f5f5f5;padding:10pt;border:1pt solid #ccc;font-family:Courier New;font-size:9pt;margin:10pt 0;"><code>[
+<p style="margin:8pt 0;line-height:1.4;">  {</p>
+<p style="margin:8pt 0;line-height:1.4;">    "id": "uuid",</p>
+<p style="margin:8pt 0;line-height:1.4;">    "userName": "John Doe",</p>
+<p style="margin:8pt 0;line-height:1.4;">    "department": "IT Department",</p>
+<p style="margin:8pt 0;line-height:1.4;">    "employee_id": "277739H78",</p>
+<p style="margin:8pt 0;line-height:1.4;">    "type": "annual",</p>
+<p style="margin:8pt 0;line-height:1.4;">    "startDate": "2024-02-01",</p>
+<p style="margin:8pt 0;line-height:1.4;">    "endDate": "2024-02-05",</p>
+<p style="margin:8pt 0;line-height:1.4;">    "reason": "Family vacation",</p>
+<p style="margin:8pt 0;line-height:1.4;">    "status": "pending",</p>
+<p style="margin:8pt 0;line-height:1.4;">    "created_at": "2024-01-20T10:00:00.000Z"</p>
+<p style="margin:8pt 0;line-height:1.4;">  }</p>
+<p style="margin:8pt 0;line-height:1.4;">]</p>
+<p style="margin:8pt 0;line-height:1.4;"></code></pre></p>
+
+<p style="margin:8pt 0;line-height:1.4;">##### PUT /api/admin/leave-requests/:id</p>
+<p style="margin:8pt 0;line-height:1.4;">Update leave request status (Admin only).</p>
+
+<strong>Request Body:</strong>
+<pre style="background:#f5f5f5;padding:10pt;border:1pt solid #ccc;font-family:Courier New;font-size:9pt;margin:10pt 0;"><code>{
+<p style="margin:8pt 0;line-height:1.4;">  "status": "approved"</p>
+<p style="margin:8pt 0;line-height:1.4;">}</p>
+<p style="margin:8pt 0;line-height:1.4;"></code></pre></p>
+
+<strong>Response:</strong>
+<pre style="background:#f5f5f5;padding:10pt;border:1pt solid #ccc;font-family:Courier New;font-size:9pt;margin:10pt 0;"><code>{
+<p style="margin:8pt 0;line-height:1.4;">  "success": true,</p>
+<p style="margin:8pt 0;line-height:1.4;">  "message": "Leave request updated successfully"</p>
+<p style="margin:8pt 0;line-height:1.4;">}</p>
+<p style="margin:8pt 0;line-height:1.4;"></code></pre></p>
+
+<h4 style="color:#003311;font-size:12pt;font-weight:bold;margin-top:8pt;margin-bottom:5pt;">Shift Management</h4>
+
+<p style="margin:8pt 0;line-height:1.4;">##### POST /api/user/shift-swap</p>
+<p style="margin:8pt 0;line-height:1.4;">Submit shift swap request.</p>
+
+<strong>Request Body:</strong>
+<pre style="background:#f5f5f5;padding:10pt;border:1pt solid #ccc;font-family:Courier New;font-size:9pt;margin:10pt 0;"><code>{
+<p style="margin:8pt 0;line-height:1.4;">  "currentShiftDate": "2024-02-01",</p>
+<p style="margin:8pt 0;line-height:1.4;">  "preferredSwapDate": "2024-02-02",</p>
+<p style="margin:8pt 0;line-height:1.4;">  "reason": "Personal commitment"</p>
+<p style="margin:8pt 0;line-height:1.4;">}</p>
+<p style="margin:8pt 0;line-height:1.4;"></code></pre></p>
+
+<strong>Response:</strong>
+<pre style="background:#f5f5f5;padding:10pt;border:1pt solid #ccc;font-family:Courier New;font-size:9pt;margin:10pt 0;"><code>{
+<p style="margin:8pt 0;line-height:1.4;">  "success": true,</p>
+<p style="margin:8pt 0;line-height:1.4;">  "message": "Shift swap request submitted successfully"</p>
+<p style="margin:8pt 0;line-height:1.4;">}</p>
+<p style="margin:8pt 0;line-height:1.4;"></code></pre></p>
+
+<h4 style="color:#003311;font-size:12pt;font-weight:bold;margin-top:8pt;margin-bottom:5pt;">Notifications and Announcements</h4>
+
+<p style="margin:8pt 0;line-height:1.4;">##### GET /api/user/notifications</p>
+<p style="margin:8pt 0;line-height:1.4;">Get user notifications.</p>
+
+<strong>Response:</strong>
+<pre style="background:#f5f5f5;padding:10pt;border:1pt solid #ccc;font-family:Courier New;font-size:9pt;margin:10pt 0;"><code>[
+<p style="margin:8pt 0;line-height:1.4;">  {</p>
+<p style="margin:8pt 0;line-height:1.4;">    "id": 1,</p>
+<p style="margin:8pt 0;line-height:1.4;">    "user_id": 1,</p>
+<p style="margin:8pt 0;line-height:1.4;">    "title": "Leave Request Approved",</p>
+<p style="margin:8pt 0;line-height:1.4;">    "message": "Your leave request has been approved.",</p>
+<p style="margin:8pt 0;line-height:1.4;">    "type": "info",</p>
+<p style="margin:8pt 0;line-height:1.4;">    "is_read": false,</p>
+<p style="margin:8pt 0;line-height:1.4;">    "created_at": "2024-01-20T10:00:00.000Z"</p>
+<p style="margin:8pt 0;line-height:1.4;">  }</p>
+<p style="margin:8pt 0;line-height:1.4;">]</p>
+<p style="margin:8pt 0;line-height:1.4;"></code></pre></p>
+
+<p style="margin:8pt 0;line-height:1.4;">##### GET /api/user/announcements</p>
+<p style="margin:8pt 0;line-height:1.4;">Get announcements for user's department.</p>
+
+<strong>Response:</strong>
+<pre style="background:#f5f5f5;padding:10pt;border:1pt solid #ccc;font-family:Courier New;font-size:9pt;margin:10pt 0;"><code>[
+<p style="margin:8pt 0;line-height:1.4;">  {</p>
+<p style="margin:8pt 0;line-height:1.4;">    "id": 1,</p>
+<p style="margin:8pt 0;line-height:1.4;">    "title": "Office Closure",</p>
+<p style="margin:8pt 0;line-height:1.4;">    "message": "Office will be closed on Monday.",</p>
+<p style="margin:8pt 0;line-height:1.4;">    "department": "all",</p>
+<p style="margin:8pt 0;line-height:1.4;">    "priority": "high",</p>
+<p style="margin:8pt 0;line-height:1.4;">    "created_at": "2024-01-20T10:00:00.000Z"</p>
+<p style="margin:8pt 0;line-height:1.4;">  }</p>
+<p style="margin:8pt 0;line-height:1.4;">]</p>
+<p style="margin:8pt 0;line-height:1.4;"></code></pre></p>
+
+<p style="margin:8pt 0;line-height:1.4;">##### GET /api/user/audit-logs</p>
+<p style="margin:8pt 0;line-height:1.4;">Get user audit logs.</p>
+
+<strong>Response:</strong>
+<pre style="background:#f5f5f5;padding:10pt;border:1pt solid #ccc;font-family:Courier New;font-size:9pt;margin:10pt 0;"><code>[
+<p style="margin:8pt 0;line-height:1.4;">  {</p>
+<p style="margin:8pt 0;line-height:1.4;">    "id": 1,</p>
+<p style="margin:8pt 0;line-height:1.4;">    "user_id": 1,</p>
+<p style="margin:8pt 0;line-height:1.4;">    "action": "Profile Update",</p>
+<p style="margin:8pt 0;line-height:1.4;">    "details": "Updated phone number",</p>
+<p style="margin:8pt 0;line-height:1.4;">    "timestamp": "2024-01-20T10:00:00.000Z"</p>
+<p style="margin:8pt 0;line-height:1.4;">  }</p>
+<p style="margin:8pt 0;line-height:1.4;">]</p>
+<p style="margin:8pt 0;line-height:1.4;"></code></pre></p>
+
+<h4 style="color:#003311;font-size:12pt;font-weight:bold;margin-top:8pt;margin-bottom:5pt;">Configuration</h4>
+
+<p style="margin:8pt 0;line-height:1.4;">##### GET /api/config</p>
+<p style="margin:8pt 0;line-height:1.4;">Get system configuration.</p>
+
+<strong>Response:</strong>
+<pre style="background:#f5f5f5;padding:10pt;border:1pt solid #ccc;font-family:Courier New;font-size:9pt;margin:10pt 0;"><code>{
+<p style="margin:8pt 0;line-height:1.4;">  "geminiApiKey": "your-api-key",</p>
+<p style="margin:8pt 0;line-height:1.4;">  "userRole": "admin"</p>
+<p style="margin:8pt 0;line-height:1.4;">}</p>
+<p style="margin:8pt 0;line-height:1.4;"></code></pre></p>
+
+<hr style="border:1pt solid #ccc;margin:15pt 0;">
+
+<h2 style="color:#006633;font-size:18pt;font-weight:bold;margin-top:15pt;margin-bottom:8pt;">User Roles and Permissions</h2>
+
+<h3 style="color:#004422;font-size:14pt;font-weight:bold;margin-top:10pt;margin-bottom:6pt;">Admin Role</h3>
+
+<strong>Access Level:</strong> Full system access
+
+<strong>Permissions:</strong>
+<ul style="margin:5pt 0;"><li style="margin:5pt 0 5pt 20pt;">View and manage all employees</li>
+<li style="margin:5pt 0 5pt 20pt;">Add, edit, delete employees</li>
+<li style="margin:5pt 0 5pt 20pt;">Manage departments and units</li>
+<li style="margin:5pt 0 5pt 20pt;">View all attendance records</li>
+<li style="margin:5pt 0 5pt 20pt;">Edit and delete attendance records</li>
+<li style="margin:5pt 0 5pt 20pt;">View real-time metrics and analytics</li>
+<li style="margin:5pt 0 5pt 20pt;">Generate and view monthly reports</li>
+<li style="margin:5pt 0 5pt 20pt;">Approve/reject leave requests</li>
+<li style="margin:5pt 0 5pt 20pt;">View and manage shift swap requests</li>
+<li style="margin:5pt 0 5pt 20pt;">Create and manage announcements</li>
+<li style="margin:5pt 0 5pt 20pt;">View audit logs</li>
+<li style="margin:5pt 0 5pt 20pt;">Access admin dashboard</li>
+<li style="margin:5pt 0 5pt 20pt;">Full system configuration access</li>
+<p style="margin:8pt 0;line-height:1.4;"></ul></p>
+<strong>Dashboard Features:</strong>
+<ul style="margin:5pt 0;"><li style="margin:5pt 0 5pt 20pt;">Overview statistics</li>
+<li style="margin:5pt 0 5pt 20pt;">Employee management</li>
+<li style="margin:5pt 0 5pt 20pt;">Department management</li>
+<li style="margin:5pt 0 5pt 20pt;">Real-time attendance tracking</li>
+<li style="margin:5pt 0 5pt 20pt;">Monthly reports</li>
+<li style="margin:5pt 0 5pt 20pt;">Leave request management</li>
+<p style="margin:8pt 0;line-height:1.4;"></ul></p>
+<h3 style="color:#004422;font-size:14pt;font-weight:bold;margin-top:10pt;margin-bottom:6pt;">Employee Role</h3>
+
+<strong>Access Level:</strong> Personal access only
+
+<strong>Permissions:</strong>
+<ul style="margin:5pt 0;"><li style="margin:5pt 0 5pt 20pt;">View personal profile</li>
+<li style="margin:5pt 0 5pt 20pt;">Edit personal profile information</li>
+<li style="margin:5pt 0 5pt 20pt;">Upload profile photo</li>
+<li style="margin:5pt 0 5pt 20pt;">View personal attendance history</li>
+<li style="margin:5pt 0 5pt 20pt;">Clock in/out</li>
+<li style="margin:5pt 0 5pt 20pt;">Submit manual clock requests</li>
+<li style="margin:5pt 0 5pt 20pt;">Submit leave requests</li>
+<li style="margin:5pt 0 5pt 20pt;">Submit shift swap requests</li>
+<li style="margin:5pt 0 5pt 20pt;">View personal notifications</li>
+<li style="margin:5pt 0 5pt 20pt;">View announcements</li>
+<li style="margin:5pt 0 5pt 20pt;">Download personal attendance reports</li>
+<li style="margin:5pt 0 5pt 20pt;">View personal statistics</li>
+<p style="margin:8pt 0;line-height:1.4;"></ul></p>
+<strong>Dashboard Features:</strong>
+<ul style="margin:5pt 0;"><li style="margin:5pt 0 5pt 20pt;">Personal overview</li>
+<li style="margin:5pt 0 5pt 20pt;">Profile management</li>
+<li style="margin:5pt 0 5pt 20pt;">Attendance history</li>
+<li style="margin:5pt 0 5pt 20pt;">Communication center</li>
+<li style="margin:5pt 0 5pt 20pt;">Leave management</li>
+<li style="margin:5pt 0 5pt 20pt;">Schedule view</li>
+<p style="margin:8pt 0;line-height:1.4;"></ul></p>
+<hr style="border:1pt solid #ccc;margin:15pt 0;">
+
+<h2 style="color:#006633;font-size:18pt;font-weight:bold;margin-top:15pt;margin-bottom:8pt;">Installation and Setup</h2>
+
+<h3 style="color:#004422;font-size:14pt;font-weight:bold;margin-top:10pt;margin-bottom:6pt;">Prerequisites</h3>
+
+<ul style="margin:5pt 0;"><li style="margin:5pt 0 5pt 20pt;">Node.js (v18 or higher)</li>
+<li style="margin:5pt 0 5pt 20pt;">MySQL (v8.0 or higher)</li>
+<li style="margin:5pt 0 5pt 20pt;">npm or yarn package manager</li>
+<li style="margin:5pt 0 5pt 20pt;">Git (for cloning repository)</li>
+<p style="margin:8pt 0;line-height:1.4;"></ul></p>
+<h3 style="color:#004422;font-size:14pt;font-weight:bold;margin-top:10pt;margin-bottom:6pt;">Step 1: Clone Repository</h3>
+
+<pre style="background:#f5f5f5;padding:10pt;border:1pt solid #ccc;font-family:Courier New;font-size:9pt;margin:10pt 0;"><code>git clone <repository-url>
+<p style="margin:8pt 0;line-height:1.4;">cd Polite-Project-main</p>
+<p style="margin:8pt 0;line-height:1.4;"></code></pre></p>
+
+<h3 style="color:#004422;font-size:14pt;font-weight:bold;margin-top:10pt;margin-bottom:6pt;">Step 2: Install Dependencies</h3>
+
+<pre style="background:#f5f5f5;padding:10pt;border:1pt solid #ccc;font-family:Courier New;font-size:9pt;margin:10pt 0;"><code>npm install
+<p style="margin:8pt 0;line-height:1.4;"></code></pre></p>
+
+<h3 style="color:#004422;font-size:14pt;font-weight:bold;margin-top:10pt;margin-bottom:6pt;">Step 3: Database Setup</h3>
+
+<h4 style="color:#003311;font-size:12pt;font-weight:bold;margin-top:8pt;margin-bottom:5pt;">Option A: Automatic Setup</h4>
+<p style="margin:8pt 0;line-height:1.4;">The application will automatically initialize the database schema if it doesn't exist.</p>
+
+<h4 style="color:#003311;font-size:12pt;font-weight:bold;margin-top:8pt;margin-bottom:5pt;">Option B: Manual Setup</h4>
+<p style="margin:8pt 0;line-height:1.4;">Run the provided SQL schema:</p>
+
+<pre style="background:#f5f5f5;padding:10pt;border:1pt solid #ccc;font-family:Courier New;font-size:9pt;margin:10pt 0;"><code>mysql -u root -p < schema.sql
+<p style="margin:8pt 0;line-height:1.4;"></code></pre></p>
+
+<p style="margin:8pt 0;line-height:1.4;">This will:</p>
+<ul style="margin:5pt 0;"><li style="margin:5pt 0 5pt 20pt;">Create the <code style="background:#f5f5f5;padding:2pt 4pt;font-family:Courier New;font-size:9pt;">attendance_db</code> database</li>
+<li style="margin:5pt 0 5pt 20pt;">Create all required tables</li>
+<li style="margin:5pt 0 5pt 20pt;">Seed initial data (positions, admin user)</li>
+<li style="margin:5pt 0 5pt 20pt;">Create database user with appropriate permissions</li>
+<p style="margin:8pt 0;line-height:1.4;"></ul></p>
+<h3 style="color:#004422;font-size:14pt;font-weight:bold;margin-top:10pt;margin-bottom:6pt;">Step 4: Environment Configuration</h3>
+
+<p style="margin:8pt 0;line-height:1.4;">Create a <code style="background:#f5f5f5;padding:2pt 4pt;font-family:Courier New;font-size:9pt;">.env</code> file in the root directory:</p>
+
+<pre style="background:#f5f5f5;padding:10pt;border:1pt solid #ccc;font-family:Courier New;font-size:9pt;margin:10pt 0;"><code><h1 style="color:#00843D;font-size:24pt;font-weight:bold;margin-top:20pt;margin-bottom:10pt;">Database Configuration</h1>
+<p style="margin:8pt 0;line-height:1.4;">DB_HOST=localhost</p>
+<p style="margin:8pt 0;line-height:1.4;">DB_PORT=3306</p>
+<p style="margin:8pt 0;line-height:1.4;">DB_USER=root</p>
+<p style="margin:8pt 0;line-height:1.4;">DB_PASSWORD=your_password</p>
+<p style="margin:8pt 0;line-height:1.4;">DB_NAME=attendance_db</p>
+
+<h1 style="color:#00843D;font-size:24pt;font-weight:bold;margin-top:20pt;margin-bottom:10pt;">JWT Secret</h1>
+<p style="margin:8pt 0;line-height:1.4;">JWT_SECRET=your-secret-key-here</p>
+
+<h1 style="color:#00843D;font-size:24pt;font-weight:bold;margin-top:20pt;margin-bottom:10pt;">Optional: Google Gemini API Key for AI features</h1>
+<p style="margin:8pt 0;line-height:1.4;">GEMINI_API_KEY=your-gemini-api-key</p>
+<p style="margin:8pt 0;line-height:1.4;"></code></pre></p>
+
+<h3 style="color:#004422;font-size:14pt;font-weight:bold;margin-top:10pt;margin-bottom:6pt;">Step 5: Start Application</h3>
+
+<p style="margin:8pt 0;line-height:1.4;">Development mode:</p>
+<pre style="background:#f5f5f5;padding:10pt;border:1pt solid #ccc;font-family:Courier New;font-size:9pt;margin:10pt 0;"><code>npm run dev
+<p style="margin:8pt 0;line-height:1.4;"></code></pre></p>
+
+<p style="margin:8pt 0;line-height:1.4;">Production mode:</p>
+<pre style="background:#f5f5f5;padding:10pt;border:1pt solid #ccc;font-family:Courier New;font-size:9pt;margin:10pt 0;"><code>npm start
+<p style="margin:8pt 0;line-height:1.4;"></code></pre></p>
+
+<h3 style="color:#004422;font-size:14pt;font-weight:bold;margin-top:10pt;margin-bottom:6pt;">Step 6: Access Application</h3>
+
+<ul style="margin:5pt 0;"><li style="margin:5pt 0 5pt 20pt;"><strong>Application URL:</strong> http://localhost:61460</li>
+<li style="margin:5pt 0 5pt 20pt;"><strong>Default Admin Credentials:</strong></li>
+<p style="margin:8pt 0;line-height:1.4;"></ul>  - Email: admin@mohcc.gov.zw</p>
+<p style="margin:8pt 0;line-height:1.4;">  - Password: admin123</p>
+<ul style="margin:5pt 0;"><li style="margin:5pt 0 5pt 20pt;"><strong>Default Employee Credentials:</strong></li>
+<p style="margin:8pt 0;line-height:1.4;"></ul>  - Email: murambwa@mohcc.gov.zw</p>
+<p style="margin:8pt 0;line-height:1.4;">  - Password: emp123</p>
+
+<h3 style="color:#004422;font-size:14pt;font-weight:bold;margin-top:10pt;margin-bottom:6pt;">Step 7: Change Default Passwords</h3>
+
+<p style="margin:8pt 0;line-height:1.4;">For security, change the default passwords immediately after first login.</p>
+
+<hr style="border:1pt solid #ccc;margin:15pt 0;">
+
+<h2 style="color:#006633;font-size:18pt;font-weight:bold;margin-top:15pt;margin-bottom:8pt;">Configuration</h2>
+
+<h3 style="color:#004422;font-size:14pt;font-weight:bold;margin-top:10pt;margin-bottom:6pt;">Environment Variables</h3>
+
+<table style="border-collapse:collapse;width:100%;margin:10pt 0;"><tr><td style="border:1pt solid #000;padding:5pt;">Variable</td><td style="border:1pt solid #000;padding:5pt;">Required</td><td style="border:1pt solid #000;padding:5pt;">Default</td><td style="border:1pt solid #000;padding:5pt;">Description</td></tr>
+<p style="margin:8pt 0;line-height:1.4;"></table></p>
+<table style="border-collapse:collapse;width:100%;margin:10pt 0;"><tr><td style="border:1pt solid #000;padding:5pt;">DB_HOST</td><td style="border:1pt solid #000;padding:5pt;">Yes</td><td style="border:1pt solid #000;padding:5pt;">localhost</td><td style="border:1pt solid #000;padding:5pt;">MySQL database host</td></tr>
+<tr><td style="border:1pt solid #000;padding:5pt;">DB_PORT</td><td style="border:1pt solid #000;padding:5pt;">Yes</td><td style="border:1pt solid #000;padding:5pt;">3306</td><td style="border:1pt solid #000;padding:5pt;">MySQL database port</td></tr>
+<tr><td style="border:1pt solid #000;padding:5pt;">DB_USER</td><td style="border:1pt solid #000;padding:5pt;">Yes</td><td style="border:1pt solid #000;padding:5pt;">root</td><td style="border:1pt solid #000;padding:5pt;">MySQL database user</td></tr>
+<p style="margin:8pt 0;line-height:1.4;"></table></p>
+<table style="border-collapse:collapse;width:100%;margin:10pt 0;"><tr><td style="border:1pt solid #000;padding:5pt;">DB_NAME</td><td style="border:1pt solid #000;padding:5pt;">Yes</td><td style="border:1pt solid #000;padding:5pt;">attendance_db</td><td style="border:1pt solid #000;padding:5pt;">Database name</td></tr>
+<tr><td style="border:1pt solid #000;padding:5pt;">JWT_SECRET</td><td style="border:1pt solid #000;padding:5pt;">Yes</td><td style="border:1pt solid #000;padding:5pt;">mohcc-zimbabwe-secret-key</td><td style="border:1pt solid #000;padding:5pt;">Secret key for session encryption</td></tr>
+<p style="margin:8pt 0;line-height:1.4;"></table></p>
+<table style="border-collapse:collapse;width:100%;margin:10pt 0;"><tr><td style="border:1pt solid #000;padding:5pt;">PORT</td><td style="border:1pt solid #000;padding:5pt;">No</td><td style="border:1pt solid #000;padding:5pt;">61460</td><td style="border:1pt solid #000;padding:5pt;">Server port</td></tr>
+<p style="margin:8pt 0;line-height:1.4;"></table></p>
+<h3 style="color:#004422;font-size:14pt;font-weight:bold;margin-top:10pt;margin-bottom:6pt;">Server Configuration</h3>
+
+<p style="margin:8pt 0;line-height:1.4;">The server runs on port 61460 by default. This can be modified in <code style="background:#f5f5f5;padding:2pt 4pt;font-family:Courier New;font-size:9pt;">server.ts</code>:</p>
+
+<pre style="background:#f5f5f5;padding:10pt;border:1pt solid #ccc;font-family:Courier New;font-size:9pt;margin:10pt 0;"><code>const PORT = 61460;
+<p style="margin:8pt 0;line-height:1.4;"></code></pre></p>
+
+<h3 style="color:#004422;font-size:14pt;font-weight:bold;margin-top:10pt;margin-bottom:6pt;">Database Connection Pool</h3>
+
+<p style="margin:8pt 0;line-height:1.4;">Default connection pool settings:</p>
+<ul style="margin:5pt 0;"><li style="margin:5pt 0 5pt 20pt;">Connection Limit: 10</li>
+<li style="margin:5pt 0 5pt 20pt;">Queue Limit: 0 (unlimited)</li>
+<li style="margin:5pt 0 5pt 20pt;">Wait for Connections: true</li>
+<p style="margin:8pt 0;line-height:1.4;"></ul></p>
+<p style="margin:8pt 0;line-height:1.4;">Modify in <code style="background:#f5f5f5;padding:2pt 4pt;font-family:Courier New;font-size:9pt;">server.ts</code>:</p>
+
+<pre style="background:#f5f5f5;padding:10pt;border:1pt solid #ccc;font-family:Courier New;font-size:9pt;margin:10pt 0;"><code>const dbConfig = {
+<p style="margin:8pt 0;line-height:1.4;">  host: process.env.DB_HOST || 'localhost',</p>
+<p style="margin:8pt 0;line-height:1.4;">  port: parseInt(process.env.DB_PORT || '3306'),</p>
+<p style="margin:8pt 0;line-height:1.4;">  user: process.env.DB_USER || 'root',</p>
+<p style="margin:8pt 0;line-height:1.4;">  password: process.env.DB_PASSWORD || '',</p>
+<p style="margin:8pt 0;line-height:1.4;">  database: DB_NAME,</p>
+<p style="margin:8pt 0;line-height:1.4;">  waitForConnections: true,</p>
+<p style="margin:8pt 0;line-height:1.4;">  connectionLimit: 10,</p>
+<p style="margin:8pt 0;line-height:1.4;">  queueLimit: 0</p>
+<p style="margin:8pt 0;line-height:1.4;">};</p>
+<p style="margin:8pt 0;line-height:1.4;"></code></pre></p>
+
+<h3 style="color:#004422;font-size:14pt;font-weight:bold;margin-top:10pt;margin-bottom:6pt;">Session Configuration</h3>
+
+<p style="margin:8pt 0;line-height:1.4;">Default session settings:</p>
+<ul style="margin:5pt 0;"><li style="margin:5pt 0 5pt 20pt;">Secret: JWT_SECRET environment variable</li>
+<li style="margin:5pt 0 5pt 20pt;">Cookie Max Age: 24 hours</li>
+<li style="margin:5pt 0 5pt 20pt;">Secure: false (set to true in production with HTTPS)</li>
+<li style="margin:5pt 0 5pt 20pt;">HttpOnly: true</li>
+<li style="margin:5pt 0 5pt 20pt;">SameSite: lax</li>
+<p style="margin:8pt 0;line-height:1.4;"></ul></p>
+<p style="margin:8pt 0;line-height:1.4;">Modify in <code style="background:#f5f5f5;padding:2pt 4pt;font-family:Courier New;font-size:9pt;">server.ts</code>:</p>
+
+<pre style="background:#f5f5f5;padding:10pt;border:1pt solid #ccc;font-family:Courier New;font-size:9pt;margin:10pt 0;"><code>app.use(session({
+<p style="margin:8pt 0;line-height:1.4;">  secret: process.env.JWT_SECRET || 'mohcc-zimbabwe-secret-key',</p>
+<p style="margin:8pt 0;line-height:1.4;">  resave: false,</p>
+<p style="margin:8pt 0;line-height:1.4;">  saveUninitialized: false,</p>
+<p style="margin:8pt 0;line-height:1.4;">  cookie: { </p>
+<p style="margin:8pt 0;line-height:1.4;">    secure: false, // Set to true in production with HTTPS</p>
+<p style="margin:8pt 0;line-height:1.4;">    httpOnly: true,</p>
+<p style="margin:8pt 0;line-height:1.4;">    sameSite: 'lax',</p>
+<p style="margin:8pt 0;line-height:1.4;">    maxAge: 24 <em> 60 </em> 60 * 1000 </p>
+<p style="margin:8pt 0;line-height:1.4;">  }</p>
+<p style="margin:8pt 0;line-height:1.4;">}) as any);</p>
+<p style="margin:8pt 0;line-height:1.4;"></code></pre></p>
+
+<h3 style="color:#004422;font-size:14pt;font-weight:bold;margin-top:10pt;margin-bottom:6pt;">File Upload Configuration</h3>
+
+<p style="margin:8pt 0;line-height:1.4;">Default upload settings:</p>
+<ul style="margin:5pt 0;"><li style="margin:5pt 0 5pt 20pt;">Upload Directory: <code style="background:#f5f5f5;padding:2pt 4pt;font-family:Courier New;font-size:9pt;">public/uploads/</code></li>
+<li style="margin:5pt 0 5pt 20pt;">Maximum File Size: 5MB</li>
+<li style="margin:5pt 0 5pt 20pt;">Allowed Types: JPEG, PNG, GIF, WebP</li>
+<p style="margin:8pt 0;line-height:1.4;"></ul></p>
+<p style="margin:8pt 0;line-height:1.4;">Modify in <code style="background:#f5f5f5;padding:2pt 4pt;font-family:Courier New;font-size:9pt;">server.ts</code>:</p>
+
+<pre style="background:#f5f5f5;padding:10pt;border:1pt solid #ccc;font-family:Courier New;font-size:9pt;margin:10pt 0;"><code>const upload = multer({
+<p style="margin:8pt 0;line-height:1.4;">  storage: storage,</p>
+<p style="margin:8pt 0;line-height:1.4;">  limits: {</p>
+<p style="margin:8pt 0;line-height:1.4;">    fileSize: 5 <em> 1024 </em> 1024 // 5MB limit</p>
+<p style="margin:8pt 0;line-height:1.4;">  },</p>
+<p style="margin:8pt 0;line-height:1.4;">  fileFilter: (req, file, cb) => {</p>
+<p style="margin:8pt 0;line-height:1.4;">    const allowedMimeTypes = ['image/jpeg', 'image/jpg', 'image/png', 'image/gif', 'image/webp'];</p>
+<p style="margin:8pt 0;line-height:1.4;">    if (allowedMimeTypes.includes(file.mimetype)) {</p>
+<p style="margin:8pt 0;line-height:1.4;">      cb(null, true);</p>
+<p style="margin:8pt 0;line-height:1.4;">    } else {</p>
+<p style="margin:8pt 0;line-height:1.4;">      cb(new Error('Only image files (JPEG, PNG, GIF, WebP) are allowed'));</p>
+<p style="margin:8pt 0;line-height:1.4;">    }</p>
+<p style="margin:8pt 0;line-height:1.4;">  }</p>
+<p style="margin:8pt 0;line-height:1.4;">});</p>
+<p style="margin:8pt 0;line-height:1.4;"></code></pre></p>
+
+<hr style="border:1pt solid #ccc;margin:15pt 0;">
+
+<h2 style="color:#006633;font-size:18pt;font-weight:bold;margin-top:15pt;margin-bottom:8pt;">Security Features</h2>
+
+<h3 style="color:#004422;font-size:14pt;font-weight:bold;margin-top:10pt;margin-bottom:6pt;">Authentication</h3>
+
+<ul style="margin:5pt 0;"><li style="margin:5pt 0 5pt 20pt;"><strong>Session-based Authentication:</strong> Uses express-session for secure session management</li>
+<li style="margin:5pt 0 5pt 20pt;"><strong>Password Hashing:</strong> All passwords are hashed using bcrypt with salt rounds of 10</li>
+<li style="margin:5pt 0 5pt 20pt;"><strong>Session Expiration:</strong> Sessions expire after 24 hours of inactivity</li>
+<li style="margin:5pt 0 5pt 20pt;"><strong>Secure Cookies:</strong> HttpOnly flag prevents client-side JavaScript access</li>
+<p style="margin:8pt 0;line-height:1.4;"></ul></p>
+<h3 style="color:#004422;font-size:14pt;font-weight:bold;margin-top:10pt;margin-bottom:6pt;">Authorization</h3>
+
+<ul style="margin:5pt 0;"><li style="margin:5pt 0 5pt 20pt;"><strong>Role-Based Access Control:</strong> Two roles (admin, employee) with different permission levels</li>
+<li style="margin:5pt 0 5pt 20pt;"><strong>Route Protection:</strong> All API endpoints (except login) require authentication</li>
+<li style="margin:5pt 0 5pt 20pt;"><strong>Admin-only Endpoints:</strong> Sensitive operations restricted to admin role only</li>
+<p style="margin:8pt 0;line-height:1.4;"></ul></p>
+<h3 style="color:#004422;font-size:14pt;font-weight:bold;margin-top:10pt;margin-bottom:6pt;">Input Validation</h3>
+
+<ul style="margin:5pt 0;"><li style="margin:5pt 0 5pt 20pt;"><strong>EC Number Format:</strong> Validates EC number format (6 digits + 1 letter + 2 digits)</li>
+<li style="margin:5pt 0 5pt 20pt;"><strong>Email Validation:</strong> Unique email constraint in database</li>
+<li style="margin:5pt 0 5pt 20pt;"><strong>File Type Validation:</strong> Only specific image types allowed for uploads</li>
+<li style="margin:5pt 0 5pt 20pt;"><strong>File Size Limits:</strong> 5MB maximum file size for uploads</li>
+<li style="margin:5pt 0 5pt 20pt;"><strong>SQL Injection Prevention:</strong> Parameterized queries throughout the application</li>
+<p style="margin:8pt 0;line-height:1.4;"></ul></p>
+<h3 style="color:#004422;font-size:14pt;font-weight:bold;margin-top:10pt;margin-bottom:6pt;">Security Headers</h3>
+
+<ul style="margin:5pt 0;"><li style="margin:5pt 0 5pt 20pt;"><strong>Helmet Middleware:</strong> Sets security-related HTTP headers</li>
+<li style="margin:5pt 0 5pt 20pt;"><strong>Content Security Policy:</strong> Configurable CSP (currently disabled for development)</li>
+<li style="margin:5pt 0 5pt 20pt;"><strong>CORS Configuration:</strong> Cross-origin resource sharing controls</li>
+<p style="margin:8pt 0;line-height:1.4;"></ul></p>
+<h3 style="color:#004422;font-size:14pt;font-weight:bold;margin-top:10pt;margin-bottom:6pt;">Password Recovery</h3>
+
+<ul style="margin:5pt 0;"><li style="margin:5pt 0 5pt 20pt;"><strong>OTP-based Reset:</strong> One-time password sent via email/SMS</li>
+<li style="margin:5pt 0 5pt 20pt;"><strong>OTP Expiration:</strong> OTPs expire after 10 minutes</li>
+<li style="margin:5pt 0 5pt 20pt;"><strong>Security Question Backup:</strong> Additional verification layer</li>
+<li style="margin:5pt 0 5pt 20pt;"><strong>Case-insensitive Answers:</strong> Security answer validation is case-insensitive</li>
+<p style="margin:8pt 0;line-height:1.4;"></ul></p>
+<h3 style="color:#004422;font-size:14pt;font-weight:bold;margin-top:10pt;margin-bottom:6pt;">Audit Logging</h3>
+
+<ul style="margin:5pt 0;"><li style="margin:5pt 0 5pt 20pt;"><strong>User Actions:</strong> All user actions are logged to audit_logs table</li>
+<li style="margin:5pt 0 5pt 20pt;"><strong>Timestamp Tracking:</strong> Each log entry includes precise timestamp</li>
+<li style="margin:5pt 0 5pt 20pt;"><strong>User Attribution:</strong> Logs are associated with specific users</li>
+<p style="margin:8pt 0;line-height:1.4;"></ul></p>
+<h3 style="color:#004422;font-size:14pt;font-weight:bold;margin-top:10pt;margin-bottom:6pt;">Data Protection</h3>
+
+<ul style="margin:5pt 0;"><li style="margin:5pt 0 5pt 20pt;"><strong>Foreign Key Constraints:</strong> Cascade delete ensures data consistency</li>
+<li style="margin:5pt 0 5pt 20pt;"><strong>Transaction Safety:</strong> Database operations use proper error handling</li>
+<li style="margin:5pt 0 5pt 20pt;"><strong>Error Logging:</strong> Comprehensive error logging for debugging and security monitoring</li>
+<p style="margin:8pt 0;line-height:1.4;"></ul></p>
+<hr style="border:1pt solid #ccc;margin:15pt 0;">
+
+<h2 style="color:#006633;font-size:18pt;font-weight:bold;margin-top:15pt;margin-bottom:8pt;">Frontend Structure</h2>
+
+<h3 style="color:#004422;font-size:14pt;font-weight:bold;margin-top:10pt;margin-bottom:6pt;">Directory Layout</h3>
+
+<pre style="background:#f5f5f5;padding:10pt;border:1pt solid #ccc;font-family:Courier New;font-size:9pt;margin:10pt 0;"><code>public/
+<p style="margin:8pt 0;line-height:1.4;">├── css/</p>
+<p style="margin:8pt 0;line-height:1.4;">│   └── style.css          # Global styles</p>
+<p style="margin:8pt 0;line-height:1.4;">├── js/</p>
+<p style="margin:8pt 0;line-height:1.4;">│   ├── dashboard.js       # Admin dashboard logic</p>
+<p style="margin:8pt 0;line-height:1.4;">│   ├── employee-dashboard.js  # Employee dashboard logic</p>
+<p style="margin:8pt 0;line-height:1.4;">│   ├── attendance-tracking.js  # Attendance management</p>
+<p style="margin:8pt 0;line-height:1.4;">│   ├── departments.js    # Department management</p>
+<p style="margin:8pt 0;line-height:1.4;">│   ├── employees.js       # Employee management</p>
+<p style="margin:8pt 0;line-height:1.4;">│   ├── forgot-password.js    # Password recovery</p>
+<p style="margin:8pt 0;line-height:1.4;">│   ├── login.js           # Login functionality</p>
+<p style="margin:8pt 0;line-height:1.4;">│   ├── realtime-metrics.js   # Real-time metrics</p>
+<p style="margin:8pt 0;line-height:1.4;">│   ├── reports.js         # Report generation</p>
+<p style="margin:8pt 0;line-height:1.4;">│   └── subpages.js        # Subpage utilities</p>
+<p style="margin:8pt 0;line-height:1.4;">├── logo.png               # Application logo</p>
+<p style="margin:8pt 0;line-height:1.4;">└── uploads/               # User uploaded files</p>
+<p style="margin:8pt 0;line-height:1.4;"></code></pre></p>
+
+<h3 style="color:#004422;font-size:14pt;font-weight:bold;margin-top:10pt;margin-bottom:6pt;">Views Structure</h3>
+
+<pre style="background:#f5f5f5;padding:10pt;border:1pt solid #ccc;font-family:Courier New;font-size:9pt;margin:10pt 0;"><code>views/
+<p style="margin:8pt 0;line-height:1.4;">├── login.html             # Login page</p>
+<p style="margin:8pt 0;line-height:1.4;">├── dashboard.html         # Admin dashboard</p>
+<p style="margin:8pt 0;line-height:1.4;">├── employee-dashboard.html # Employee dashboard</p>
+<p style="margin:8pt 0;line-height:1.4;">├── my-profile.html        # User profile management</p>
+<p style="margin:8pt 0;line-height:1.4;">├── my-attendance.html     # Personal attendance history</p>
+<p style="margin:8pt 0;line-height:1.4;">├── communication.html     # Communication center</p>
+<p style="margin:8pt 0;line-height:1.4;">├── schedule.html          # Schedule view</p>
+<p style="margin:8pt 0;line-height:1.4;">├── attendance-tracking.html # Attendance tracking</p>
+<p style="margin:8pt 0;line-height:1.4;">├── realtime-metrics.html  # Real-time metrics</p>
+<p style="margin:8pt 0;line-height:1.4;">├── reports.html           # Reports page</p>
+<p style="margin:8pt 0;line-height:1.4;">├── employees.html         # Employee management</p>
+<p style="margin:8pt 0;line-height:1.4;">├── departments.html       # Department management</p>
+<p style="margin:8pt 0;line-height:1.4;">├── forgot-password.html   # Password recovery</p>
+<p style="margin:8pt 0;line-height:1.4;">└── 404.html               # Error page</p>
+<p style="margin:8pt 0;line-height:1.4;"></code></pre></p>
+
+<h3 style="color:#004422;font-size:14pt;font-weight:bold;margin-top:10pt;margin-bottom:6pt;">Key Frontend Features</h3>
+
+<h4 style="color:#003311;font-size:12pt;font-weight:bold;margin-top:8pt;margin-bottom:5pt;">Admin Dashboard</h4>
+<ul style="margin:5pt 0;"><li style="margin:5pt 0 5pt 20pt;"><strong>Overview Statistics:</strong> Real-time employee count, present today, late arrivals, average shift</li>
+<li style="margin:5pt 0 5pt 20pt;"><strong>Activity Feed:</strong> Live attendance updates</li>
+<li style="margin:5pt 0 5pt 20pt;"><strong>Department Analytics:</strong> Visual charts showing department performance</li>
+<li style="margin:5pt 0 5pt 20pt;"><strong>Employee Management:</strong> Add, edit, delete employees</li>
+<li style="margin:5pt 0 5pt 20pt;"><strong>Department Management:</strong> Manage organizational structure</li>
+<p style="margin:8pt 0;line-height:1.4;"></ul></p>
+<h4 style="color:#003311;font-size:12pt;font-weight:bold;margin-top:8pt;margin-bottom:5pt;">Employee Dashboard</h4>
+<ul style="margin:5pt 0;"><li style="margin:5pt 0 5pt 20pt;"><strong>Personal Overview:</strong> Today's status, monthly statistics</li>
+<li style="margin:5pt 0 5pt 20pt;"><strong>Quick Actions:</strong> Check-in, check-out buttons</li>
+<li style="margin:5pt 0 5pt 20pt;"><strong>Profile Management:</strong> Edit personal information, upload photo</li>
+<li style="margin:5pt 0 5pt 20pt;"><strong>Attendance History:</strong> View personal attendance records</li>
+<li style="margin:5pt 0 5pt 20pt;"><strong>Communication:</strong> View announcements and notifications</li>
+<p style="margin:8pt 0;line-height:1.4;"></ul></p>
+<h4 style="color:#003311;font-size:12pt;font-weight:bold;margin-top:8pt;margin-bottom:5pt;">Styling</h4>
+<ul style="margin:5pt 0;"><li style="margin:5pt 0 5pt 20pt;"><strong>Tailwind CSS:</strong> Utility-first CSS framework</li>
+<li style="margin:5pt 0 5pt 20pt;"><strong>Custom Theme:</strong> MOHCC brand colors (green, gold, red)</li>
+<li style="margin:5pt 0 5pt 20pt;"><strong>Responsive Design:</strong> Mobile-friendly layouts</li>
+<li style="margin:5pt 0 5pt 20pt;"><strong>Lucide Icons:</strong> Consistent iconography throughout</li>
+<p style="margin:8pt 0;line-height:1.4;"></ul></p>
+<h4 style="color:#003311;font-size:12pt;font-weight:bold;margin-top:8pt;margin-bottom:5pt;">JavaScript Architecture</h4>
+<ul style="margin:5pt 0;"><li style="margin:5pt 0 5pt 20pt;"><strong>Fetch API:</strong> For API communication</li>
+<li style="margin:5pt 0 5pt 20pt;"><strong>Socket.io Client:</strong> For real-time updates</li>
+<li style="margin:5pt 0 5pt 20pt;"><strong>DOM Manipulation:</strong> Direct DOM updates for performance</li>
+<li style="margin:5pt 0 5pt 20pt;"><strong>Event Handling:</strong> User interaction management</li>
+<li style="margin:5pt 0 5pt 20pt;"><strong>Error Handling:</strong> Comprehensive error catching and user feedback</li>
+<p style="margin:8pt 0;line-height:1.4;"></ul></p>
+<hr style="border:1pt solid #ccc;margin:15pt 0;">
+
+<h2 style="color:#006633;font-size:18pt;font-weight:bold;margin-top:15pt;margin-bottom:8pt;">Backend Structure</h2>
+
+<h3 style="color:#004422;font-size:14pt;font-weight:bold;margin-top:10pt;margin-bottom:6pt;">Main Server File: server.ts</h3>
+
+<p style="margin:8pt 0;line-height:1.4;">The server is built using Express.js with TypeScript for type safety.</p>
+
+<h3 style="color:#004422;font-size:14pt;font-weight:bold;margin-top:10pt;margin-bottom:6pt;">Key Components</h3>
+
+<h4 style="color:#003311;font-size:12pt;font-weight:bold;margin-top:8pt;margin-bottom:5pt;">1. Database Connection</h4>
+<pre style="background:#f5f5f5;padding:10pt;border:1pt solid #ccc;font-family:Courier New;font-size:9pt;margin:10pt 0;"><code>const dbConfig = {
+<p style="margin:8pt 0;line-height:1.4;">  host: process.env.DB_HOST || 'localhost',</p>
+<p style="margin:8pt 0;line-height:1.4;">  port: parseInt(process.env.DB_PORT || '3306'),</p>
+<p style="margin:8pt 0;line-height:1.4;">  user: process.env.DB_USER || 'root',</p>
+<p style="margin:8pt 0;line-height:1.4;">  password: process.env.DB_PASSWORD || '',</p>
+<p style="margin:8pt 0;line-height:1.4;">  database: DB_NAME,</p>
+<p style="margin:8pt 0;line-height:1.4;">  waitForConnections: true,</p>
+<p style="margin:8pt 0;line-height:1.4;">  connectionLimit: 10,</p>
+<p style="margin:8pt 0;line-height:1.4;">  queueLimit: 0</p>
+<p style="margin:8pt 0;line-height:1.4;">};</p>
+
+<p style="margin:8pt 0;line-height:1.4;">let pool: mysql.Pool;</p>
+<p style="margin:8pt 0;line-height:1.4;">function createPool() {</p>
+<p style="margin:8pt 0;line-height:1.4;">  pool = mysql.createPool(dbConfig);</p>
+<p style="margin:8pt 0;line-height:1.4;">  return pool;</p>
+<p style="margin:8pt 0;line-height:1.4;">}</p>
+<p style="margin:8pt 0;line-height:1.4;"></code></pre></p>
+
+<h4 style="color:#003311;font-size:12pt;font-weight:bold;margin-top:8pt;margin-bottom:5pt;">2. Session Management</h4>
+<pre style="background:#f5f5f5;padding:10pt;border:1pt solid #ccc;font-family:Courier New;font-size:9pt;margin:10pt 0;"><code>app.use(session({
+<p style="margin:8pt 0;line-height:1.4;">  secret: process.env.JWT_SECRET || 'mohcc-zimbabwe-secret-key',</p>
+<p style="margin:8pt 0;line-height:1.4;">  resave: false,</p>
+<p style="margin:8pt 0;line-height:1.4;">  saveUninitialized: false,</p>
+<p style="margin:8pt 0;line-height:1.4;">  cookie: { </p>
+<p style="margin:8pt 0;line-height:1.4;">    secure: false,</p>
+<p style="margin:8pt 0;line-height:1.4;">    httpOnly: true,</p>
+<p style="margin:8pt 0;line-height:1.4;">    sameSite: 'lax',</p>
+<p style="margin:8pt 0;line-height:1.4;">    maxAge: 24 <em> 60 </em> 60 * 1000 </p>
+<p style="margin:8pt 0;line-height:1.4;">  }</p>
+<p style="margin:8pt 0;line-height:1.4;">}) as any);</p>
+<p style="margin:8pt 0;line-height:1.4;"></code></pre></p>
+
+<h4 style="color:#003311;font-size:12pt;font-weight:bold;margin-top:8pt;margin-bottom:5pt;">3. File Upload Handling</h4>
+<pre style="background:#f5f5f5;padding:10pt;border:1pt solid #ccc;font-family:Courier New;font-size:9pt;margin:10pt 0;"><code>const storage = multer.diskStorage({
+<p style="margin:8pt 0;line-height:1.4;">  destination: (req, file, cb) => {</p>
+<p style="margin:8pt 0;line-height:1.4;">    cb(null, uploadsDir);</p>
+<p style="margin:8pt 0;line-height:1.4;">  },</p>
+<p style="margin:8pt 0;line-height:1.4;">  filename: (req, file, cb) => {</p>
+<p style="margin:8pt 0;line-height:1.4;">    const uniqueSuffix = Date.now() + '-' + Math.round(Math.random() * 1E9);</p>
+<p style="margin:8pt 0;line-height:1.4;">    cb(null, 'profile-' + uniqueSuffix + path.extname(file.originalname));</p>
+<p style="margin:8pt 0;line-height:1.4;">  }</p>
+<p style="margin:8pt 0;line-height:1.4;">});</p>
+<p style="margin:8pt 0;line-height:1.4;"></code></pre></p>
+
+<h4 style="color:#003311;font-size:12pt;font-weight:bold;margin-top:8pt;margin-bottom:5pt;">4. WebSocket Integration</h4>
+<pre style="background:#f5f5f5;padding:10pt;border:1pt solid #ccc;font-family:Courier New;font-size:9pt;margin:10pt 0;"><code>const io = new Server(httpServer, {
+<p style="margin:8pt 0;line-height:1.4;">  cors: {</p>
+<p style="margin:8pt 0;line-height:1.4;">    origin: "*",</p>
+<p style="margin:8pt 0;line-height:1.4;">    methods: ["GET", "POST"]</p>
+<p style="margin:8pt 0;line-height:1.4;">  }</p>
+<p style="margin:8pt 0;line-height:1.4;">});</p>
+<p style="margin:8pt 0;line-height:1.4;"></code></pre></p>
+
+<h4 style="color:#003311;font-size:12pt;font-weight:bold;margin-top:8pt;margin-bottom:5pt;">5. Authentication Middleware</h4>
+<pre style="background:#f5f5f5;padding:10pt;border:1pt solid #ccc;font-family:Courier New;font-size:9pt;margin:10pt 0;"><code>function isAuthenticated(req: express.Request): req is express.Request & { session: { user: { id: number; name: string; role: string; department: string } } } {
+<p style="margin:8pt 0;line-height:1.4;">  return req.session.user !== undefined;</p>
+<p style="margin:8pt 0;line-height:1.4;">}</p>
+<p style="margin:8pt 0;line-height:1.4;"></code></pre></p>
+
+<h3 style="color:#004422;font-size:14pt;font-weight:bold;margin-top:10pt;margin-bottom:6pt;">API Route Organization</h3>
+
+<p style="margin:8pt 0;line-height:1.4;">Routes are organized by functionality:</p>
+
+<ul style="margin:5pt 0;"><li style="margin:5pt 0 5pt 20pt;"><strong>Authentication Routes:</strong> Login, logout, password recovery</li>
+<li style="margin:5pt 0 5pt 20pt;"><strong>User Management Routes:</strong> CRUD operations for users</li>
+<li style="margin:5pt 0 5pt 20pt;"><strong>Attendance Routes:</strong> Check-in, check-out, attendance records</li>
+<li style="margin:5pt 0 5pt 20pt;"><strong>Department Routes:</strong> Department and unit management</li>
+<li style="margin:5pt 0 5pt 20pt;"><strong>Statistics Routes:</strong> System and user statistics</li>
+<li style="margin:5pt 0 5pt 20pt;"><strong>Report Routes:</strong> Monthly reports and analytics</li>
+<li style="margin:5pt 0 5pt 20pt;"><strong>Leave Management Routes:</strong> Leave requests and approvals</li>
+<li style="margin:5pt 0 5pt 20pt;"><strong>Notification Routes:</strong> User notifications and announcements</li>
+<li style="margin:5pt 0 5pt 20pt;"><strong>File Upload Routes:</strong> Profile photo management</li>
+<p style="margin:8pt 0;line-height:1.4;"></ul></p>
+<h3 style="color:#004422;font-size:14pt;font-weight:bold;margin-top:10pt;margin-bottom:6pt;">Error Handling</h3>
+
+<p style="margin:8pt 0;line-height:1.4;">Global error handler provides consistent error responses:</p>
+
+<pre style="background:#f5f5f5;padding:10pt;border:1pt solid #ccc;font-family:Courier New;font-size:9pt;margin:10pt 0;"><code>app.use((err: any, req: express.Request, res: express.Response, next: express.NextFunction) => {
+<p style="margin:8pt 0;line-height:1.4;">  console.error('Global error handler caught:', {</p>
+<p style="margin:8pt 0;line-height:1.4;">    error: err,</p>
+<p style="margin:8pt 0;line-height:1.4;">    message: err?.message,</p>
+<p style="margin:8pt 0;line-height:1.4;">    path: req.path,</p>
+<p style="margin:8pt 0;line-height:1.4;">    method: req.method</p>
+<p style="margin:8pt 0;line-height:1.4;">  });</p>
+<p style="margin:8pt 0;line-height:1.4;">  </p>
+<p style="margin:8pt 0;line-height:1.4;">  if (req.path.startsWith('/api/')) {</p>
+<p style="margin:8pt 0;line-height:1.4;">    res.status(500).json({ error: 'Internal server error', message: err?.message || 'Unknown error' });</p>
+<p style="margin:8pt 0;line-height:1.4;">  } else {</p>
+<p style="margin:8pt 0;line-height:1.4;">    res.status(500).sendFile(path.join(__dirname, 'views', '404.html'));</p>
+<p style="margin:8pt 0;line-height:1.4;">  }</p>
+<p style="margin:8pt 0;line-height:1.4;">});</p>
+<p style="margin:8pt 0;line-height:1.4;"></code></pre></p>
+
+<hr style="border:1pt solid #ccc;margin:15pt 0;">
+
+<h2 style="color:#006633;font-size:18pt;font-weight:bold;margin-top:15pt;margin-bottom:8pt;">Real-time Features</h2>
+
+<h3 style="color:#004422;font-size:14pt;font-weight:bold;margin-top:10pt;margin-bottom:6pt;">Socket.io Implementation</h3>
+
+<p style="margin:8pt 0;line-height:1.4;">The application uses Socket.io for real-time communication between server and clients.</p>
+
+<h3 style="color:#004422;font-size:14pt;font-weight:bold;margin-top:10pt;margin-bottom:6pt;">Server-side Events</h3>
+
+<h4 style="color:#003311;font-size:12pt;font-weight:bold;margin-top:8pt;margin-bottom:5pt;">attendance_update</h4>
+<p style="margin:8pt 0;line-height:1.4;">Broadcasted when attendance is recorded.</p>
+
+<pre style="background:#f5f5f5;padding:10pt;border:1pt solid #ccc;font-family:Courier New;font-size:9pt;margin:10pt 0;"><code>io.emit('attendance_update', { stats });
+<p style="margin:8pt 0;line-height:1.4;"></code></pre></p>
+
+<h4 style="color:#003311;font-size:12pt;font-weight:bold;margin-top:8pt;margin-bottom:5pt;">new_manual_request</h4>
+<p style="margin:8pt 0;line-height:1.4;">Broadcasted when a manual clock request is submitted.</p>
+
+<pre style="background:#f5f5f5;padding:10pt;border:1pt solid #ccc;font-family:Courier New;font-size:9pt;margin:10pt 0;"><code>io.emit('new_manual_request', {
+<p style="margin:8pt 0;line-height:1.4;">  requestId,</p>
+<p style="margin:8pt 0;line-height:1.4;">  userId: req.session.user.id,</p>
+<p style="margin:8pt 0;line-height:1.4;">  userName: req.session.user.name,</p>
+<p style="margin:8pt 0;line-height:1.4;">  requestedTime: time,</p>
+<p style="margin:8pt 0;line-height:1.4;">  reason,</p>
+<p style="margin:8pt 0;line-height:1.4;">  timestamp: new Date().toISOString()</p>
+<p style="margin:8pt 0;line-height:1.4;">});</p>
+<p style="margin:8pt 0;line-height:1.4;"></code></pre></p>
+
+<h4 style="color:#003311;font-size:12pt;font-weight:bold;margin-top:8pt;margin-bottom:5pt;">new_leave_request</h4>
+<p style="margin:8pt 0;line-height:1.4;">Broadcasted when a leave request is submitted.</p>
+
+<pre style="background:#f5f5f5;padding:10pt;border:1pt solid #ccc;font-family:Courier New;font-size:9pt;margin:10pt 0;"><code>io.emit('new_leave_request', {
+<p style="margin:8pt 0;line-height:1.4;">  requestId,</p>
+<p style="margin:8pt 0;line-height:1.4;">  userId: req.session.user.id,</p>
+<p style="margin:8pt 0;line-height:1.4;">  userName: req.session.user.name,</p>
+<p style="margin:8pt 0;line-height:1.4;">  type,</p>
+<p style="margin:8pt 0;line-height:1.4;">  startDate,</p>
+<p style="margin:8pt 0;line-height:1.4;">  endDate,</p>
+<p style="margin:8pt 0;line-height:1.4;">  reason,</p>
+<p style="margin:8pt 0;line-height:1.4;">  timestamp: new Date().toISOString()</p>
+<p style="margin:8pt 0;line-height:1.4;">});</p>
+<p style="margin:8pt 0;line-height:1.4;"></code></pre></p>
+
+<h4 style="color:#003311;font-size:12pt;font-weight:bold;margin-top:8pt;margin-bottom:5pt;">leave_request_updated</h4>
+<p style="margin:8pt 0;line-height:1.4;">Broadcasted when a leave request status is updated.</p>
+
+<pre style="background:#f5f5f5;padding:10pt;border:1pt solid #ccc;font-family:Courier New;font-size:9pt;margin:10pt 0;"><code>io.emit('leave_request_updated', { id: req.params.id, status });
+<p style="margin:8pt 0;line-height:1.4;"></code></pre></p>
+
+<h4 style="color:#003311;font-size:12pt;font-weight:bold;margin-top:8pt;margin-bottom:5pt;">new_announcement</h4>
+<p style="margin:8pt 0;line-height:1.4;">Broadcasted when a new announcement is created.</p>
+
+<pre style="background:#f5f5f5;padding:10pt;border:1pt solid #ccc;font-family:Courier New;font-size:9pt;margin:10pt 0;"><code>io.emit('new_announcement', { title, message, department: request.department });
+<p style="margin:8pt 0;line-height:1.4;"></code></pre></p>
+
+<h4 style="color:#003311;font-size:12pt;font-weight:bold;margin-top:8pt;margin-bottom:5pt;">new_shift_swap_request</h4>
+<p style="margin:8pt 0;line-height:1.4;">Broadcasted when a shift swap request is submitted.</p>
+
+<pre style="background:#f5f5f5;padding:10pt;border:1pt solid #ccc;font-family:Courier New;font-size:9pt;margin:10pt 0;"><code>io.emit('new_shift_swap_request', {
+<p style="margin:8pt 0;line-height:1.4;">  requestId,</p>
+<p style="margin:8pt 0;line-height:1.4;">  userId: req.session.user.id,</p>
+<p style="margin:8pt 0;line-height:1.4;">  userName: req.session.user.name,</p>
+<p style="margin:8pt 0;line-height:1.4;">  currentShiftDate,</p>
+<p style="margin:8pt 0;line-height:1.4;">  preferredSwapDate,</p>
+<p style="margin:8pt 0;line-height:1.4;">  reason,</p>
+<p style="margin:8pt 0;line-height:1.4;">  timestamp: new Date().toISOString()</p>
+<p style="margin:8pt 0;line-height:1.4;">});</p>
+<p style="margin:8pt 0;line-height:1.4;"></code></pre></p>
+
+<h3 style="color:#004422;font-size:14pt;font-weight:bold;margin-top:10pt;margin-bottom:6pt;">Client-side Usage</h3>
+
+<p style="margin:8pt 0;line-height:1.4;">Clients can listen to these events:</p>
+
+<pre style="background:#f5f5f5;padding:10pt;border:1pt solid #ccc;font-family:Courier New;font-size:9pt;margin:10pt 0;"><code>const socket = io();
+
+<p style="margin:8pt 0;line-height:1.4;">socket.on('attendance_update', (data) => {</p>
+<p style="margin:8pt 0;line-height:1.4;">  console.log('Real-time update received:', data);</p>
+<p style="margin:8pt 0;line-height:1.4;">  // Update UI</p>
+<p style="margin:8pt 0;line-height:1.4;">});</p>
+
+<p style="margin:8pt 0;line-height:1.4;">socket.on('new_leave_request', (data) => {</p>
+<p style="margin:8pt 0;line-height:1.4;">  // Handle new leave request</p>
+<p style="margin:8pt 0;line-height:1.4;">});</p>
+<p style="margin:8pt 0;line-height:1.4;"></code></pre></p>
+
+<h3 style="color:#004422;font-size:14pt;font-weight:bold;margin-top:10pt;margin-bottom:6pt;">Benefits</h3>
+
+<ul style="margin:5pt 0;"><li style="margin:5pt 0 5pt 20pt;"><strong>Instant Updates:</strong> Dashboard statistics update immediately</li>
+<li style="margin:5pt 0 5pt 20pt;"><strong>Live Activity Feed:</strong> Real-time attendance feed</li>
+<li style="margin:5pt 0 5pt 20pt;"><strong>Notification System:</strong> Instant notification delivery</li>
+<li style="margin:5pt 0 5pt 20pt;"><strong>Collaborative Features:</strong> Real-time request management</li>
+<p style="margin:8pt 0;line-height:1.4;"></ul></p>
+<hr style="border:1pt solid #ccc;margin:15pt 0;">
+
+<h2 style="color:#006633;font-size:18pt;font-weight:bold;margin-top:15pt;margin-bottom:8pt;">File Upload System</h2>
+
+<h3 style="color:#004422;font-size:14pt;font-weight:bold;margin-top:10pt;margin-bottom:6pt;">Overview</h3>
+
+<p style="margin:8pt 0;line-height:1.4;">The application supports profile photo uploads using Multer middleware.</p>
+
+<h3 style="color:#004422;font-size:14pt;font-weight:bold;margin-top:10pt;margin-bottom:6pt;">Configuration</h3>
+
+<strong>Upload Directory:</strong> <code style="background:#f5f5f5;padding:2pt 4pt;font-family:Courier New;font-size:9pt;">public/uploads/</code>
+<strong>Maximum File Size:</strong> 5MB
+<strong>Allowed Types:</strong> JPEG, PNG, GIF, WebP
+
+<h3 style="color:#004422;font-size:14pt;font-weight:bold;margin-top:10pt;margin-bottom:6pt;">Upload Process</h3>
+
+<li style="margin:5pt 0 5pt 20pt;"><strong>File Selection:</strong> User selects file from device</li>
+<li style="margin:5pt 0 5pt 20pt;"><strong>Validation:</strong> Server validates file type and size</li>
+<li style="margin:5pt 0 5pt 20pt;"><strong>Storage:</strong> File saved to uploads directory with unique name</li>
+<li style="margin:5pt 0 5pt 20pt;"><strong>Database Update:</strong> File path stored in users table</li>
+<li style="margin:5pt 0 5pt 20pt;"><strong>Cleanup:</strong> Failed uploads are automatically cleaned up</li>
+
+<h3 style="color:#004422;font-size:14pt;font-weight:bold;margin-top:10pt;margin-bottom:6pt;">API Endpoint</h3>
+
+<strong>POST /api/user/photo</strong>
+
+<strong>Request:</strong> multipart/form-data
+<ul style="margin:5pt 0;"><li style="margin:5pt 0 5pt 20pt;">Field name: <code style="background:#f5f5f5;padding:2pt 4pt;font-family:Courier New;font-size:9pt;">photo</code></li>
+<li style="margin:5pt 0 5pt 20pt;">File type: image/jpeg, image/png, image/gif, image/webp</li>
+<p style="margin:8pt 0;line-height:1.4;"></ul></p>
+<strong>Response:</strong>
+<pre style="background:#f5f5f5;padding:10pt;border:1pt solid #ccc;font-family:Courier New;font-size:9pt;margin:10pt 0;"><code>{
+<p style="margin:8pt 0;line-height:1.4;">  "success": true,</p>
+<p style="margin:8pt 0;line-height:1.4;">  "photoUrl": "/uploads/profile-1234567890-123456789.jpg"</p>
+<p style="margin:8pt 0;line-height:1.4;">}</p>
+<p style="margin:8pt 0;line-height:1.4;"></code></pre></p>
+
+<h3 style="color:#004422;font-size:14pt;font-weight:bold;margin-top:10pt;margin-bottom:6pt;">Error Handling</h3>
+
+<ul style="margin:5pt 0;"><li style="margin:5pt 0 5pt 20pt;"><strong>File Size Exceeded:</strong> Returns 400 error with message</li>
+<li style="margin:5pt 0 5pt 20pt;"><strong>Invalid File Type:</strong> Returns 400 error with message</li>
+<li style="margin:5pt 0 5pt 20pt;"><strong>Database Error:</strong> File is cleaned up if database update fails</li>
+<li style="margin:5pt 0 5pt 20pt;"><strong>File System Error:</strong> Comprehensive error logging</li>
+<p style="margin:8pt 0;line-height:1.4;"></ul></p>
+<h3 style="color:#004422;font-size:14pt;font-weight:bold;margin-top:10pt;margin-bottom:6pt;">Security Considerations</h3>
+
+<ul style="margin:5pt 0;"><li style="margin:5pt 0 5pt 20pt;"><strong>File Type Validation:</strong> MIME type checking before upload</li>
+<li style="margin:5pt 0 5pt 20pt;"><strong>Size Limits:</strong> Prevents denial of service via large files</li>
+<li style="margin:5pt 0 5pt 20pt;"><strong>Unique Filenames:</strong> Prevents filename conflicts</li>
+<li style="margin:5pt 0 5pt 20pt;"><strong>Path Validation:</strong> Ensures files are stored in correct directory</li>
+<li style="margin:5pt 0 5pt 20pt;"><strong>Cleanup on Error:</strong> Removes files if upload process fails</li>
+<p style="margin:8pt 0;line-height:1.4;"></ul></p>
+<h3 style="color:#004422;font-size:14pt;font-weight:bold;margin-top:10pt;margin-bottom:6pt;">Retrieval</h3>
+
+<strong>GET /api/user/photo</strong>
+
+<p style="margin:8pt 0;line-height:1.4;">Returns the user's profile photo or a default SVG placeholder if no photo is uploaded.</p>
+
+<hr style="border:1pt solid #ccc;margin:15pt 0;">
+
+<h2 style="color:#006633;font-size:18pt;font-weight:bold;margin-top:15pt;margin-bottom:8pt;">Troubleshooting</h2>
+
+<h3 style="color:#004422;font-size:14pt;font-weight:bold;margin-top:10pt;margin-bottom:6pt;">Common Issues</h3>
+
+<h4 style="color:#003311;font-size:12pt;font-weight:bold;margin-top:8pt;margin-bottom:5pt;">1. Database Connection Failed</h4>
+
+<strong>Symptoms:</strong>
+<ul style="margin:5pt 0;"><li style="margin:5pt 0 5pt 20pt;">Server fails to start</li>
+<li style="margin:5pt 0 5pt 20pt;">"Database not connected" errors</li>
+<p style="margin:8pt 0;line-height:1.4;"></ul></p>
+<strong>Solutions:</strong>
+<ul style="margin:5pt 0;"><li style="margin:5pt 0 5pt 20pt;">Verify MySQL is running</li>
+<li style="margin:5pt 0 5pt 20pt;">Check database credentials in <code style="background:#f5f5f5;padding:2pt 4pt;font-family:Courier New;font-size:9pt;">.env</code> file</li>
+<li style="margin:5pt 0 5pt 20pt;">Ensure database <code style="background:#f5f5f5;padding:2pt 4pt;font-family:Courier New;font-size:9pt;">attendance_db</code> exists</li>
+<li style="margin:5pt 0 5pt 20pt;">Check firewall settings</li>
+<p style="margin:8pt 0;line-height:1.4;"></ul></p>
+<h4 style="color:#003311;font-size:12pt;font-weight:bold;margin-top:8pt;margin-bottom:5pt;">2. Session Not Persisting</h4>
+
+<strong>Symptoms:</strong>
+<ul style="margin:5pt 0;"><li style="margin:5pt 0 5pt 20pt;">User logged out immediately after login</li>
+<li style="margin:5pt 0 5pt 20pt;">Session data not available</li>
+<p style="margin:8pt 0;line-height:1.4;"></ul></p>
+<strong>Solutions:</strong>
+<ul style="margin:5pt 0;"><li style="margin:5pt 0 5pt 20pt;">Check JWT_SECRET in <code style="background:#f5f5f5;padding:2pt 4pt;font-family:Courier New;font-size:9pt;">.env</code> file</li>
+<li style="margin:5pt 0 5pt 20pt;">Verify session cookie settings</li>
+<li style="margin:5pt 0 5pt 20pt;">Clear browser cookies</li>
+<li style="margin:5pt 0 5pt 20pt;">Check browser console for errors</li>
+<p style="margin:8pt 0;line-height:1.4;"></ul></p>
+<h4 style="color:#003311;font-size:12pt;font-weight:bold;margin-top:8pt;margin-bottom:5pt;">3. File Upload Fails</h4>
+
+<strong>Symptoms:</strong>
+<ul style="margin:5pt 0;"><li style="margin:5pt 0 5pt 20pt;">Photo upload returns error</li>
+<li style="margin:5pt 0 5pt 20pt;">File not saved</li>
+<p style="margin:8pt 0;line-height:1.4;"></ul></p>
+<strong>Solutions:</strong>
+<ul style="margin:5pt 0;"><li style="margin:5pt 0 5pt 20pt;">Verify <code style="background:#f5f5f5;padding:2pt 4pt;font-family:Courier New;font-size:9pt;">public/uploads/</code> directory exists and is writable</li>
+<li style="margin:5pt 0 5pt 20pt;">Check file size (max 5MB)</li>
+<li style="margin:5pt 0 5pt 20pt;">Verify file type (JPEG, PNG, GIF, WebP only)</li>
+<li style="margin:5pt 0 5pt 20pt;">Check server logs for detailed error</li>
+<p style="margin:8pt 0;line-height:1.4;"></ul></p>
+<h4 style="color:#003311;font-size:12pt;font-weight:bold;margin-top:8pt;margin-bottom:5pt;">4. Real-time Updates Not Working</h4>
+
+<strong>Symptoms:</strong>
+<ul style="margin:5pt 0;"><li style="margin:5pt 0 5pt 20pt;">Dashboard not updating live</li>
+<li style="margin:5pt 0 5pt 20pt;">Socket.io connection errors</li>
+<p style="margin:8pt 0;line-height:1.4;"></ul></p>
+<strong>Solutions:</strong>
+<ul style="margin:5pt 0;"><li style="margin:5pt 0 5pt 20pt;">Verify Socket.io client is loaded</li>
+<li style="margin:5pt 0 5pt 20pt;">Check browser console for WebSocket errors</li>
+<li style="margin:5pt 0 5pt 20pt;">Verify CORS settings in server</li>
+<li style="margin:5pt 0 5pt 20pt;">Check if client is listening to correct events</li>
+<p style="margin:8pt 0;line-height:1.4;"></ul></p>
+<h4 style="color:#003311;font-size:12pt;font-weight:bold;margin-top:8pt;margin-bottom:5pt;">5. Port Already in Use</h4>
+
+<strong>Symptoms:</strong>
+<ul style="margin:5pt 0;"><li style="margin:5pt 0 5pt 20pt;">Server fails to start with "EADDRINUSE" error</li>
+<p style="margin:8pt 0;line-height:1.4;"></ul></p>
+<strong>Solutions:</strong>
+<ul style="margin:5pt 0;"><li style="margin:5pt 0 5pt 20pt;">Change PORT in <code style="background:#f5f5f5;padding:2pt 4pt;font-family:Courier New;font-size:9pt;">server.ts</code></li>
+<li style="margin:5pt 0 5pt 20pt;">Kill process using port 61460</li>
+<li style="margin:5pt 0 5pt 20pt;">Use different port in <code style="background:#f5f5f5;padding:2pt 4pt;font-family:Courier New;font-size:9pt;">.env</code> file</li>
+<p style="margin:8pt 0;line-height:1.4;"></ul></p>
+<h4 style="color:#003311;font-size:12pt;font-weight:bold;margin-top:8pt;margin-bottom:5pt;">6. EC Number Validation Fails</h4>
+
+<strong>Symptoms:</strong>
+<ul style="margin:5pt 0;"><li style="margin:5pt 0 5pt 20pt;">Employee creation fails with format error</li>
+<p style="margin:8pt 0;line-height:1.4;"></ul></p>
+<strong>Solutions:</strong>
+<ul style="margin:5pt 0;"><li style="margin:5pt 0 5pt 20pt;">Ensure EC number follows format: 6 digits + 1 letter + 2 digits</li>
+<li style="margin:5pt 0 5pt 20pt;">Example: 277739H78</li>
+<li style="margin:5pt 0 5pt 20pt;">Letter must be uppercase</li>
+<p style="margin:8pt 0;line-height:1.4;"></ul></p>
+<h4 style="color:#003311;font-size:12pt;font-weight:bold;margin-top:8pt;margin-bottom:5pt;">7. Attendance Hours Calculation Incorrect</h4>
+
+<strong>Symptoms:</strong>
+<ul style="margin:5pt 0;"><li style="margin:5pt 0 5pt 20pt;">Hours worked showing wrong values</li>
+<li style="margin:5pt 0 5pt 20pt;">Check-out before check-in errors</li>
+<p style="margin:8pt 0;line-height:1.4;"></ul></p>
+<strong>Solutions:</strong>
+<ul style="margin:5pt 0;"><li style="margin:5pt 0 5pt 20pt;">System validates timestamps automatically</li>
+<li style="margin:5pt 0 5pt 20pt;">Check database for corrupted records</li>
+<li style="margin:5pt 0 5pt 20pt;">Verify timezone settings</li>
+<li style="margin:5pt 0 5pt 20pt;">Check system clock accuracy</li>
+<p style="margin:8pt 0;line-height:1.4;"></ul></p>
+<h3 style="color:#004422;font-size:14pt;font-weight:bold;margin-top:10pt;margin-bottom:6pt;">Logging</h3>
+
+<p style="margin:8pt 0;line-height:1.4;">The application uses Morgan for HTTP logging and console.log for application logging.</p>
+
+<strong>View Logs:</strong>
+<ul style="margin:5pt 0;"><li style="margin:5pt 0 5pt 20pt;">Server terminal output</li>
+<li style="margin:5pt 0 5pt 20pt;">Browser console (F12)</li>
+<li style="margin:5pt 0 5pt 20pt;">Database error logs (if configured)</li>
+<p style="margin:8pt 0;line-height:1.4;"></ul></p>
+<h3 style="color:#004422;font-size:14pt;font-weight:bold;margin-top:10pt;margin-bottom:6pt;">Debug Mode</h3>
+
+<p style="margin:8pt 0;line-height:1.4;">Enable detailed logging by modifying server configuration:</p>
+
+<pre style="background:#f5f5f5;padding:10pt;border:1pt solid #ccc;font-family:Courier New;font-size:9pt;margin:10pt 0;"><code>app.use(morgan('dev') as any);
+<p style="margin:8pt 0;line-height:1.4;"></code></pre></p>
+
+<h3 style="color:#004422;font-size:14pt;font-weight:bold;margin-top:10pt;margin-bottom:6pt;">Performance Issues</h3>
+
+<strong>Symptoms:</strong>
+<ul style="margin:5pt 0;"><li style="margin:5pt 0 5pt 20pt;">Slow page loads</li>
+<li style="margin:5pt 0 5pt 20pt;">Delayed API responses</li>
+<p style="margin:8pt 0;line-height:1.4;"></ul></p>
+<strong>Solutions:</strong>
+<ul style="margin:5pt 0;"><li style="margin:5pt 0 5pt 20pt;">Check database connection pool settings</li>
+<li style="margin:5pt 0 5pt 20pt;">Optimize database queries</li>
+<li style="margin:5pt 0 5pt 20pt;">Enable database indexing</li>
+<li style="margin:5pt 0 5pt 20pt;">Check server resources (CPU, memory)</li>
+<li style="margin:5pt 0 5pt 20pt;">Clear browser cache</li>
+<p style="margin:8pt 0;line-height:1.4;"></ul></p>
+<h3 style="color:#004422;font-size:14pt;font-weight:bold;margin-top:10pt;margin-bottom:6pt;">Browser Compatibility</h3>
+
+<strong>Supported Browsers:</strong>
+<ul style="margin:5pt 0;"><li style="margin:5pt 0 5pt 20pt;">Chrome (latest)</li>
+<li style="margin:5pt 0 5pt 20pt;">Firefox (latest)</li>
+<li style="margin:5pt 0 5pt 20pt;">Safari (latest)</li>
+<li style="margin:5pt 0 5pt 20pt;">Edge (latest)</li>
+<p style="margin:8pt 0;line-height:1.4;"></ul></p>
+<strong>Required Features:</strong>
+<ul style="margin:5pt 0;"><li style="margin:5pt 0 5pt 20pt;">JavaScript enabled</li>
+<li style="margin:5pt 0 5pt 20pt;">Cookies enabled</li>
+<li style="margin:5pt 0 5pt 20pt;">WebSocket support</li>
+<li style="margin:5pt 0 5pt 20pt;">File API support</li>
+<p style="margin:8pt 0;line-height:1.4;"></ul></p>
+<hr style="border:1pt solid #ccc;margin:15pt 0;">
+
+<h2 style="color:#006633;font-size:18pt;font-weight:bold;margin-top:15pt;margin-bottom:8pt;">Appendix</h2>
+
+<h3 style="color:#004422;font-size:14pt;font-weight:bold;margin-top:10pt;margin-bottom:6pt;">Default Credentials</h3>
+
+<strong>Admin Account:</strong>
+<ul style="margin:5pt 0;"><li style="margin:5pt 0 5pt 20pt;">Email: admin@mohcc.gov.zw</li>
+<li style="margin:5pt 0 5pt 20pt;">Password: admin123</li>
+<li style="margin:5pt 0 5pt 20pt;">Role: admin</li>
+<p style="margin:8pt 0;line-height:1.4;"></ul></p>
+<strong>Employee Account:</strong>
+<ul style="margin:5pt 0;"><li style="margin:5pt 0 5pt 20pt;">Email: murambwa@mohcc.gov.zw</li>
+<li style="margin:5pt 0 5pt 20pt;">Password: emp123</li>
+<li style="margin:5pt 0 5pt 20pt;">Role: employee</li>
+<p style="margin:8pt 0;line-height:1.4;"></ul></p>
+<strong>Important:</strong> Change these passwords immediately after first login.
+
+<h3 style="color:#004422;font-size:14pt;font-weight:bold;margin-top:10pt;margin-bottom:6pt;">EC Number Format</h3>
+
+<p style="margin:8pt 0;line-height:1.4;">EC numbers must follow the format: <code style="background:#f5f5f5;padding:2pt 4pt;font-family:Courier New;font-size:9pt;">XXXXXXXYY</code></p>
+
+<ul style="margin:5pt 0;"><li style="margin:5pt 0 5pt 20pt;">X: 6 digits (0-9)</li>
+<li style="margin:5pt 0 5pt 20pt;">Y: 1 uppercase letter (A-Z)</li>
+<li style="margin:5pt 0 5pt 20pt;">YY: 2 digits (0-9)</li>
+<p style="margin:8pt 0;line-height:1.4;"></ul></p>
+<p style="margin:8pt 0;line-height:1.4;">Example: 277739H78</p>
+
+<h3 style="color:#004422;font-size:14pt;font-weight:bold;margin-top:10pt;margin-bottom:6pt;">Late Arrival Threshold</h3>
+
+<p style="margin:8pt 0;line-height:1.4;">The default late arrival threshold is set to 8:30 AM. Employees checking in after this time are marked as late.</p>
+
+<p style="margin:8pt 0;line-height:1.4;">This can be modified in the server code:</p>
+
+<pre style="background:#f5f5f5;padding:10pt;border:1pt solid #ccc;font-family:Courier New;font-size:9pt;margin:10pt 0;"><code>const LATE_TIME = '08:30:00';
+<p style="margin:8pt 0;line-height:1.4;"></code></pre></p>
+
+<h3 style="color:#004422;font-size:14pt;font-weight:bold;margin-top:10pt;margin-bottom:6pt;">Working Days</h3>
+
+<p style="margin:8pt 0;line-height:1.4;">The system assumes 22 working days per month for attendance rate calculations.</p>
+
+<h3 style="color:#004422;font-size:14pt;font-weight:bold;margin-top:10pt;margin-bottom:6pt;">Support</h3>
+
+<p style="margin:8pt 0;line-height:1.4;">For technical support or issues, contact:</p>
+<ul style="margin:5pt 0;"><li style="margin:5pt 0 5pt 20pt;">Ministry of Health and Child Care Zimbabwe IT Department</li>
+<li style="margin:5pt 0 5pt 20pt;">Email: support@mohcc.gov.zw</li>
+<p style="margin:8pt 0;line-height:1.4;"></ul></p>
+<hr style="border:1pt solid #ccc;margin:15pt 0;">
+
+<h2 style="color:#006633;font-size:18pt;font-weight:bold;margin-top:15pt;margin-bottom:8pt;">Version History</h2>
+
+<table style="border-collapse:collapse;width:100%;margin:10pt 0;"><tr><td style="border:1pt solid #000;padding:5pt;">Version</td><td style="border:1pt solid #000;padding:5pt;">Date</td><td style="border:1pt solid #000;padding:5pt;">Changes</td></tr>
+<p style="margin:8pt 0;line-height:1.4;"></table></p>
+<table style="border-collapse:collapse;width:100%;margin:10pt 0;"><tr><td style="border:1pt solid #000;padding:5pt;">1.0.0</td><td style="border:1pt solid #000;padding:5pt;">2024</td><td style="border:1pt solid #000;padding:5pt;">Initial release</td></tr>
+<p style="margin:8pt 0;line-height:1.4;"></table></p>
+<hr style="border:1pt solid #ccc;margin:15pt 0;">
+
+<h2 style="color:#006633;font-size:18pt;font-weight:bold;margin-top:15pt;margin-bottom:8pt;">License</h2>
+
+<p style="margin:8pt 0;line-height:1.4;">This application is proprietary software developed for the Ministry of Health and Child Care Zimbabwe. All rights reserved.</p>
+
+<hr style="border:1pt solid #ccc;margin:15pt 0;">
+
+<strong>Document Version:</strong> 1.0  
+<strong>Last Updated:</strong> January 2024  
+<strong>Application Version:</strong> 0.0.0
+
+</body>
+</html>

@@ -1,0 +1,8 @@
+{
+  "name": "mohcc-attendance-frontend",
+  "private": true,
+  "version": "0.0.0",
+  "scripts": {
+    "dev": "cd ../backend && npm run dev"
+  }
+}

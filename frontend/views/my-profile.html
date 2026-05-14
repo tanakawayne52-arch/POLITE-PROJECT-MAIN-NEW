@@ -1,0 +1,860 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Profile | MOHCC Zimbabwe</title>
+    <link rel="icon" href="/logo.png" type="image/png">
+    <script src="https://unpkg.com/@tailwindcss/browser@4"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <link rel="stylesheet" href="/css/style.css">
+    <style>
+        :root {
+            --color-moh-green: #00843D;
+            --color-moh-gold: #FFD200;
+            --color-moh-red: #D40000;
+            --color-moh-bg: #f0faf5;
+            --color-moh-sidebar: #064e3b;
+            --color-moh-border: #E2E8F0;
+            --color-moh-text-main: #1A1A1A;
+            --color-moh-text-sub: #64748B;
+        }
+        .bento-card {
+            background-color: white;
+            border-radius: 1.5rem;
+            border: 1px solid var(--color-moh-border);
+            padding: 1.5rem;
+            box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+            transition: all 0.2s ease-in-out;
+        }
+        .bento-card:hover {
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+        }
+        .bg-moh-green { background-color: var(--color-moh-green); }
+        .bg-moh-gold { background-color: var(--color-moh-gold); }
+        .bg-moh-red { background-color: var(--color-moh-red); }
+        .bg-moh-bg { background-color: var(--color-moh-bg); }
+        .bg-moh-sidebar { background-color: var(--color-moh-sidebar); }
+        .border-moh-border { border-color: var(--color-moh-border); }
+        .text-moh-green { color: var(--color-moh-green); }
+        .text-moh-gold { color: var(--color-moh-gold); }
+        .text-moh-red { color: var(--color-moh-red); }
+        .text-moh-text-main { color: var(--color-moh-text-main); }
+        .text-moh-text-sub { color: var(--color-moh-text-sub); }
+    </style>
+</head>
+<body class="bg-moh-bg min-h-screen flex">
+    <!-- Sidebar -->
+    <aside class="w-64 bg-moh-sidebar text-white flex flex-col sticky top-0 h-screen hidden lg:flex">
+        <div class="p-6 border-b border-emerald-900">
+            <div class="flex items-center gap-3">
+                <img src="/logo.png" alt="MOHCC Logo" class="w-10 h-10 object-contain">
+                <div>
+                    <h1 class="font-bold text-white text-sm leading-none">MOHCC Zimbabwe</h1>
+                    <p class="text-[10px] text-moh-gold uppercase tracking-widest mt-1">Employee Portal</p>
+                </div>
+            </div>
+        </div>
+        
+        <nav class="flex-1 p-4 space-y-2 overflow-y-auto">
+            <!-- Main Navigation -->
+            <a href="/employee-dashboard" id="navOverview" class="w-full flex items-center gap-3 px-4 py-3 text-green-100 hover:bg-white/10 hover:text-white rounded-xl font-medium transition-all">
+                <i data-lucide="layout-dashboard" class="w-5 h-5"></i>
+                <span>My Dashboard</span>
+            </a>
+            
+            <!-- Personal Section -->
+            <div class="pt-2 pb-1">
+                <p class="text-xs text-emerald-400 uppercase tracking-widest px-4 font-semibold">Personal</p>
+            </div>
+            <a href="/my-profile" id="navProfile" class="w-full flex items-center gap-3 px-4 py-3 bg-moh-green text-white rounded-xl font-medium transition-all">
+                <i data-lucide="user" class="w-5 h-5"></i>
+                <span>My Profile</span>
+            </a>
+            <a href="/my-attendance" id="navAttendance" class="w-full flex items-center gap-3 px-4 py-3 text-green-100 hover:bg-white/10 hover:text-white rounded-xl font-medium transition-all">
+                <i data-lucide="clock" class="w-5 h-5"></i>
+                <span>My Attendance</span>
+            </a>
+            <a href="/communication" id="navCommunication" class="w-full flex items-center gap-3 px-4 py-3 text-green-100 hover:bg-white/10 hover:text-white rounded-xl font-medium transition-all">
+                <i data-lucide="message-square" class="w-5 h-5"></i>
+                <span>Communication</span>
+            </a>
+        </nav>
+
+        <div class="p-4 border-t border-emerald-900">
+            <div class="p-3 bg-white/10 rounded-xl mb-3">
+                <p class="text-xs text-moh-gold font-bold" id="employeeName">Loading...</p>
+                <p class="text-[10px] text-green-200" id="employeeId">Loading...</p>
+                <p class="text-[10px] text-green-200" id="employeeDept">Loading...</p>
+            </div>
+            <button id="logoutBtn" class="w-full flex items-center gap-3 px-4 py-3 text-green-200 hover:text-red-300 transition-all font-medium">
+                <i data-lucide="log-out" class="w-5 h-5"></i>
+                <span>Logout</span>
+            </button>
+        </div>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="flex-1 lg:ml-0">
+        <!-- Mobile Header -->
+        <div class="bg-white border-b border-moh-border px-4 py-3 lg:hidden">
+            <div class="flex items-center justify-between">
+                <div class="flex items-center gap-3">
+                    <img src="/logo.png" alt="MOHCC Logo" class="w-8 h-8 object-contain">
+                    <h1 class="font-bold text-moh-text-main">My Profile</h1>
+                </div>
+                <button class="p-2 text-gray-600">
+                    <i data-lucide="menu" class="w-5 h-5"></i>
+                </button>
+            </div>
+        </div>
+
+        <!-- Page Content -->
+        <div class="p-4 lg:p-8">
+            <div class="max-w-4xl mx-auto">
+                <!-- Header -->
+                <div class="mb-8">
+                    <h1 class="text-2xl font-bold text-moh-text-main mb-2">My Profile</h1>
+                    <p class="text-moh-text-sub">Manage your personal information and account settings</p>
+                </div>
+
+                <!-- Profile Card -->
+                <div class="bento-card mb-6">
+                    <div class="flex flex-col lg:flex-row gap-6">
+                        <!-- Avatar Section -->
+                        <div class="flex-shrink-0 flex flex-col items-center">
+                            <div class="w-32 h-32 bg-moh-green rounded-full flex items-center justify-center overflow-hidden" id="profilePhotoContainer">
+                                <i data-lucide="user" class="w-16 h-16 text-white" id="profilePhotoIcon"></i>
+                                <img id="profilePhotoImage" src="" alt="Profile Photo" class="w-full h-full object-cover hidden">
+                            </div>
+                            <input type="file" id="profilePhotoInput" accept="image/*" class="hidden">
+                            <button id="changePhotoBtn" class="mt-4 px-6 py-2 text-sm text-moh-green hover:text-moh-green/80 font-medium border border-moh-green rounded-xl transition-all">
+                                Change Photo
+                            </button>
+                        </div>
+
+                        <!-- Profile Information -->
+                        <div class="flex-1 space-y-6">
+                            <!-- Personal Information -->
+                            <div>
+                                <div class="flex justify-between items-center mb-4">
+                                    <h2 class="text-xl font-bold text-moh-text-main">Personal Information</h2>
+                                    <button id="editPersonalInfoBtn" class="px-4 py-2 text-sm text-moh-green hover:text-moh-green/80 font-medium border border-moh-green rounded-xl transition-all">
+                                        <i data-lucide="edit-2" class="w-4 h-4 inline mr-1"></i>
+                                        Edit
+                                    </button>
+                                </div>
+                                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                                    <div>
+                                        <label class="block text-xs font-bold text-gray-500 uppercase tracking-widest mb-2">Full Name</label>
+                                        <input type="text" id="fullNameInput" value="" class="w-full px-4 py-3 rounded-xl border border-gray-200 bg-gray-50 focus:ring-2 focus:ring-moh-green outline-none transition-all" readonly>
+                                    </div>
+                                    <div>
+                                        <label class="block text-xs font-bold text-gray-500 uppercase tracking-widest mb-2">EC Number</label>
+                                        <input type="text" id="ecNumberInput" value="" class="w-full px-4 py-3 rounded-xl border border-gray-200 bg-gray-50 focus:ring-2 focus:ring-moh-green outline-none transition-all" readonly>
+                                    </div>
+                                    <div>
+                                        <label class="block text-xs font-bold text-gray-500 uppercase tracking-widest mb-2">Work Email</label>
+                                        <input type="email" id="emailInput" value="" class="w-full px-4 py-3 rounded-xl border border-gray-200 bg-gray-50 focus:ring-2 focus:ring-moh-green outline-none transition-all" readonly>
+                                    </div>
+                                    <div>
+                                        <label class="block text-xs font-bold text-gray-500 uppercase tracking-widest mb-2">Status</label>
+                                        <div class="flex items-center gap-2">
+                                            <span class="px-3 py-1 bg-green-100 text-green-800 rounded-full text-xs font-medium">Active</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div id="savePersonalInfoSection" class="hidden mt-4">
+                                    <button id="savePersonalInfoBtn" class="px-4 py-2 bg-moh-green text-white font-medium rounded-xl hover:bg-emerald-800 transition-all">
+                                        Save Changes
+                                    </button>
+                                    <button id="cancelPersonalInfoBtn" class="px-4 py-2 border border-moh-border font-medium rounded-xl hover:bg-gray-50 transition-all ml-2">
+                                        Cancel
+                                    </button>
+                                </div>
+                            </div>
+
+                            <!-- Department & Position -->
+                            <div class="border-t border-moh-border pt-6">
+                                <h3 class="text-lg font-bold text-moh-text-main mb-4">Work Details</h3>
+                                <div class="space-y-4">
+                                    <div>
+                                        <label class="block text-xs font-bold text-gray-500 uppercase tracking-widest mb-2">Department / Directorate</label>
+                                        <select id="departmentSelect" class="w-full px-4 py-3 rounded-xl border border-gray-200 focus:ring-2 focus:ring-moh-green outline-none transition-all">
+                                            <option value="">Select Department</option>
+                                        </select>
+                                    </div>
+                                    <div>
+                                        <label class="block text-xs font-bold text-gray-500 uppercase tracking-widest mb-2">Position / Job Title</label>
+                                        <select id="positionSelect" class="w-full px-4 py-3 rounded-xl border border-gray-200 focus:ring-2 focus:ring-moh-green outline-none transition-all">
+                                            <option value="">Loading positions...</option>
+                                        </select>
+                                    </div>
+                                    <div>
+                                        <button id="saveDepartmentBtn" class="w-full px-4 py-3 bg-moh-green hover:bg-emerald-800 text-white font-medium rounded-xl transition-colors">
+                                            Save Work Details
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Account Settings Card -->
+                <div class="bento-card mb-6">
+                    <h2 class="text-xl font-bold text-moh-text-main mb-6">Account Settings</h2>
+                    <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                        <!-- Password Change Section -->
+                        <div class="border border-moh-border rounded-xl p-6">
+                            <h3 class="font-medium text-moh-text-main mb-4 flex items-center gap-2">
+                                <i data-lucide="lock" class="w-5 h-5"></i>
+                                Password Security
+                            </h3>
+                            <div class="space-y-4">
+                                <div>
+                                    <label class="block text-xs font-bold text-gray-500 uppercase tracking-widest mb-2">Current Password</label>
+                                    <input type="password" id="currentPassword" class="w-full px-4 py-3 rounded-xl border border-gray-200 focus:ring-2 focus:ring-moh-green outline-none transition-all" placeholder="Enter current password">
+                                </div>
+                                <div>
+                                    <label class="block text-xs font-bold text-gray-500 uppercase tracking-widest mb-2">New Password</label>
+                                    <input type="password" id="newPassword" class="w-full px-4 py-3 rounded-xl border border-gray-200 focus:ring-2 focus:ring-moh-green outline-none transition-all" placeholder="Enter new password">
+                                </div>
+                                <div>
+                                    <label class="block text-xs font-bold text-gray-500 uppercase tracking-widest mb-2">Confirm New Password</label>
+                                    <input type="password" id="confirmPassword" class="w-full px-4 py-3 rounded-xl border border-gray-200 focus:ring-2 focus:ring-moh-green outline-none transition-all" placeholder="Confirm new password">
+                                </div>
+                                <button id="changePasswordBtn" class="w-full px-4 py-3 bg-moh-green hover:bg-emerald-800 text-white font-medium rounded-xl transition-colors">
+                                    Update Password
+                                </button>
+                            </div>
+                        </div>
+
+                        <!-- Security Question Section -->
+                        <div class="border border-moh-border rounded-xl p-6">
+                            <h3 class="font-medium text-moh-text-main mb-4 flex items-center gap-2">
+                                <i data-lucide="shield-question" class="w-5 h-5"></i>
+                                Security Question
+                            </h3>
+                            <div class="space-y-4">
+                                <div>
+                                    <label class="block text-xs font-bold text-gray-500 uppercase tracking-widest mb-2">Select Security Question</label>
+                                    <select id="securityQuestion" class="w-full px-4 py-3 rounded-xl border border-gray-200 focus:ring-2 focus:ring-moh-green outline-none transition-all">
+                                        <option value="">Select a question</option>
+                                        <option value="What was the name of your first pet?">What was the name of your first pet?</option>
+                                        <option value="What is your mother's maiden name?">What is your mother's maiden name?</option>
+                                        <option value="What city were you born in?">What city were you born in?</option>
+                                        <option value="What is the name of your favorite teacher?">What is the name of your favorite teacher?</option>
+                                        <option value="What was your first car?">What was your first car?</option>
+                                        <option value="What is your favorite book?">What is your favorite book?</option>
+                                    </select>
+                                </div>
+                                <div>
+                                    <label class="block text-xs font-bold text-gray-500 uppercase tracking-widest mb-2">Your Answer</label>
+                                    <input type="text" id="securityAnswer" class="w-full px-4 py-3 rounded-xl border border-gray-200 focus:ring-2 focus:ring-moh-green outline-none transition-all" placeholder="Enter your answer">
+                                </div>
+                                <button id="saveSecurityQuestionBtn" class="w-full px-4 py-3 border border-moh-border hover:bg-gray-50 text-moh-text-main font-medium rounded-xl transition-colors">
+                                    Save Security Question
+                                </button>
+                            </div>
+                        </div>
+
+                        <!-- Contact Information Update -->
+                        <div class="border border-moh-border rounded-xl p-6">
+                            <h3 class="font-medium text-moh-text-main mb-4 flex items-center gap-2">
+                                <i data-lucide="mail" class="w-5 h-5"></i>
+                                Contact Information
+                            </h3>
+                            <div class="space-y-4">
+                                <div>
+                                    <label class="block text-xs font-bold text-gray-500 uppercase tracking-widest mb-2">Work Email</label>
+                                    <input type="email" id="emailAddress" value="" class="w-full px-4 py-3 rounded-xl border border-gray-200 focus:ring-2 focus:ring-moh-green outline-none transition-all">
+                                </div>
+                                <div>
+                                    <label class="block text-xs font-bold text-gray-500 uppercase tracking-widest mb-2">Phone Number</label>
+                                    <input type="tel" id="phoneNumber" value="" class="w-full px-4 py-3 rounded-xl border border-gray-200 focus:ring-2 focus:ring-moh-green outline-none transition-all">
+                                </div>
+                                <div>
+                                    <label class="block text-xs font-bold text-gray-500 uppercase tracking-widest mb-2">Emergency Contact</label>
+                                    <input type="text" id="emergencyContact" value="" class="w-full px-4 py-3 rounded-xl border border-gray-200 focus:ring-2 focus:ring-moh-green outline-none transition-all">
+                                </div>
+                                <button id="updateContactBtn" class="w-full px-4 py-3 border border-moh-border hover:bg-gray-50 text-moh-text-main font-medium rounded-xl transition-colors">
+                                    Update Contact Info
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Statistics Card -->
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                    <div class="bento-card text-center">
+                        <i data-lucide="calendar" class="w-8 h-8 text-moh-green mx-auto mb-2"></i>
+                        <h3 class="text-2xl font-bold text-moh-text-main" id="daysEmployed">--</h3>
+                        <p class="text-sm text-moh-text-sub">Days Employed</p>
+                    </div>
+                    <div class="bento-card text-center">
+                        <i data-lucide="check-circle" class="w-8 h-8 text-moh-green mx-auto mb-2"></i>
+                        <h3 class="text-2xl font-bold text-moh-text-main" id="attendanceRate">--%</h3>
+                        <p class="text-sm text-moh-text-sub">Attendance Rate</p>
+                    </div>
+                    <div class="bento-card text-center">
+                        <i data-lucide="award" class="w-8 h-8 text-moh-gold mx-auto mb-2"></i>
+                        <h3 class="text-2xl font-bold text-moh-text-main" id="performanceRating">--</h3>
+                        <p class="text-sm text-moh-text-sub">Performance</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script>
+        // Initialize Lucide icons
+        lucide.createIcons();
+
+        // Fetch and display real-time statistics
+        async function loadStatistics() {
+            try {
+                // Fetch user profile data
+                const profileRes = await fetch('/api/user/profile');
+                const profileData = await profileRes.json();
+
+                // Fetch user stats
+                const statsRes = await fetch('/api/user/stats');
+                const statsData = await statsRes.json();
+
+                // Calculate days employed from employment_date
+                if (profileData.employment_date) {
+                    const employmentDate = new Date(profileData.employment_date);
+                    const today = new Date();
+                    const diffTime = Math.abs(today.getTime() - employmentDate.getTime());
+                    const daysEmployed = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
+                    document.getElementById('daysEmployed').textContent = daysEmployed;
+                }
+
+                // Display attendance rate from stats
+                if (statsData.attendanceRate !== undefined) {
+                    document.getElementById('attendanceRate').textContent = statsData.attendanceRate + '%';
+                }
+
+                // Calculate performance rating based on attendance rate
+                const attendanceRate = statsData.attendanceRate || 0;
+                let performance = 'Needs Improvement';
+                if (attendanceRate >= 95) performance = 'Excellent';
+                else if (attendanceRate >= 85) performance = 'Good';
+                else if (attendanceRate >= 75) performance = 'Satisfactory';
+                document.getElementById('performanceRating').textContent = performance;
+
+            } catch (error) {
+                console.error('Failed to load statistics:', error);
+            }
+        }
+
+        // Load statistics on page load
+        loadStatistics();
+
+        // Navigation functionality
+        document.getElementById('navOverview')?.addEventListener('click', () => {
+            window.location.href = '/employee-dashboard';
+        });
+
+        document.getElementById('navAttendance')?.addEventListener('click', () => {
+            window.location.href = '/my-attendance';
+        });
+
+        document.getElementById('navMyReports')?.addEventListener('click', () => {
+            window.location.href = '/my-reports';
+        });
+
+        // Note: navProfile is the current page, so no navigation needed
+
+        // Logout functionality handled by subpages.js
+
+        // Personal Information Edit Functionality
+        let originalPersonalInfo = {};
+
+        document.getElementById('editPersonalInfoBtn')?.addEventListener('click', () => {
+            const fullNameInput = document.getElementById('fullNameInput');
+            const ecNumberInput = document.getElementById('ecNumberInput');
+            const emailInput = document.getElementById('emailInput');
+
+            // Store original values
+            originalPersonalInfo = {
+                fullName: fullNameInput.value,
+                ecNumber: ecNumberInput.value,
+                email: emailInput.value
+            };
+
+            // Make fields editable
+            fullNameInput.removeAttribute('readonly');
+            ecNumberInput.removeAttribute('readonly');
+            emailInput.removeAttribute('readonly');
+            fullNameInput.classList.remove('bg-gray-50');
+            ecNumberInput.classList.remove('bg-gray-50');
+            emailInput.classList.remove('bg-gray-50');
+
+            // Show save/cancel buttons
+            document.getElementById('savePersonalInfoSection').classList.remove('hidden');
+
+            // Hide edit button
+            document.getElementById('editPersonalInfoBtn').classList.add('hidden');
+        });
+
+        document.getElementById('cancelPersonalInfoBtn')?.addEventListener('click', () => {
+            const fullNameInput = document.getElementById('fullNameInput');
+            const ecNumberInput = document.getElementById('ecNumberInput');
+            const emailInput = document.getElementById('emailInput');
+
+            // Restore original values
+            fullNameInput.value = originalPersonalInfo.fullName;
+            ecNumberInput.value = originalPersonalInfo.ecNumber;
+            emailInput.value = originalPersonalInfo.email;
+
+            // Make fields readonly again
+            fullNameInput.setAttribute('readonly', true);
+            ecNumberInput.setAttribute('readonly', true);
+            emailInput.setAttribute('readonly', true);
+            fullNameInput.classList.add('bg-gray-50');
+            ecNumberInput.classList.add('bg-gray-50');
+            emailInput.classList.add('bg-gray-50');
+
+            // Hide save/cancel buttons
+            document.getElementById('savePersonalInfoSection').classList.add('hidden');
+
+            // Show edit button
+            document.getElementById('editPersonalInfoBtn').classList.remove('hidden');
+        });
+
+        document.getElementById('savePersonalInfoBtn')?.addEventListener('click', async () => {
+            const fullName = document.getElementById('fullNameInput').value;
+            const ecNumber = document.getElementById('ecNumberInput').value;
+            const email = document.getElementById('emailInput').value;
+
+            try {
+                const response = await fetch('/api/user/profile', {
+                    method: 'PUT',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ name: fullName, employee_id: ecNumber, email: email })
+                });
+                
+                if (response.ok) {
+                    // Make fields readonly again
+                    document.getElementById('fullNameInput').setAttribute('readonly', true);
+                    document.getElementById('ecNumberInput').setAttribute('readonly', true);
+                    document.getElementById('emailInput').setAttribute('readonly', true);
+                    document.getElementById('fullNameInput').classList.add('bg-gray-50');
+                    document.getElementById('ecNumberInput').classList.add('bg-gray-50');
+                    document.getElementById('emailInput').classList.add('bg-gray-50');
+
+                    // Hide save/cancel buttons
+                    document.getElementById('savePersonalInfoSection').classList.add('hidden');
+
+                    // Show edit button
+                    document.getElementById('editPersonalInfoBtn').classList.remove('hidden');
+
+                    alert('Personal information updated successfully!');
+                } else {
+                    alert('Failed to update personal information. Please try again.');
+                }
+            } catch (error) {
+                console.error('Error updating personal information:', error);
+                alert('An error occurred. Please try again.');
+            }
+        });
+
+        // Load user data from API
+        async function loadUserProfile() {
+            try {
+                const response = await fetch('/api/user/profile');
+                if (response.ok) {
+                    const user = await response.json();
+
+                    // Update profile information display
+                    const nameInput = document.getElementById('fullNameInput');
+                    if (nameInput) nameInput.value = user.name || '';
+
+                    const ecNumberInput = document.getElementById('ecNumberInput');
+                    if (ecNumberInput) ecNumberInput.value = user.employee_id || 'N/A';
+
+                    const emailInput = document.getElementById('emailInput');
+                    if (emailInput) emailInput.value = user.email || '';
+
+                    // Update sidebar info
+                    document.getElementById('employeeName').textContent = user.name || 'Loading...';
+                    document.getElementById('employeeId').textContent = `ID: ${user.id || 'N/A'}`;
+                    document.getElementById('employeeDept').textContent = user.department || 'Loading...';
+
+                    // Load security question and answer
+                    const securityQuestionSelect = document.getElementById('securityQuestion');
+                    const securityAnswerInput = document.getElementById('securityAnswer');
+                    if (securityQuestionSelect && user.security_question) {
+                        securityQuestionSelect.value = user.security_question;
+                    }
+                    if (securityAnswerInput && user.security_answer) {
+                        securityAnswerInput.value = user.security_answer;
+                    }
+
+                    // Load departments and positions, then set current values
+                    await loadDepartments();
+                    await loadPositions();
+                    setDepartmentAndPosition(user.department, user.job_description);
+                }
+            } catch (error) {
+                console.error('Failed to load user profile:', error);
+            }
+        }
+
+        // Load departments from API
+        let allDepartments = [];
+        async function loadDepartments() {
+            try {
+                const response = await fetch('/api/departments');
+                if (response.ok) {
+                    allDepartments = await response.json();
+                    populateDepartmentDropdown();
+                }
+            } catch (error) {
+                console.error('Failed to load departments:', error);
+            }
+        }
+
+        // Populate department dropdown with hierarchy format (Directorate / Unit)
+        function populateDepartmentDropdown() {
+            const deptSelect = document.getElementById('departmentSelect');
+            if (!deptSelect) return;
+            
+            deptSelect.innerHTML = '<option value="">Select Department / Unit</option>';
+            
+            allDepartments.forEach(dept => {
+                // Add the main directorate as an option
+                const deptOption = document.createElement('option');
+                deptOption.value = dept.name;
+                deptOption.textContent = dept.name;
+                deptOption.style.fontWeight = 'bold';
+                deptSelect.appendChild(deptOption);
+
+                // If directorate has units, add them as nested options with hierarchy format
+                if (dept.subDepartments && dept.subDepartments.length > 0) {
+                    dept.subDepartments.forEach(unit => {
+                        const unitOption = document.createElement('option');
+                        unitOption.value = unit.name;
+                        unitOption.textContent = `${dept.name} / ${unit.name}`;
+                        deptSelect.appendChild(unitOption);
+                    });
+                }
+            });
+        }
+
+        // Load positions from API
+        let allPositions = [];
+        async function loadPositions(retryCount = 0) {
+            try {
+                const response = await fetch('/api/positions');
+                if (response.ok) {
+                    allPositions = await response.json();
+                    populatePositionDropdown();
+                } else {
+                    console.error('Failed to load positions:', response.status);
+                    if (retryCount < 2) {
+                        setTimeout(() => loadPositions(retryCount + 1), 1000);
+                    }
+                }
+            } catch (error) {
+                console.error('Failed to load positions:', error);
+                if (retryCount < 2) {
+                    setTimeout(() => loadPositions(retryCount + 1), 1000);
+                }
+            }
+        }
+
+        // Populate position dropdown with job titles
+        function populatePositionDropdown() {
+            const positionSelect = document.getElementById('positionSelect');
+            if (!positionSelect) return;
+            
+            positionSelect.innerHTML = '<option value="">Select Position</option>';
+            
+            allPositions.forEach(position => {
+                const positionOption = document.createElement('option');
+                positionOption.value = position.title;
+                positionOption.textContent = position.title;
+                positionSelect.appendChild(positionOption);
+            });
+            
+            positionSelect.disabled = false;
+        }
+
+        // Set current department and position values
+        function setDepartmentAndPosition(department, position) {
+            const deptSelect = document.getElementById('departmentSelect');
+            const positionSelect = document.getElementById('positionSelect');
+            
+            if (deptSelect && department) {
+                deptSelect.value = department;
+            }
+            
+            if (positionSelect && position) {
+                positionSelect.value = position;
+            }
+        }
+
+        // Save department and position changes
+        document.getElementById('saveDepartmentBtn')?.addEventListener('click', async () => {
+            const department = document.getElementById('departmentSelect').value;
+            const position = document.getElementById('positionSelect').value;
+            
+            if (!department) {
+                alert('Please select a department');
+                return;
+            }
+            
+            if (!position) {
+                alert('Please select a position');
+                return;
+            }
+            
+            try {
+                const response = await fetch('/api/user/profile', {
+                    method: 'PUT',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        department: department,
+                        job_description: position
+                    })
+                });
+                
+                const result = await response.json();
+                
+                if (result.success) {
+                    alert('Work details updated successfully!');
+                    // Reload user data to update sidebar
+                    loadUserProfile();
+                } else {
+                    alert(result.message || 'Failed to update work details');
+                }
+            } catch (error) {
+                console.error('Update work details error:', error);
+                alert('Failed to update work details. Please try again.');
+            }
+        });
+
+        loadUserProfile();
+
+        // Account Management Functionality
+        
+        // Password Change
+        document.getElementById('changePasswordBtn')?.addEventListener('click', () => {
+            const currentPassword = document.getElementById('currentPassword').value;
+            const newPassword = document.getElementById('newPassword').value;
+            const confirmPassword = document.getElementById('confirmPassword').value;
+            
+            // Validation
+            if (!currentPassword || !newPassword || !confirmPassword) {
+                alert('Please fill in all password fields');
+                return;
+            }
+            
+            if (newPassword.length < 6) {
+                alert('New password must be at least 6 characters long');
+                return;
+            }
+            
+            if (newPassword !== confirmPassword) {
+                alert('New passwords do not match');
+                return;
+            }
+            
+            // Simulate password change (in real app, this would call API)
+            alert('Password updated successfully! (Demo mode - no actual change made)');
+            
+            // Clear password fields
+            document.getElementById('currentPassword').value = '';
+            document.getElementById('newPassword').value = '';
+            document.getElementById('confirmPassword').value = '';
+        });
+
+        // Contact Information Update
+        document.getElementById('updateContactBtn')?.addEventListener('click', async () => {
+            const email = document.getElementById('emailAddress').value;
+            const phone = document.getElementById('phoneNumber').value;
+            const emergency = document.getElementById('emergencyContact').value;
+
+            // Basic email validation
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            if (!emailRegex.test(email)) {
+                alert('Please enter a valid email address');
+                return;
+            }
+
+            // Basic phone validation
+            if (!phone || phone.length < 10) {
+                alert('Please enter a valid phone number');
+                return;
+            }
+
+            try {
+                const response = await fetch('/api/user/profile', {
+                    method: 'PUT',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        email: email,
+                        phone: phone,
+                        address: emergency
+                    })
+                });
+
+                const result = await response.json();
+
+                if (result.success) {
+                    alert('Contact information updated successfully!');
+                } else {
+                    alert(result.message || 'Failed to update contact information');
+                }
+            } catch (error) {
+                console.error('Update contact error:', error);
+                alert('Failed to update contact information. Please try again.');
+            }
+        });
+
+        // Security Question Save
+        document.getElementById('saveSecurityQuestionBtn')?.addEventListener('click', async () => {
+            const securityQuestion = document.getElementById('securityQuestion').value;
+            const securityAnswer = document.getElementById('securityAnswer').value;
+
+            console.log('Security Question - Question:', securityQuestion);
+            console.log('Security Question - Answer:', securityAnswer);
+
+            if (!securityQuestion) {
+                alert('Please select a security question');
+                return;
+            }
+
+            if (!securityAnswer || securityAnswer.trim().length < 2) {
+                alert('Please enter a valid answer');
+                return;
+            }
+
+            const payload = {
+                security_question: securityQuestion,
+                security_answer: securityAnswer
+            };
+
+            console.log('Sending payload:', payload);
+
+            try {
+                const response = await fetch('/api/user/profile', {
+                    method: 'PUT',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(payload)
+                });
+
+                console.log('Response status:', response.status);
+                const result = await response.json();
+                console.log('Response result:', result);
+
+                if (result.success) {
+                    alert('Security question updated successfully!');
+                } else {
+                    alert(result.message || 'Failed to update security question');
+                }
+            } catch (error) {
+                console.error('Update security question error:', error);
+                alert('Failed to update security question. Please try again.');
+            }
+        });
+
+        // Profile Photo Upload Functionality
+        const changePhotoBtn = document.getElementById('changePhotoBtn');
+        const profilePhotoInput = document.getElementById('profilePhotoInput');
+        const profilePhotoImage = document.getElementById('profilePhotoImage');
+        const profilePhotoIcon = document.getElementById('profilePhotoIcon');
+
+        // Trigger file input when Change Photo button is clicked
+        changePhotoBtn?.addEventListener('click', () => {
+            profilePhotoInput.click();
+        });
+
+        // Handle file selection
+        profilePhotoInput?.addEventListener('change', async (event) => {
+            const file = event.target.files[0];
+            if (!file) return;
+
+            // Validate file type
+            if (!file.type.startsWith('image/')) {
+                alert('Please select an image file');
+                return;
+            }
+
+            // Validate file size (max 5MB)
+            if (file.size > 5 * 1024 * 1024) {
+                alert('Please select an image smaller than 5MB');
+                return;
+            }
+
+            // Create FormData for upload
+            const formData = new FormData();
+            formData.append('photo', file);
+
+            try {
+                // Show loading state
+                changePhotoBtn.textContent = 'Uploading...';
+                changePhotoBtn.disabled = true;
+
+                // Upload to server
+                const response = await fetch('/api/user/photo', {
+                    method: 'POST',
+                    body: formData
+                });
+
+                const result = await response.json();
+
+                if (result.success) {
+                    // Update profile photo display
+                    if (result.photoUrl) {
+                        profilePhotoImage.src = result.photoUrl;
+                        profilePhotoImage.classList.remove('hidden');
+                        profilePhotoIcon.classList.add('hidden');
+                    }
+                    alert('Profile photo updated successfully!');
+                } else {
+                    alert(result.message || 'Failed to upload photo');
+                }
+            } catch (error) {
+                console.error('Upload error:', error);
+                alert('Failed to upload photo. Please try again.');
+            } finally {
+                // Reset button state
+                changePhotoBtn.textContent = 'Change Photo';
+                changePhotoBtn.disabled = false;
+                profilePhotoInput.value = '';
+            }
+        });
+
+        // Load existing profile photo on page load
+        async function loadProfilePhoto() {
+            try {
+                const response = await fetch('/api/user/photo');
+                if (response.ok) {
+                    const photoUrl = await response.text();
+                    if (photoUrl && !photoUrl.includes('default-avatar')) {
+                        profilePhotoImage.src = photoUrl;
+                        profilePhotoImage.classList.remove('hidden');
+                        profilePhotoIcon.classList.add('hidden');
+                    }
+                }
+            } catch (error) {
+                console.error('Failed to load profile photo:', error);
+            }
+        }
+
+        loadProfilePhoto();
+    </script>
+    <script src="/js/subpages.js"></script>
+</body>
+</html>

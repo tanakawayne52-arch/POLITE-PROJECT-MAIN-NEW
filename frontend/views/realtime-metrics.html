@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Real-time Metrics | MOHCC Zimbabwe</title>
+    <link rel="icon" href="/logo.png" type="image/png">
+    <script src="https://unpkg.com/@tailwindcss/browser@4"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <link rel="stylesheet" href="/css/style.css">
+    <style type="text/tailwindcss">
+        @theme {
+            --color-moh-green: #00843D;
+            --color-moh-gold: #FFD200;
+            --color-moh-red: #D40000;
+            --color-moh-bg: #F0F2F5;
+            --color-moh-sidebar: #111827;
+            --color-moh-border: #E2E8F0;
+            --color-moh-text-main: #1A1A1A;
+            --color-moh-text-sub: #64748B;
+        }
+        .metric-card {
+            @apply bg-white rounded-2xl border border-moh-border p-6 shadow-sm hover:shadow-md transition-all;
+        }
+        .pulse-dot {
+            animation: pulse 2s infinite;
+        }
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.5; }
+        }
+    </style>
+</head>
+<body class="bg-moh-bg min-h-screen flex">
+    <!-- Sidebar -->
+    <aside class="w-64 bg-moh-sidebar text-white flex flex-col sticky top-0 h-screen hidden lg:flex">
+        <div class="p-6 border-b border-gray-800">
+            <div class="flex items-center gap-3">
+                <img src="/logo.png" alt="MOHCC Logo" class="w-10 h-10 object-contain">
+                <div>
+                    <h1 class="font-bold text-white text-sm leading-none">MOHCC Zimbabwe</h1>
+                    <p class="text-[10px] text-moh-gold uppercase tracking-widest mt-1">Admin Portal</p>
+                </div>
+            </div>
+        </div>
+        
+        <nav class="flex-1 p-4 space-y-2">
+            <!-- Main Navigation -->
+            <a href="/dashboard" id="navOverview" class="w-full flex items-center gap-3 px-4 py-3 text-gray-400 hover:bg-white/5 hover:text-white rounded-xl font-medium transition-all">
+                <i data-lucide="layout-dashboard" class="w-5 h-5"></i>
+                <span>Dashboard</span>
+            </a>
+            
+            <!-- Employee Management -->
+            <div class="pt-2 pb-1">
+                <p class="text-xs text-gray-500 uppercase tracking-widest px-4 font-semibold">Employee Management</p>
+            </div>
+            <a href="/employees" id="navEmployees" class="w-full flex items-center gap-3 px-4 py-3 text-gray-400 hover:bg-white/5 hover:text-white rounded-xl font-medium transition-all">
+                <i data-lucide="users" class="w-5 h-5"></i>
+                <span>Employees</span>
+            </a>
+            <a href="/departments" id="navDepartments" class="w-full flex items-center gap-3 px-4 py-3 text-gray-400 hover:bg-white/5 hover:text-white rounded-xl font-medium transition-all">
+                <i data-lucide="building" class="w-5 h-5"></i>
+                <span>Departments</span>
+            </a>
+            
+            <!-- Attendance Management -->
+            <div class="pt-2 pb-1">
+                <p class="text-xs text-gray-500 uppercase tracking-widest px-4 font-semibold">Attendance</p>
+            </div>
+            <a href="/realtime-metrics" id="navRealTimeMetrics" class="w-full flex items-center gap-3 px-4 py-3 bg-moh-green text-white rounded-xl font-medium transition-all shadow-lg shadow-emerald-900/20">
+                <i data-lucide="activity" class="w-5 h-5"></i>
+                <span>Real-time Metrics</span>
+            </a>
+            <a href="/attendance-tracking" id="navAttendanceTracking" class="w-full flex items-center gap-3 px-4 py-3 text-gray-400 hover:bg-white/5 hover:text-white rounded-xl font-medium transition-all">
+                <i data-lucide="clock" class="w-5 h-5"></i>
+                <span>Attendance Tracking</span>
+            </a>
+            
+            <!-- Reports -->
+            <div class="pt-2 pb-1">
+                <p class="text-xs text-gray-500 uppercase tracking-widest px-4 font-semibold">Reports</p>
+            </div>
+            <a href="/reports" id="navReports" class="w-full flex items-center gap-3 px-4 py-3 text-gray-400 hover:bg-white/5 hover:text-white rounded-xl font-medium transition-all">
+                <i data-lucide="file-text" class="w-5 h-5"></i>
+                <span>Monthly Reports</span>
+            </a>
+        </nav>
+
+        <div class="p-4 border-t border-gray-800">
+            <button id="logoutBtn" class="w-full flex items-center gap-3 px-4 py-3 text-gray-400 hover:text-moh-red transition-all font-medium">
+                <i data-lucide="log-out" class="w-5 h-5"></i>
+                <span>Logout</span>
+            </button>
+        </div>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="flex-1 p-8 overflow-y-auto">
+        <header class="flex justify-between items-center mb-8">
+            <div>
+                <h2 class="text-2xl font-bold text-moh-text-main">Real-time Attendance Metrics</h2>
+                <p class="text-moh-text-sub text-sm">Live attendance monitoring and analytics</p>
+            </div>
+            <div class="flex items-center gap-4">
+                <div class="flex items-center gap-2 bg-white border border-moh-border rounded-xl px-4 py-2">
+                    <div class="w-2 h-2 bg-green-500 rounded-full pulse-dot"></div>
+                    <span class="text-sm text-moh-text-sub">Live</span>
+                </div>
+                <div class="bg-white border border-moh-border rounded-xl px-4 py-2 flex items-center gap-2 text-sm text-moh-text-sub">
+                    <i data-lucide="calendar" class="w-4 h-4"></i>
+                    <span id="currentDate"></span>
+                </div>
+            </div>
+        </header>
+
+        <!-- Key Metrics Grid -->
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
+            <div class="metric-card">
+                <div class="flex justify-between items-start mb-4">
+                    <div class="p-2 bg-emerald-50 rounded-lg">
+                        <i data-lucide="users" class="w-5 h-5 text-moh-green"></i>
+                    </div>
+                    <span class="text-xs text-gray-500">Live</span>
+                </div>
+                <h3 class="text-2xl font-bold text-moh-text-main" id="totalEmployees">0</h3>
+                <p class="text-sm text-moh-text-sub">Total Employees</p>
+                <div class="mt-2 flex items-center text-xs text-gray-500">
+                    <i data-lucide="trending-up" class="w-3 h-3 mr-1"></i>
+                    Active workforce
+                </div>
+            </div>
+
+            <div class="metric-card">
+                <div class="flex justify-between items-start mb-4">
+                    <div class="p-2 bg-blue-50 rounded-lg">
+                        <i data-lucide="user-check" class="w-5 h-5 text-blue-600"></i>
+                    </div>
+                    <span class="text-xs text-gray-500">Today</span>
+                </div>
+                <h3 class="text-2xl font-bold text-moh-text-main" id="presentToday">0</h3>
+                <p class="text-sm text-moh-text-sub">Present Today</p>
+                <div class="mt-2 flex items-center text-xs text-gray-500">
+                    <i data-lucide="clock" class="w-3 h-3 mr-1"></i>
+                    <span id="attendanceRate">0%</span> attendance rate
+                </div>
+            </div>
+
+            <div class="metric-card">
+                <div class="flex justify-between items-start mb-4">
+                    <div class="p-2 bg-yellow-50 rounded-lg">
+                        <i data-lucide="clock" class="w-5 h-5 text-yellow-600"></i>
+                    </div>
+                    <span class="text-xs text-gray-500">Late</span>
+                </div>
+                <h3 class="text-2xl font-bold text-moh-text-main" id="lateArrivals">0</h3>
+                <p class="text-sm text-moh-text-sub">Late Arrivals</p>
+                <div class="mt-2 flex items-center text-xs text-gray-500">
+                    <i data-lucide="alert-triangle" class="w-3 h-3 mr-1"></i>
+                    After 8:00 AM
+                </div>
+            </div>
+
+            <div class="metric-card">
+                <div class="flex justify-between items-start mb-4">
+                    <div class="p-2 bg-purple-50 rounded-lg">
+                        <i data-lucide="user-x" class="w-5 h-5 text-purple-600"></i>
+                    </div>
+                    <span class="text-xs text-gray-500">Absent</span>
+                </div>
+                <h3 class="text-2xl font-bold text-moh-text-main" id="absentToday">0</h3>
+                <p class="text-sm text-moh-text-sub">Absent Today</p>
+                <div class="mt-2 flex items-center text-xs text-gray-500">
+                    <i data-lucide="user-minus" class="w-3 h-3 mr-1"></i>
+                    Not checked in
+                </div>
+            </div>
+        </div>
+
+        <!-- Department-wise Attendance -->
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-8">
+            <div class="metric-card">
+                <h3 class="text-lg font-semibold text-moh-text-main mb-4">Department Attendance</h3>
+                <div id="departmentStats" class="space-y-3">
+                    <!-- Department stats will be populated here -->
+                </div>
+            </div>
+
+            <div class="metric-card">
+                <h3 class="text-lg font-semibold text-moh-text-main mb-4">Recent Activity</h3>
+                <div id="recentActivity" class="space-y-3 max-h-64 overflow-y-auto">
+                    <!-- Recent activity will be populated here -->
+                </div>
+            </div>
+        </div>
+
+        <!-- Live Attendance Timeline -->
+        <div class="metric-card">
+            <h3 class="text-lg font-semibold text-moh-text-main mb-4">Today's Attendance Timeline</h3>
+            <div id="attendanceTimeline" class="h-64">
+                <!-- Timeline chart will be rendered here -->
+            </div>
+        </div>
+    </main>
+
+    <script src="/js/realtime-metrics.js"></script>
+</body>
+</html>
